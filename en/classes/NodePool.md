@@ -5,8 +5,6 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 cc.NodePool is the cache pool designed for node type.<br/>
  It can helps you to improve your game performance for objects which need frequent release and recreate operations<br/>
 
@@ -18,6 +16,7 @@ Some common use case is :<br/>
      1. Bullets in game (die very soon, massive creation and recreation, no side effect on other objects)<br/>
      2. Blocks in candy crash (massive creation and recreation)<br/>
      etc...
+
 
 ### Index
 
@@ -73,7 +72,7 @@ Constructor for creating a pool for a specific node template (usually a prefab).
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/extensions/ccpool/CCNodePool.js:56](https:/github.com/cocos-creator/engine/blob/master/extensions/ccpool/CCNodePool.js#L56) |
 
 ###### Parameters
-- poolHandlerComp <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> !#en The constructor or the class name of the component to control the unuse/reuse logic. !#zh 处理节点回收和复用事件逻辑的组件类型或名称。
+- `poolHandlerComp` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> !#en The constructor or the class name of the component to control the unuse/reuse logic. !#zh 处理节点回收和复用事件逻辑的组件类型或名称。
 
 ##### Examples
 
@@ -119,7 +118,7 @@ It will also invoke unuse method of the poolHandlerComp if exist.
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/extensions/ccpool/CCNodePool.js:110](https:/github.com/cocos-creator/engine/blob/master/extensions/ccpool/CCNodePool.js#L110) |
 
 ###### Parameters
-- obj <a href="../classes/Node.html" class="crosslink">Node</a> 
+- `obj` <a href="../classes/Node.html" class="crosslink">Node</a> 
 
 ##### Examples
 
@@ -139,7 +138,7 @@ This function will invoke the reuse function of poolHandlerComp if exist.
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/extensions/ccpool/CCNodePool.js:138](https:/github.com/cocos-creator/engine/blob/master/extensions/ccpool/CCNodePool.js#L138) |
 
 ###### Parameters
-- params Any !#en Params to pass to 'reuse' method in poolHandlerComp !#zh 向 poolHandlerComp 中的 'reuse' 函数传递的参数
+- `params` Any !#en Params to pass to 'reuse' method in poolHandlerComp !#zh 向 poolHandlerComp 中的 'reuse' 函数传递的参数
 
 ##### Examples
 

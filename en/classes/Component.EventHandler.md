@@ -5,8 +5,6 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Component will register a event to target component's handler.
 And it will trigger the handler when a certain event occurs.
 
@@ -14,6 +12,7 @@ And it will trigger the handler when a certain event occurs.
 “EventHandler” 类用来设置场景中的事件回调，
 该类允许用户设置回调目标节点，目标组件名，组件方法名，
 并可通过 emit 方法调用目标函数。
+
 
 ### Index
 
@@ -99,8 +98,8 @@ And it will trigger the handler when a certain event occurs.
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponentEventHandler.js:95](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponentEventHandler.js#L95) |
 
 ###### Parameters
-- events <a href="../classes/Component.EventHandler.html" class="crosslink">Component.EventHandler[]</a> 
-- params Any 
+- `events` <a href="../classes/Component.EventHandler.html" class="crosslink">Component.EventHandler[]</a> 
+- `params` Any 
 
 
 ##### emit
@@ -112,7 +111,7 @@ Emit event with params
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponentEventHandler.js:119](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponentEventHandler.js#L119) |
 
 ###### Parameters
-- params <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> 
+- `params` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> 
 
 ##### Examples
 

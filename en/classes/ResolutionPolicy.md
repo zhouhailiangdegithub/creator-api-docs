@@ -6,10 +6,9 @@ Module: [_decorator](../modules/_decorator.md)
 Parent Module: [cc](../modules/cc.md)
 
 
-
-
 <p>cc.ResolutionPolicy class is the root strategy class of scale strategy,
 its main task is to maintain the compatibility with Cocos2d-x</p>
+
 
 ### Index
 
@@ -60,7 +59,7 @@ Distortion can occur, and the application may appear stretched or compressed.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1420](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1420) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1441](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1441) |
 
 
 
@@ -72,7 +71,7 @@ while maintaining the original aspect ratio of the application.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1429](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1429) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1450](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1450) |
 
 
 
@@ -84,7 +83,7 @@ aspect ratio of the application. Borders can appear on two sides of the applicat
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1438](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1438) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1459](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1459) |
 
 
 
@@ -98,7 +97,7 @@ aspect ratios
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1447](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1447) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1468](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1468) |
 
 
 
@@ -112,7 +111,7 @@ aspect ratios
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1458](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1458) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1479](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1479) |
 
 
 
@@ -123,7 +122,7 @@ aspect ratios
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1469](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1469) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1490](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1490) |
 
 
 
@@ -140,11 +139,11 @@ aspect ratios
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1342](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1342) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1363](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1363) |
 
 ###### Parameters
-- containerStg <a href="../classes/ContainerStrategy.html" class="crosslink">ContainerStrategy</a> The container strategy
-- contentStg <a href="../classes/ContentStrategy.html" class="crosslink">ContentStrategy</a> The content strategy
+- `containerStg` <a href="../classes/ContainerStrategy.html" class="crosslink">ContainerStrategy</a> The container strategy
+- `contentStg` <a href="../classes/ContentStrategy.html" class="crosslink">ContentStrategy</a> The content strategy
 
 
 ##### preApply
@@ -153,10 +152,10 @@ Manipulation before applying the resolution policy
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1361](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1361) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1382](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1382) |
 
 ###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> The target view
+- `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
 
 
 ##### apply
@@ -168,11 +167,11 @@ The target view can then apply these value to itself, it's preferred not to modi
 | meta | description |
 |------|-------------|
 | Returns | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1371](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1371) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1392](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1392) |
 
 ###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> The target view
-- designedResolution <a href="../classes/Size.html" class="crosslink">Size</a> The user defined design resolution
+- `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
+- `designedResolution` <a href="../classes/Size.html" class="crosslink">Size</a> The user defined design resolution
 
 
 ##### postApply
@@ -181,10 +180,10 @@ Manipulation after appyling the strategy
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1385](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1385) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1406](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1406) |
 
 ###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> The target view
+- `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
 
 
 ##### setContainerStrategy
@@ -193,10 +192,10 @@ Setup the container's scale strategy
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1395](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1395) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1416](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1416) |
 
 ###### Parameters
-- containerStg <a href="../classes/ContainerStrategy.html" class="crosslink">ContainerStrategy</a> 
+- `containerStg` <a href="../classes/ContainerStrategy.html" class="crosslink">ContainerStrategy</a> 
 
 
 ##### setContentStrategy
@@ -205,10 +204,10 @@ Setup the content's scale strategy
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1405](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1405) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1426](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1426) |
 
 ###### Parameters
-- contentStg <a href="../classes/ContentStrategy.html" class="crosslink">ContentStrategy</a> 
+- `contentStg` <a href="../classes/ContentStrategy.html" class="crosslink">ContentStrategy</a> 
 
 
 

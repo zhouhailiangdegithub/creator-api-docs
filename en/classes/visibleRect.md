@@ -6,10 +6,9 @@ Module: [_decorator](../modules/_decorator.md)
 Parent Module: [cc](../modules/cc.md)
 
 
-
-
 cc.visibleRect is a singleton object which defines the actual visible rect of the current view,
 it should represent the same rect as cc.view.getViewportRect()
+
 
 ### Index
 
@@ -178,7 +177,7 @@ initialize
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCVisibleRect.js:49](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCVisibleRect.js#L49) |
 
 ###### Parameters
-- visibleRect <a href="../classes/Rect.html" class="crosslink">Rect</a> 
+- `visibleRect` <a href="../classes/Rect.html" class="crosslink">Rect</a> 
 
 
 

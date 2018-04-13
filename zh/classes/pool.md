@@ -6,10 +6,9 @@
 父模块: [js](../modules/js.md)
 
 
-
-
 长度固定的对象缓存池，可以用来缓存各种对象类型。<br/>
 这个对象池的实现非常精简，它可以帮助您提高游戏性能，适用于优化对象的反复创建和销毁。
+
 
 ### 索引
 
@@ -62,9 +61,9 @@
 | 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/js.js:859](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/js.js#L859) |
 
 ###### 参数列表
-- cleanupFunc <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> the callback method used to process the cleanup logic when the object is recycled.
-	- obj <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
-- size <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> initializes the length of the array
+- `cleanupFunc` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> the callback method used to process the cleanup logic when the object is recycled.
+	- `obj` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
+- `size` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> initializes the length of the array
 
 
 ##### get
@@ -77,7 +76,7 @@
 | 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/js.js:884](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/js.js#L884) |
 
 ###### 参数列表
-- params Any parameters to used to initialize the object
+- `params` Any parameters to used to initialize the object
 
 
 ##### _get

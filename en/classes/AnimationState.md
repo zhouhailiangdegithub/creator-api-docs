@@ -6,10 +6,9 @@ Extends [`Playable`](Playable.md)
 Module: [cc](../modules/cc.md)
 
 
-
-
 The AnimationState gives full control over animation playback process.
 In most cases the Animation Component is sufficient and easier to use. Use the AnimationState if you need full control.
+
 
 ### Index
 
@@ -67,7 +66,7 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | meta | description |
 |------|-------------|
 | Type | AnimationAnimator |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:47](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L47) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:49](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L49) |
 
 
 
@@ -78,7 +77,7 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:53](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L53) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:55](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L55) |
 
 
 
@@ -90,7 +89,7 @@ the active interval.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:63](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L63) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:65](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L65) |
 
 
 
@@ -107,7 +106,7 @@ calculations.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:74](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L74) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:76](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L76) |
 
 
 
@@ -118,7 +117,7 @@ calculations.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:91](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L91) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:93](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L93) |
 
 
 
@@ -129,7 +128,7 @@ calculations.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:101](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L101) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:103](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L103) |
 
 
 
@@ -141,7 +140,7 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | meta | description |
 |------|-------------|
 | Type | <a href="../enums/WrapMode.html" class="crosslink">WrapMode</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:110](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L110) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:112](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L112) |
 
 
 
@@ -152,7 +151,7 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:124](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L124) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:126](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L126) |
 
 
 
@@ -163,7 +162,7 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | meta | description |
 |------|-------------|
 | Type | <a href="../classes/AnimationClip.html" class="crosslink">AnimationClip</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:386](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L386) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:377](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L377) |
 
 
 
@@ -174,7 +173,7 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:397](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L397) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:388](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L388) |
 
 
 
@@ -216,8 +215,8 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js:25](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/animation-state.js#L25) |
 
 ###### Parameters
-- clip <a href="../classes/AnimationClip.html" class="crosslink">AnimationClip</a> 
-- name <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+- `clip` <a href="../classes/AnimationClip.html" class="crosslink">AnimationClip</a> 
+- `name` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
 
 ##### onPlay
@@ -269,7 +268,7 @@ Notice : dynamic change wrapMode will reset time and repeatCount property
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/playable.js:65](https:/github.com/cocos-creator/engine/blob/master/cocos2d/animation/playable.js#L65) |
 
 ###### Parameters
-- errorCode <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">string</a> 
+- `errorCode` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">string</a> 
 
 
 ##### play

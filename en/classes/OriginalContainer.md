@@ -10,7 +10,6 @@ Parent Module: [cc](../modules/cc.md)
 
 
 
-
 ### Index
 
 
@@ -38,10 +37,10 @@ Manipulation before appling the strategy
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1021](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1021) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1039](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1039) |
 
 ###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> The target view
+- `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
 
 
 ##### apply
@@ -50,11 +49,11 @@ Function to apply this strategy
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1029](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1029) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1047](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1047) |
 
 ###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> 
-- designedResolution <a href="../classes/Size.html" class="crosslink">Size</a> 
+- `view` <a href="../classes/View.html" class="crosslink">View</a> 
+- `designedResolution` <a href="../classes/Size.html" class="crosslink">Size</a> 
 
 
 ##### postApply
@@ -63,10 +62,10 @@ Manipulation after applying the strategy
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1038](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1038) |
+| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1056](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1056) |
 
 ###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> The target view
+- `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
 
 
 

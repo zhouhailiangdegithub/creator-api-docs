@@ -6,10 +6,9 @@
 父模块: [cc](../modules/cc.md)
 
 
-
-
 cc.visibleRect is a singleton object which defines the actual visible rect of the current view,
 it should represent the same rect as cc.view.getViewportRect()
+
 
 ### 索引
 
@@ -178,7 +177,7 @@ initialize
 | 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCVisibleRect.js:49](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCVisibleRect.js#L49) |
 
 ###### 参数列表
-- visibleRect <a href="../classes/Rect.html" class="crosslink">Rect</a> 
+- `visibleRect` <a href="../classes/Rect.html" class="crosslink">Rect</a> 
 
 
 

@@ -6,14 +6,13 @@ Extends [`Action`](Action.md)
 Module: [cc](../modules/cc.md)
 
 
-
-
 Base class actions that do have a finite time duration. <br/>
 Possible actions: <br/>
 - An action with a duration of 0 seconds. <br/>
 - An action with a duration of 35.5 seconds.
 
 Infinite time actions are valid
+
 
 ### Index
 
@@ -68,7 +67,7 @@ set duration of the action. (seconds).
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/actions/CCAction.js:210](https:/github.com/cocos-creator/engine/blob/master/cocos2d/actions/CCAction.js#L210) |
 
 ###### Parameters
-- duration <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+- `duration` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
 
 
 ##### reverse
@@ -129,7 +128,7 @@ The action will modify the target properties.
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/actions/CCAction.js:107](https:/github.com/cocos-creator/engine/blob/master/cocos2d/actions/CCAction.js#L107) |
 
 ###### Parameters
-- target <a href="../classes/Node.html" class="crosslink">Node</a> 
+- `target` <a href="../classes/Node.html" class="crosslink">Node</a> 
 
 
 ##### getOriginalTarget
@@ -163,7 +162,7 @@ set tag number.
 | Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/actions/CCAction.js:144](https:/github.com/cocos-creator/engine/blob/master/cocos2d/actions/CCAction.js#L144) |
 
 ###### Parameters
-- tag <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+- `tag` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
 
 
 
