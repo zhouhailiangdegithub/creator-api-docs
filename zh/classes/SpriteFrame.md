@@ -1,6 +1,6 @@
 ## `SpriteFrame` 类型
 
-继承于 [`Asset`](Asset.md)
+继承于 [`Asset`](Asset.md), [`EventTarget`](EventTarget.md)(mixin)
 
 
 模块: [cc](../modules/cc.md)
@@ -8,7 +8,7 @@
 
 
 一个 SpriteFrame 包含：<br/>
- - 纹理：会被 Sprite 使用的 Texture2D 对象。<br/>
+ - 纹理：会被渲染组件使用的 Texture2D 对象。<br/>
  - 矩形：在纹理中的矩形区域。
 
 
@@ -16,22 +16,19 @@
 
 ##### 属性（properties）
 
-  - [`_textureFilenameSetter`](#texturefilenamesetter) `String` Use this property to set raw texture url during loading
   - [`insetTop`](#insettop) `Number` sprite 的顶部边框
   - [`insetBottom`](#insetbottom) `Number` sprite 的底部边框
   - [`insetLeft`](#insetleft) `Number` sprite 的左边边框
   - [`insetRight`](#insetright) `Number` sprite 的左边边框
-  - [`rawUrl`](#rawurl) `String` 返回该资源的原始文件的 URL，如果不支持 RAW 文件，它将返回一个空字符串。
-  - [`rawUrls`](#rawurls) `String[]` 返回该资源的原文件的 URL 数组，如果不支持 RAW 文件，它将返回一个空数组。
-  - [`_rawFiles`](#rawfiles) `String[]` 在 lite 版的 Fireball 里，raw asset 并不仅仅是在 properties 里声明了 rawType 才有，
-而是每个 asset 都能指定自己的 raw file url。这些 url 就存在 _rawFiles 字段中。
-AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
-在 Creator 里，_rawFiles 保留了下来，为了复用 cocos 引擎原有实现，直接用 _rawFiles 来加载 Asset 在 import 之前的源文件。
+  - [`loaded`](#loaded) `Boolean` 该资源是否已经成功加载
+  - [`nativeUrl`](#nativeurl) `String` 返回该资源对应的目标平台资源的 URL，如果没有将返回一个空字符串。
+  - [`_native`](#native) `String` Serializable url for native asset.
+  - [`_nativeAsset`](#nativeasset) `Object` The underlying native asset of this asset if one is available....
   - [`_uuid`](#uuid) `String` 
   - [`_name`](#name) `String` 
   - [`_objFlags`](#objflags) `Number` 
   - [`name`](#name) `String` 该对象的名称。
-  - [`isValid`](#isvalid) `Boolean` 表示该对象是否可用（被销毁后将不可用）。
+  - [`isValid`](#isvalid) `Boolean` 表示该对象是否可用（被 destroy 后将不可用）。
 
 
 
@@ -39,7 +36,6 @@ AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
 
   - [`constructor`](#constructor) SpriteFrame 类的构造函数。
   - [`textureLoaded`](#textureloaded) 返回是否已加载纹理
-  - [`addLoadedEventListener`](#addloadedeventlistener) Add a event listener for texture loaded event.
   - [`isRotated`](#isrotated) 获取 SpriteFrame 是否旋转
   - [`setRotated`](#setrotated) 设置 SpriteFrame 是否旋转
   - [`getRect`](#getrect) 获取 SpriteFrame 的纹理矩形区域
@@ -50,44 +46,22 @@ AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
   - [`getOffset`](#getoffset) 获取偏移量
   - [`setOffset`](#setoffset) 设置偏移量
   - [`clone`](#clone) 克隆 SpriteFrame
-  - [`setTexture`](#settexture) 通过 Texture，rect，rotated，offset 和 originalSize 设置 SpriteFrame
+  - [`setTexture`](#settexture) 通过 Texture，rect，rotated，offset 和 originalSize 设置 SpriteFrame。
   - [`ensureLoadTexture`](#ensureloadtexture) 当加载中的场景或 Prefab 被标记为 `asyncLoadAssets` 时，用户在场景中由自定义组件关联到的所有 SpriteFrame 的贴图都不会被提前加载。
-只有当 Sprite 组件要渲染这些 SpriteFrame 时，才会检查贴图是否加载。如果你希望加载过程提前，你可以手工调用这个方法。
-  - [`clearTexture`](#cleartexture) 当你暂时不再使用这个 SpriteFrame 时，可以调用这个方法来保证引用的贴图对象能被 GC。然后当你要渲染 SpriteFrame 时，你需要手动调用 `ensureLoadTexture` 来重新加载贴图。
-  - [`serialize`](#serialize) 应 AssetDB 要求提供这个方法
-  - [`createNode`](#createnode) 使用该资源在场景中创建一个新节点。<br/>
-如果这类资源没有相应的节点类型，该方法应该是空的。
-  - [`_setRawFiles`](#setrawfiles) Set raw file names for this asset.
-  - [`_preloadRawFiles`](#preloadrawfiles) Preload raw files when loading scene.
+  - [`clearTexture`](#cleartexture) 当你暂时不再使用这个 SpriteFrame 时，可以调用这个方法来保证引用的贴图对象能被 GC。
+  - [`hasEventListener`](#haseventlistener) 检查事件目标对象是否有为特定类型的事件注册的回调。
   - [`on`](#on) 注册事件目标的特定事件类型回调。
   - [`off`](#off) 删除之前用同类型，回调，目标或 useCapture 注册的事件监听器，如果只传递 type，将会删除 type 类型的所有事件监听器。
   - [`targetOff`](#targetoff) 在当前 EventTarget 上删除指定目标（target 参数）注册的所有事件监听器。
-这个函数无法删除当前 EventTarget 的所有事件监听器，也无法删除 target 参数所注册的所有事件监听器。
-这个函数只能删除 target 参数在当前 EventTarget 上注册的所有事件监听器。
   - [`once`](#once) 注册事件目标的特定事件类型回调，回调会在第一时间被触发后删除自身。
-  - [`dispatchEvent`](#dispatchevent) 分发事件到事件流中。
-  - [`emit`](#emit) 该对象直接发送事件， 这种方法不会对事件传播到任何其他对象。
-  - [`destroy`](#destroy) 销毁该对象，并释放所有它对其它对象的引用。<br/>
-销毁后，CCObject 不再可用。您可以在访问对象之前使用 cc.isValid(obj) 来检查对象是否已被销毁。
-实际销毁操作会延迟到当前帧渲染前执行。
-  - [`_destruct`](#destruct) Clear all references in the instance.
-
-NOTE: this method will not clear the getter or setter functions which defined in the instance of CCObject.
-      You can override the _destruct method if you need, for example:
-      _destruct: function () {
-          for (var key in this) {
-              if (this.hasOwnProperty(key)) {
-                  switch (typeof this[key]) {
-                      case 'string':
-                          this[key] = '';
-                          break;
-                      case 'object':
-                      case 'function':
-                          this[key] = null;
-                          break;
-              }
-          }
-      }
+  - [`emit`](#emit) 通过事件名发送自定义事件
+  - [`dispatchEvent`](#dispatchevent) 通过事件对象派发事件
+  - [`toString`](#tostring) Returns the asset's url....
+  - [`serialize`](#serialize) 应 AssetDB 要求提供这个方法
+  - [`createNode`](#createnode) 使用该资源在场景中创建一个新节点。
+  - [`_setRawAsset`](#setrawasset) Set native file name for this asset.
+  - [`destroy`](#destroy) 销毁该对象，并释放所有它对其它对象的引用。
+  - [`_destruct`](#destruct) Clear all references in the instance....
   - [`_onPreDestroy`](#onpredestroy) Called before the object being destroyed.
   - [`_serialize`](#serialize) The customized serialization for this object. (Editor Only)
   - [`_deserialize`](#deserialize) Init this object from the custom serialized data.
@@ -100,17 +74,6 @@ NOTE: this method will not clear the getter or setter functions which defined in
 #### 属性（properties）
 
 
-##### _textureFilenameSetter
-
-> Use this property to set raw texture url during loading
-
-| meta | description |
-|------|-------------|
-| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:63](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L63) |
-
-
-
 ##### insetTop
 
 > sprite 的顶部边框
@@ -118,7 +81,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:113](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L113) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:128](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L128) |
 
 
 
@@ -129,7 +92,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:122](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L122) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:137](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L137) |
 
 
 
@@ -140,7 +103,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:131](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L131) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:146](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L146) |
 
 
 
@@ -151,43 +114,53 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:140](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L140) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:155](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L155) |
 
 
 
-##### rawUrl
+##### loaded
 
-> 返回该资源的原始文件的 URL，如果不支持 RAW 文件，它将返回一个空字符串。
+> 该资源是否已经成功加载
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
+| 定义于 | [cocos2d/core/assets/CCAsset.js:57](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L57) |
+
+
+
+##### nativeUrl
+
+> 返回该资源对应的目标平台资源的 URL，如果没有将返回一个空字符串。
 
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js:53](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js#L53) |
+| 定义于 | [cocos2d/core/assets/CCAsset.js:70](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L70) |
 
 
 
-##### rawUrls
+##### _native
 
-> 返回该资源的原文件的 URL 数组，如果不支持 RAW 文件，它将返回一个空数组。
-
-| meta | description |
-|------|-------------|
-| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js:77](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js#L77) |
-
-
-
-##### _rawFiles
-
-> 在 lite 版的 Fireball 里，raw asset 并不仅仅是在 properties 里声明了 rawType 才有，
-而是每个 asset 都能指定自己的 raw file url。这些 url 就存在 _rawFiles 字段中。
-AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
-在 Creator 里，_rawFiles 保留了下来，为了复用 cocos 引擎原有实现，直接用 _rawFiles 来加载 Asset 在 import 之前的源文件。
+> Serializable url for native asset.
 
 | meta | description |
 |------|-------------|
-| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js:104](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js#L104) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/assets/CCAsset.js:108](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L108) |
+
+
+
+##### _nativeAsset
+
+> The underlying native asset of this asset if one is available.
+This property can be used to access additional details or functionality releated to the asset.
+This property will be initialized by the loader if `_native` is available.
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> |
+| 定义于 | [cocos2d/core/assets/CCAsset.js:116](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L116) |
 
 
 
@@ -198,7 +171,7 @@ AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCRawAsset.js:49](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCRawAsset.js#L49) |
+| 定义于 | [cocos2d/core/assets/CCRawAsset.js:46](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCRawAsset.js#L46) |
 
 
 
@@ -209,7 +182,7 @@ AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:50](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L50) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:76](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L76) |
 
 
 
@@ -220,7 +193,7 @@ AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:57](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L57) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:83](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L83) |
 
 
 
@@ -231,7 +204,7 @@ AssetLibrary 并不会帮你加载这些 url，除非你声明了 rawType。
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:208](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L208) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:243](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L243) |
 
 ##### 示例
 
@@ -242,17 +215,23 @@ obj.name = "New Obj";
 
 ##### isValid
 
-> 表示该对象是否可用（被销毁后将不可用）。
+> 表示该对象是否可用（被 destroy 后将不可用）。<br>
+当一个对象的 `destroy` 调用以后，会在这一帧结束后才真正销毁。因此从下一帧开始 `isValid` 就会返回 false，而当前帧内 `isValid` 仍然会是 true。如果希望判断当前帧是否调用过 `destroy`，请使用 `cc.isValid(obj, true)`，不过这往往是特殊的业务需求引起的，通常情况下不需要这样。
 
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:225](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L225) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:261](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L261) |
 
 ##### 示例
 
 ```js
-cc.log(obj.isValid);
+var node = new cc.Node();
+cc.log(node.isValid);    // true
+node.destroy();
+cc.log(node.isValid);    // true, still valid in this frame
+// after a frame...
+cc.log(node.isValid);    // false, destroyed in the end of last frame
 ```
 
 
@@ -269,7 +248,7 @@ SpriteFrame 类的构造函数。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:83](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L83) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:95](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L95) |
 
 ###### 参数列表
 - `filename` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> &#124; <a href="../classes/Texture2D.html" class="crosslink">Texture2D</a> 
@@ -286,22 +265,8 @@ SpriteFrame 类的构造函数。
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:165](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L165) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:187](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L187) |
 
-
-
-##### addLoadedEventListener
-
-Add a event listener for texture loaded event.
-
-| meta | description |
-|------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:175](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L175) |
-| 废弃（Deprecated） | since 3.1, please use EventTarget API instead |
-
-###### 参数列表
-- `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-- `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
 
 
 ##### isRotated
@@ -311,7 +276,7 @@ Add a event listener for texture loaded event.
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:186](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L186) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:197](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L197) |
 
 
 
@@ -321,7 +286,7 @@ Add a event listener for texture loaded event.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:196](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L196) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:207](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L207) |
 
 ###### 参数列表
 - `bRotated` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
@@ -334,7 +299,7 @@ Add a event listener for texture loaded event.
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Rect.html" class="crosslink">Rect</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:206](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L206) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:217](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L217) |
 
 
 
@@ -344,7 +309,7 @@ Add a event listener for texture loaded event.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:216](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L216) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:227](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L227) |
 
 ###### 参数列表
 - `rect` <a href="../classes/Rect.html" class="crosslink">Rect</a> 
@@ -357,7 +322,7 @@ Add a event listener for texture loaded event.
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:226](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L226) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:237](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L237) |
 
 
 
@@ -367,7 +332,7 @@ Add a event listener for texture loaded event.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:236](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L236) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:247](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L247) |
 
 ###### 参数列表
 - `size` <a href="../classes/Size.html" class="crosslink">Size</a> 
@@ -380,7 +345,7 @@ Add a event listener for texture loaded event.
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Texture2D.html" class="crosslink">Texture2D</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:251](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L251) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:262](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L262) |
 
 
 
@@ -391,7 +356,7 @@ Add a event listener for texture loaded event.
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:330](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L330) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:327](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L327) |
 
 
 
@@ -401,7 +366,7 @@ Add a event listener for texture loaded event.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:340](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L340) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:337](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L337) |
 
 ###### 参数列表
 - `offsets` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
@@ -414,18 +379,18 @@ Add a event listener for texture loaded event.
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/SpriteFrame.html" class="crosslink">SpriteFrame</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:350](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L350) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:347](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L347) |
 
 
 
 ##### setTexture
 
-通过 Texture，rect，rotated，offset 和 originalSize 设置 SpriteFrame
+通过 Texture，rect，rotated，offset 和 originalSize 设置 SpriteFrame。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:360](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L360) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:357](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L357) |
 
 ###### 参数列表
 - `textureOrTextureFile` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> &#124; <a href="../classes/Texture2D.html" class="crosslink">Texture2D</a> 
@@ -442,7 +407,7 @@ Add a event listener for texture loaded event.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:418](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L418) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:412](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L412) |
 
 
 ##### 示例
@@ -463,7 +428,7 @@ else {
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js:442](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/sprites/CCSpriteFrame.js#L442) |
+| 定义于 | [cocos2d/core/assets/CCSpriteFrame.js:444](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCSpriteFrame.js#L444) |
 
 
 ##### 示例
@@ -475,82 +440,44 @@ spriteFrame.once('load', onSpriteFrameLoaded);
 spriteFrame.ensureLoadTexture();
 ```
 
-##### serialize
+##### hasEventListener
 
-应 AssetDB 要求提供这个方法
-
-| meta | description |
-|------|-------------|
-| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js:143](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js#L143) |
-
-
-
-##### createNode
-
-使用该资源在场景中创建一个新节点。<br/>
-如果这类资源没有相应的节点类型，该方法应该是空的。
+检查事件目标对象是否有为特定类型的事件注册的回调。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js:154](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js#L154) |
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+| 定义于 | [cocos2d/core/event/event-target.js:68](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L68) |
 
 ###### 参数列表
-- `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-	- `error` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> null or the error info
-	- `node` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> the created node or null
-
-
-##### _setRawFiles
-
-Set raw file names for this asset.
-
-| meta | description |
-|------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js:168](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js#L168) |
-
-###### 参数列表
-- `rawFiles` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a> 
-
-
-##### _preloadRawFiles
-
-Preload raw files when loading scene.
-
-| meta | description |
-|------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js:179](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/assets/CCAsset.js#L179) |
-
-###### 参数列表
-- `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-	- `error` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error" class="crosslink external" target="_blank">Error</a> 
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The type of event.
 
 
 ##### on
 
-注册事件目标的特定事件类型回调。
+注册事件目标的特定事件类型回调。这种类型的事件应该被 `emit` 触发。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:217](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L217) |
+| 定义于 | [cocos2d/core/event/event-target.js:76](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L76) |
 
 ###### 参数列表
 - `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
                              The callback is ignored if it is a duplicate (the callbacks are unique).
-	- `event` <a href="../classes/Event.html" class="crosslink">Event</a> event
+	- `arg1` Any arg1
+	- `arg2` Any arg2
+	- `arg3` Any arg3
+	- `arg4` Any arg4
+	- `arg5` Any arg5
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, can be null
-- `useCapture` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> When set to true, the capture argument prevents callback
-                             from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                             When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                             Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.
 
 ##### 示例
 
 ```js
-node.on(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
+eventTarget.on('fire', function (event) {
+    cc.log("fire in the hole");
 }, node);
 ```
 
@@ -560,28 +487,24 @@ node.on(cc.Node.EventType.TOUCH_END, function (event) {
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:274](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L274) |
+| 定义于 | [cocos2d/core/event/event-target.js:117](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L117) |
 
 ###### 参数列表
 - `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type being removed.
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback to remove.
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, if it's not given, only callback without target will be removed
-- `useCapture` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Specifies whether the callback being removed was registered as a capturing callback or not.
-                             If not specified, useCapture defaults to false. If a callback was registered twice,
-                             one with capture and one without, each must be removed separately. Removal of a capturing callback
-                             does not affect a non-capturing version of the same listener, and vice versa.
 
 ##### 示例
 
 ```js
-// register touchEnd eventListener
-var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
-}, node);
-// remove touch end event listener
-node.off(cc.Node.EventType.TOUCH_END, touchEnd, node);
-// remove all touch end event listeners
-node.off(cc.Node.EventType.TOUCH_END);
+// register fire eventListener
+var callback = eventTarget.on('fire', function (event) {
+    cc.log("fire in the hole");
+}, target);
+// remove fire event listener
+eventTarget.off('fire', callback, target);
+// remove all fire event listeners
+eventTarget.off('fire');
 ```
 
 ##### targetOff
@@ -592,7 +515,7 @@ node.off(cc.Node.EventType.TOUCH_END);
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:329](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L329) |
+| 定义于 | [cocos2d/core/event/event-target.js:151](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L151) |
 
 ###### 参数列表
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target to be searched for all related listeners
@@ -604,62 +527,126 @@ node.off(cc.Node.EventType.TOUCH_END);
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:351](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L351) |
+| 定义于 | [cocos2d/core/event/event-target.js:164](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L164) |
 
 ###### 参数列表
 - `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
                              The callback is ignored if it is a duplicate (the callbacks are unique).
-	- `event` <a href="../classes/Event.html" class="crosslink">Event</a> event
+	- `arg1` Any arg1
+	- `arg2` Any arg2
+	- `arg3` Any arg3
+	- `arg4` Any arg4
+	- `arg5` Any arg5
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, can be null
-- `useCapture` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> When set to true, the capture argument prevents callback
-                             from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                             When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                             Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.
 
 ##### 示例
 
 ```js
-node.once(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
+eventTarget.once('fire', function (event) {
+    cc.log("this is the callback and will be invoked only once");
 }, node);
+```
+
+##### emit
+
+通过事件名发送自定义事件
+
+| meta | description |
+|------|-------------|
+| 定义于 | [cocos2d/core/event/event-target.js:201](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L201) |
+
+###### 参数列表
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> event type
+- `arg1` Any First argument
+- `arg2` Any Second argument
+- `arg3` Any Third argument
+- `arg4` Any Fourth argument
+- `arg5` Any Fifth argument
+
+##### 示例
+
+```js
+eventTarget.emit('fire', event);
+eventTarget.emit('fire', message, emitter);
 ```
 
 ##### dispatchEvent
 
-分发事件到事件流中。
+通过事件对象派发事件
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:396](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L396) |
+| 定义于 | [cocos2d/core/event/event-target.js:221](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L221) |
 
 ###### 参数列表
-- `event` <a href="../classes/Event.html" class="crosslink">Event</a> The Event object that is dispatched into the event flow
+- `event` <a href="../classes/Event.html" class="crosslink">Event</a>  
 
 
-##### emit
+##### toString
 
-该对象直接发送事件， 这种方法不会对事件传播到任何其他对象。
+Returns the asset's url.
+
+The `Asset` object overrides the `toString()` method of the `Object` object.
+For `Asset` objects, the toString() method returns a string representation of the object.
+JavaScript calls the toString() method automatically when an asset is to be represented as a text value or when a texture is referred to in a string concatenation.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:410](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L410) |
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+| 定义于 | [cocos2d/core/assets/CCAsset.js:165](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L165) |
+
+
+
+##### serialize
+
+应 AssetDB 要求提供这个方法
+
+| meta | description |
+|------|-------------|
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+| 定义于 | [cocos2d/core/assets/CCAsset.js:179](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L179) |
+
+
+
+##### createNode
+
+使用该资源在场景中创建一个新节点。<br/>
+如果这类资源没有相应的节点类型，该方法应该是空的。
+
+| meta | description |
+|------|-------------|
+| 定义于 | [cocos2d/core/assets/CCAsset.js:190](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L190) |
 
 ###### 参数列表
-- `message` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> the message to send
-- `detail` Any whatever argument the message needs
+- `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
+	- `error` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> null or the error info
+	- `node` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> the created node or null
+
+
+##### _setRawAsset
+
+Set native file name for this asset.
+
+| meta | description |
+|------|-------------|
+| 定义于 | [cocos2d/core/assets/CCAsset.js:205](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCAsset.js#L205) |
+
+###### 参数列表
+- `filename` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+- `inLibrary` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
 
 
 ##### destroy
 
 销毁该对象，并释放所有它对其它对象的引用。<br/>
-销毁后，CCObject 不再可用。您可以在访问对象之前使用 cc.isValid(obj) 来检查对象是否已被销毁。
-实际销毁操作会延迟到当前帧渲染前执行。
+实际销毁操作会延迟到当前帧渲染前执行。从下一帧开始，该对象将不再可用。
+您可以在访问对象之前使用 cc.isValid(obj) 来检查对象是否已被销毁。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:246](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L246) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:296](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L296) |
 
 
 ##### 示例
@@ -691,7 +678,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:379](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L379) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:430](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L430) |
 
 
 
@@ -701,7 +688,7 @@ Called before the object being destroyed.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:412](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L412) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:463](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L463) |
 
 
 
@@ -712,7 +699,7 @@ The customized serialization for this object. (Editor Only)
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">object</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:437](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L437) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:488](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L488) |
 
 ###### 参数列表
 - `exporting` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
@@ -724,7 +711,7 @@ Init this object from the custom serialized data.
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:447](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L447) |
+| 定义于 | [cocos2d/core/platform/CCObject.js:498](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L498) |
 
 ###### 参数列表
 - `data` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> the serialized json data

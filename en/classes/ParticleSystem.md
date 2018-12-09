@@ -1,6 +1,6 @@
 ## `ParticleSystem` Class
 
-Extends [`_RendererUnderSG`](_RendererUnderSG.md)
+Extends [`Component`](Component.md)
 
 
 Module: [cc](../modules/cc.md)
@@ -49,22 +49,22 @@ It is possible to customize any of the above mentioned properties in runtime. Ex
   - [`preview`](#preview) `Boolean` Play particle in edit mode.
   - [`custom`](#custom) `Boolean` If set custom to true, then use custom properties insteadof read particle file.
   - [`file`](#file) `string` The plist file.
-  - [`texture`](#texture) `Texture2D` .
+  - [`spriteFrame`](#spriteframe) `SpriteFrame` SpriteFrame used for particles display
+  - [`texture`](#texture) `String` Texture of Particle System, readonly, please use spriteFrame to setup new texture。
   - [`particleCount`](#particlecount) `Number` Current quantity of particles that are being simulated.
-  - [`srcBlendFactor`](#srcblendfactor) `BlendFactor` Specify the source Blend Factor.
-  - [`dstBlendFactor`](#dstblendfactor) `BlendFactor` Specify the destination Blend Factor.
+  - [`stopped`](#stopped) `Boolean` Indicate whether the system simulation have stopped.
   - [`playOnLoad`](#playonload) `Boolean` If set to true, the particle system will automatically start playing on onLoad.
   - [`autoRemoveOnFinish`](#autoremoveonfinish) `Boolean` Indicate whether the owner node will be auto-removed when it has no particles left.
   - [`active`](#active) `Boolean` Indicate whether the particle system is activated.
   - [`totalParticles`](#totalparticles) `Number` Maximum particles of the system.
-  - [`duration`](#duration) `Number` How many seconds the emitter wil run. -1 means 'forever'.
+  - [`duration`](#duration) `Number` How many seconds the emitter wil run.
   - [`emissionRate`](#emissionrate) `Number` Emission rate of the particles.
   - [`life`](#life) `Number` Life of each particle setter.
   - [`lifeVar`](#lifevar) `Number` Variation of life.
-  - [`startColor`](#startcolor) `Color` Start color of each particle.
-  - [`startColorVar`](#startcolorvar) `Color` Variation of the start color.
-  - [`endColor`](#endcolor) `Color` Ending color of each particle.
-  - [`endColorVar`](#endcolorvar) `Color` Variation of the end color.
+  - [`startColor`](#startcolor) `cc.Color` Start color of each particle.
+  - [`startColorVar`](#startcolorvar) `cc.Color` Variation of the start color.
+  - [`endColor`](#endcolor) `cc.Color` Ending color of each particle.
+  - [`endColorVar`](#endcolorvar) `cc.Color` Variation of the end color.
   - [`angle`](#angle) `Number` Angle of each particle setter.
   - [`angleVar`](#anglevar) `Number` Variation of angle of each particle setter.
   - [`startSize`](#startsize) `Number` Start size in pixels of each particle.
@@ -82,26 +82,22 @@ It is possible to customize any of the above mentioned properties in runtime. Ex
   - [`gravity`](#gravity) `Vec2` Gravity of the emitter.
   - [`speed`](#speed) `Number` Speed of the emitter.
   - [`speedVar`](#speedvar) `Number` Variation of the speed.
-  - [`tangentialAccel`](#tangentialaccel) `Number` Tangential acceleration of each particle. Only available in 'Gravity' mode.
+  - [`tangentialAccel`](#tangentialaccel) `Number` Tangential acceleration of each particle.
   - [`tangentialAccelVar`](#tangentialaccelvar) `Number` Variation of the tangential acceleration.
-  - [`radialAccel`](#radialaccel) `Number` Acceleration of each particle. Only available in 'Gravity' mode.
+  - [`radialAccel`](#radialaccel) `Number` Acceleration of each particle.
   - [`radialAccelVar`](#radialaccelvar) `Number` Variation of the radial acceleration.
-  - [`rotationIsDir`](#rotationisdir) `Boolean` Indicate whether the rotation of each particle equals to its direction. Only available in 'Gravity' mode.
-  - [`startRadius`](#startradius) `Number` Starting radius of the particles. Only available in 'Radius' mode.
+  - [`rotationIsDir`](#rotationisdir) `Boolean` Indicate whether the rotation of each particle equals to its direction.
+  - [`startRadius`](#startradius) `Number` Starting radius of the particles.
   - [`startRadiusVar`](#startradiusvar) `Number` Variation of the starting radius.
-  - [`endRadius`](#endradius) `Number` Ending radius of the particles. Only available in 'Radius' mode.
+  - [`endRadius`](#endradius) `Number` Ending radius of the particles.
   - [`endRadiusVar`](#endradiusvar) `Number` Variation of the ending radius.
-  - [`rotatePerS`](#rotatepers) `Number` Number of degress to rotate a particle around the source pos per second. Only available in 'Radius' mode.
+  - [`rotatePerS`](#rotatepers) `Number` Number of degress to rotate a particle around the source pos per second.
   - [`rotatePerSVar`](#rotatepersvar) `Number` Variation of the degress to rotate a particle around the source pos per second.
   - [`DURATION_INFINITY`](#durationinfinity) `Number` The Particle emitter lives forever.
   - [`START_SIZE_EQUAL_TO_END_SIZE`](#startsizeequaltoendsize) `Number` The starting size of the particle is equal to the ending size.
   - [`START_RADIUS_EQUAL_TO_END_RADIUS`](#startradiusequaltoendradius) `Number` The starting radius of the particle is equal to the ending radius.
-  - [`_sgNode`](#sgnode) `_ccsg.Node` Reference to the instance of _ccsg.Node
-If it is possible to return null from your overloaded _createSgNode,
-then you should always check for null before using this property and reimplement `__preload`.
-  - [`__eventTargets`](#eventtargets) `Array` Register all related EventTargets,
-all event callbacks will be removed in _onPreDestroy
-  - [`node`](#node) `Node` The node this component is attached to. A component is always attached to a node.
+  - [`__eventTargets`](#eventtargets) `Array` Register all related EventTargets,...
+  - [`node`](#node) `Node` The node this component is attached to.
   - [`uuid`](#uuid) `String` The uuid for editor.
   - [`_enabled`](#enabled) `Boolean` 
   - [`enabled`](#enabled) `Boolean` indicates whether this component is enabled or not.
@@ -116,93 +112,36 @@ all event callbacks will be removed in _onPreDestroy
 
 ##### Methods
 
-  - [`addParticle`](#addparticle) Add a particle to the emitter.
-  - [`stopSystem`](#stopsystem) Stop emitting particles. Running particles will continue to run until they die.
+  - [`stopSystem`](#stopsystem) Stop emitting particles.
   - [`resetSystem`](#resetsystem) Kill all living particles.
   - [`isFull`](#isfull) Whether or not the system is full.
-  - [`setDisplayFrame`](#setdisplayframe) <p> Sets a new CCSpriteFrame as particle.</br>
-WARNING: this method is experimental. Use setTextureWithRect instead.
-</p>
-  - [`setTextureWithRect`](#settexturewithrect) Sets a new texture with a rect. The rect is in texture position and size.
-  - [`_createSgNode`](#createsgnode) Create and returns your new scene graph node (SGNode) to add to scene graph.
-You should call the setContentSize of the SGNode if its size should be the same with the node's.
-  - [`_initSgNode`](#initsgnode) 
-  - [`_removeSgNode`](#removesgnode) 
-  - [`update`](#update) Update is called every frame, if the Component is enabled.
-  - [`lateUpdate`](#lateupdate) LateUpdate is called every frame, if the Component is enabled.
+  - [`setTextureWithRect`](#settexturewithrect) Sets a new texture with a rect.
+  - [`update`](#update) This is a lifecycle method.
+  - [`lateUpdate`](#lateupdate) This is a lifecycle method.
   - [`__preload`](#preload) `__preload` is called before every onLoad.
-It is used to initialize the builtin components internally,
-to avoid checking whether onLoad is called before every public method calls.
-This method should be removed if script priority is supported.
   - [`onLoad`](#onload) When attaching to an active node or its node first activated.
-onLoad is always called before any start functions, this allows you to order initialization of scripts.
   - [`start`](#start) Called before all scripts' update if the Component is enabled the first time.
-Usually used to initialize some logic which need to be called after all components' `onload` methods called.
-  - [`onEnable`](#onenable) Called when this component becomes enabled and its node is active.
-  - [`onDisable`](#ondisable) Called when this component becomes disabled or its node becomes inactive.
-  - [`onDestroy`](#ondestroy) Called when this component will be destroyed.
+  - [`onEnable`](#onenable) This is a lifecycle method.
+  - [`onDisable`](#ondisable) This is a lifecycle method.
+  - [`onDestroy`](#ondestroy) This is a lifecycle method.
   - [`onFocusInEditor`](#onfocusineditor) 
   - [`onLostFocusInEditor`](#onlostfocusineditor) 
-  - [`resetInEditor`](#resetineditor) Called to initialize the component or node’s properties when adding the component the first time or when the Reset command is used. This function is only called in editor.
-  - [`addComponent`](#addcomponent) Adds a component class to the node. You can also add component to node by passing in the name of the script.
-  - [`getComponent`](#getcomponent) Returns the component of supplied type if the node has one attached, null if it doesn't.<br/>
-You can also get component in the node by passing in the name of the script.
+  - [`resetInEditor`](#resetineditor) Called to initialize the component or node’s properties when adding the component the first time or when the Reset command is used.
+  - [`addComponent`](#addcomponent) Adds a component class to the node.
+  - [`getComponent`](#getcomponent) Returns the component of supplied type if the node has one attached, null if it doesn't....
   - [`getComponents`](#getcomponents) Returns all components of supplied Type in the node.
   - [`getComponentInChildren`](#getcomponentinchildren) Returns the component of supplied type in any of its children using depth first search.
   - [`getComponentsInChildren`](#getcomponentsinchildren) Returns the components of supplied type in self or any of its children using depth first search.
   - [`_getLocalBounds`](#getlocalbounds) If the component's bounding box is different from the node's, you can implement this method to supply
-a custom axis aligned bounding box (AABB), so the editor's scene view can perform hit test properly.
-  - [`onRestore`](#onrestore) onRestore is called after the user clicks the Reset item in the Inspector's context menu or performs
-an undo operation on this component.<br/>
-<br/>
-If the component contains the "internal state", short for "temporary member variables which not included<br/>
-in its CCClass properties", then you may need to implement this function.<br/>
-<br/>
-The editor will call the getset accessors of your component to record/restore the component's state<br/>
-for undo/redo operation. However, in extreme cases, it may not works well. Then you should implement<br/>
-this function to manually synchronize your component's "internal states" with its public properties.<br/>
-Once you implement this function, all the getset accessors of your component will not be called when<br/>
-the user performs an undo/redo operation. Which means that only the properties with default value<br/>
-will be recorded or restored by editor.<br/>
-<br/>
-Similarly, the editor may failed to reset your component correctly in extreme cases. Then if you need<br/>
-to support the reset menu, you should manually synchronize your component's "internal states" with its<br/>
-properties in this function. Once you implement this function, all the getset accessors of your component<br/>
-will not be called during reset operation. Which means that only the properties with default value<br/>
-will be reset by editor.
-
-This function is only called in editor mode.
-  - [`schedule`](#schedule) Schedules a custom selector.<br/>
-If the selector is already scheduled, then the interval parameter will be updated without scheduling it again.
+  - [`onRestore`](#onrestore) for undo/redo operation.
+  - [`schedule`](#schedule) Schedules a custom selector....
   - [`scheduleOnce`](#scheduleonce) Schedules a callback function that runs only once, with a delay of 0 or larger.
   - [`unschedule`](#unschedule) Unschedules a custom callback function.
-  - [`unscheduleAllCallbacks`](#unscheduleallcallbacks) unschedule all scheduled callback functions: custom callback functions, and the 'update' callback function.<br/>
-Actions are not affected by this method.
-  - [`destroy`](#destroy) Destroy this Object, and release all its own references to other objects.<br/>
-Actual object destruction will delayed until before rendering.
-<br/>
-After destroy, this CCObject is not usable any more.
-You can use cc.isValid(obj) to check whether the object is destroyed before accessing it.
+  - [`unscheduleAllCallbacks`](#unscheduleallcallbacks) unschedule all scheduled callback functions: custom callback functions, and the 'update' callback function....
+  - [`destroy`](#destroy) Actual object destruction will delayed until before rendering.
   - [`_destruct`](#destruct) Clear all references in the instance.
-
-NOTE: this method will not clear the getter or setter functions which defined in the instance of CCObject.
-      You can override the _destruct method if you need, for example:
-      _destruct: function () {
-          for (var key in this) {
-              if (this.hasOwnProperty(key)) {
-                  switch (typeof this[key]) {
-                      case 'string':
-                          this[key] = '';
-                          break;
-                      case 'object':
-                      case 'function':
-                          this[key] = null;
-                          break;
-              }
-          }
-      }
   - [`_onPreDestroy`](#onpredestroy) Called before the object being destroyed.
-  - [`_serialize`](#serialize) The customized serialization for this object. (Editor Only)
+  - [`_serialize`](#serialize) The customized serialization for this object.
   - [`_deserialize`](#deserialize) Init this object from the custom serialized data.
 
 
@@ -220,7 +159,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:96](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L96) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:123](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L123) |
 
 
 
@@ -231,7 +170,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:116](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L116) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:144](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L144) |
 
 
 
@@ -242,18 +181,29 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">string</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:150](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L150) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:175](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L175) |
+
+
+
+##### spriteFrame
+
+> SpriteFrame used for particles display
+
+| meta | description |
+|------|-------------|
+| Type | <a href="../classes/SpriteFrame.html" class="crosslink">SpriteFrame</a> |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:209](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L209) |
 
 
 
 ##### texture
 
-> .
+> Texture of Particle System, readonly, please use spriteFrame to setup new texture。
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Texture2D.html" class="crosslink">Texture2D</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:184](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L184) |
+| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:248](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L248) |
 
 
 
@@ -264,29 +214,18 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:209](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L209) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:269](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L269) |
 
 
 
-##### srcBlendFactor
+##### stopped
 
-> Specify the source Blend Factor.
-
-| meta | description |
-|------|-------------|
-| Type | <a href="../enums/BlendFactor.html" class="crosslink">BlendFactor</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:225](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L225) |
-
-
-
-##### dstBlendFactor
-
-> Specify the destination Blend Factor.
+> Indicate whether the system simulation have stopped.
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../enums/BlendFactor.html" class="crosslink">BlendFactor</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:246](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L246) |
+| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:283](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L283) |
 
 
 
@@ -297,7 +236,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:267](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L267) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:297](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L297) |
 
 
 
@@ -308,7 +247,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:276](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L276) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:306](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L306) |
 
 
 
@@ -319,7 +258,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:298](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L298) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:317](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L317) |
 
 
 
@@ -330,7 +269,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:314](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L314) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:330](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L330) |
 
 
 
@@ -341,7 +280,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:321](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L321) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:337](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L337) |
 
 
 
@@ -352,7 +291,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:328](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L328) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:344](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L344) |
 
 
 
@@ -363,7 +302,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:335](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L335) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:351](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L351) |
 
 
 
@@ -374,7 +313,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:342](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L342) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:358](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L358) |
 
 
 
@@ -384,8 +323,8 @@ NOTE: this method will not clear the getter or setter functions which defined in
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Color.html" class="crosslink">Color</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:350](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L350) |
+| Type | cc.Color |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:366](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L366) |
 
 
 
@@ -395,8 +334,8 @@ NOTE: this method will not clear the getter or setter functions which defined in
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Color.html" class="crosslink">Color</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:357](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L357) |
+| Type | cc.Color |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:385](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L385) |
 
 
 
@@ -406,8 +345,8 @@ NOTE: this method will not clear the getter or setter functions which defined in
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Color.html" class="crosslink">Color</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:364](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L364) |
+| Type | cc.Color |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:404](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L404) |
 
 
 
@@ -417,8 +356,8 @@ NOTE: this method will not clear the getter or setter functions which defined in
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Color.html" class="crosslink">Color</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:371](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L371) |
+| Type | cc.Color |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:423](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L423) |
 
 
 
@@ -429,7 +368,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:379](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L379) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:443](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L443) |
 
 
 
@@ -440,7 +379,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:386](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L386) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:450](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L450) |
 
 
 
@@ -451,7 +390,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:393](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L393) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:457](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L457) |
 
 
 
@@ -462,7 +401,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:400](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L400) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:464](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L464) |
 
 
 
@@ -473,7 +412,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:407](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L407) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:471](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L471) |
 
 
 
@@ -484,7 +423,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:414](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L414) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:478](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L478) |
 
 
 
@@ -495,7 +434,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:421](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L421) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:485](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L485) |
 
 
 
@@ -506,7 +445,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:428](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L428) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:492](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L492) |
 
 
 
@@ -517,7 +456,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:435](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L435) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:499](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L499) |
 
 
 
@@ -528,7 +467,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:442](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L442) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:506](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L506) |
 
 
 
@@ -539,7 +478,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:450](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L450) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:514](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L514) |
 
 
 
@@ -550,7 +489,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:458](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L458) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:522](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L522) |
 
 
 
@@ -561,7 +500,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="../enums/ParticleSystem.PositionType.html" class="crosslink">ParticleSystem.PositionType</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:466](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L466) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:530](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L530) |
 
 
 
@@ -572,7 +511,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="../enums/ParticleSystem.EmitterMode.html" class="crosslink">ParticleSystem.EmitterMode</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:473](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L473) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:541](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L541) |
 
 
 
@@ -583,7 +522,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:483](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L483) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:554](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L554) |
 
 
 
@@ -594,7 +533,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:490](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L490) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:561](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L561) |
 
 
 
@@ -605,7 +544,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:497](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L497) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:568](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L568) |
 
 
 
@@ -616,7 +555,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:504](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L504) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:575](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L575) |
 
 
 
@@ -627,7 +566,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:511](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L511) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:582](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L582) |
 
 
 
@@ -638,7 +577,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:518](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L518) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:589](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L589) |
 
 
 
@@ -649,7 +588,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:525](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L525) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:596](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L596) |
 
 
 
@@ -660,7 +599,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:533](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L533) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:604](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L604) |
 
 
 
@@ -671,7 +610,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:543](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L543) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:614](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L614) |
 
 
 
@@ -682,7 +621,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:550](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L550) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:621](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L621) |
 
 
 
@@ -693,7 +632,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:557](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L557) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:628](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L628) |
 
 
 
@@ -704,7 +643,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:564](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L564) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:635](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L635) |
 
 
 
@@ -715,7 +654,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:571](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L571) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:642](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L642) |
 
 
 
@@ -726,7 +665,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:578](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L578) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:649](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L649) |
 
 
 
@@ -737,7 +676,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:705](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L705) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:730](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L730) |
 
 
 
@@ -748,7 +687,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:715](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L715) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:740](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L740) |
 
 
 
@@ -759,20 +698,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:725](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L725) |
-
-
-
-##### _sgNode
-
-> Reference to the instance of _ccsg.Node
-If it is possible to return null from your overloaded _createSgNode,
-then you should always check for null before using this property and reimplement `__preload`.
-
-| meta | description |
-|------|-------------|
-| Type | _ccsg.Node |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCRendererUnderSG.js:41](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCRendererUnderSG.js#L41) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:750](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L750) |
 
 
 
@@ -784,7 +710,7 @@ all event callbacks will be removed in _onPreDestroy
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:61](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L61) |
+| Defined in | [cocos2d/core/components/CCComponent.js:61](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L61) |
 
 
 
@@ -795,7 +721,7 @@ all event callbacks will be removed in _onPreDestroy
 | meta | description |
 |------|-------------|
 | Type | <a href="../classes/Node.html" class="crosslink">Node</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:75](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L75) |
+| Defined in | [cocos2d/core/components/CCComponent.js:75](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L75) |
 
 ##### Examples
 
@@ -811,7 +737,7 @@ cc.log(comp.node);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:111](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L111) |
+| Defined in | [cocos2d/core/components/CCComponent.js:106](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L106) |
 
 ##### Examples
 
@@ -827,7 +753,7 @@ cc.log(comp.uuid);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:159](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L159) |
+| Defined in | [cocos2d/core/components/CCComponent.js:147](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L147) |
 
 
 
@@ -838,7 +764,7 @@ cc.log(comp.uuid);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:166](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L166) |
+| Defined in | [cocos2d/core/components/CCComponent.js:154](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L154) |
 
 ##### Examples
 
@@ -855,7 +781,7 @@ cc.log(comp.enabled);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:197](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L197) |
+| Defined in | [cocos2d/core/components/CCComponent.js:185](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L185) |
 
 ##### Examples
 
@@ -871,7 +797,7 @@ cc.log(comp.enabledInHierarchy);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:213](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L213) |
+| Defined in | [cocos2d/core/components/CCComponent.js:201](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L201) |
 
 ##### Examples
 
@@ -887,7 +813,7 @@ cc.log(this._isOnLoadCalled > 0);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:50](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L50) |
+| Defined in | [cocos2d/core/platform/CCObject.js:76](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L76) |
 
 
 
@@ -898,7 +824,7 @@ cc.log(this._isOnLoadCalled > 0);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:57](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L57) |
+| Defined in | [cocos2d/core/platform/CCObject.js:83](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L83) |
 
 
 
@@ -909,7 +835,7 @@ cc.log(this._isOnLoadCalled > 0);
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:208](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L208) |
+| Defined in | [cocos2d/core/platform/CCObject.js:243](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L243) |
 
 ##### Examples
 
@@ -920,17 +846,26 @@ obj.name = "New Obj";
 
 ##### isValid
 
-> Indicates whether the object is not yet destroyed.
+> Indicates whether the object is not yet destroyed. (It will not be available after being destroyed)<br>
+When an object's `destroy` is called, it is actually destroyed after the end of this frame.
+So `isValid` will return false from the next frame, while `isValid` in the current frame will still be true.
+If you want to determine whether the current frame has called `destroy`, use `cc.isValid(obj, true)`,
+but this is often caused by a particular logical requirements, which is not normally required.
 
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:225](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L225) |
+| Defined in | [cocos2d/core/platform/CCObject.js:261](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L261) |
 
 ##### Examples
 
 ```js
-cc.log(obj.isValid);
+var node = new cc.Node();
+cc.log(node.isValid);    // true
+node.destroy();
+cc.log(node.isValid);    // true, still valid in this frame
+// after a frame...
+cc.log(node.isValid);    // false, destroyed in the end of last frame
 ```
 
 
@@ -941,24 +876,13 @@ cc.log(obj.isValid);
 #### Methods
 
 
-##### addParticle
-
-Add a particle to the emitter.
-
-| meta | description |
-|------|-------------|
-| Returns | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:826](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L826) |
-
-
-
 ##### stopSystem
 
 Stop emitting particles. Running particles will continue to run until they die.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:836](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L836) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:870](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L870) |
 
 
 ##### Examples
@@ -974,7 +898,7 @@ Kill all living particles.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:848](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L848) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:883](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L883) |
 
 
 ##### Examples
@@ -991,76 +915,33 @@ Whether or not the system is full.
 | meta | description |
 |------|-------------|
 | Returns | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:860](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L860) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:902](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L902) |
 
-
-
-##### setDisplayFrame
-
-<p> Sets a new CCSpriteFrame as particle.</br>
-WARNING: this method is experimental. Use setTextureWithRect instead.
-</p>
-
-| meta | description |
-|------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:870](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L870) |
-
-###### Parameters
-- `spriteFrame` <a href="../classes/SpriteFrame.html" class="crosslink">SpriteFrame</a> 
 
 
 ##### setTextureWithRect
 
 Sets a new texture with a rect. The rect is in texture position and size.
+Please use spriteFrame property instead, this function is deprecated since v1.9
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js:893](https:/github.com/cocos-creator/engine/blob/master/cocos2d/particle/CCParticleSystem.js#L893) |
+| Defined in | [cocos2d/particle/CCParticleSystem.js:912](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L912) |
+| Deprecated | since v1.9 |
 
 ###### Parameters
 - `texture` <a href="../classes/Texture2D.html" class="crosslink">Texture2D</a> 
 - `rect` <a href="../classes/Rect.html" class="crosslink">Rect</a> 
 
 
-##### _createSgNode
-
-Create and returns your new scene graph node (SGNode) to add to scene graph.
-You should call the setContentSize of the SGNode if its size should be the same with the node's.
-
-| meta | description |
-|------|-------------|
-| Returns | _ccsg.Node 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSGComponent.js:65](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSGComponent.js#L65) |
-
-
-
-##### _initSgNode
-
-
-
-| meta | description |
-|------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSGComponent.js:75](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSGComponent.js#L75) |
-
-
-
-##### _removeSgNode
-
-
-
-| meta | description |
-|------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSGComponent.js:81](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSGComponent.js#L81) |
-
-
-
 ##### update
 
-Update is called every frame, if the Component is enabled.
+Update is called every frame, if the Component is enabled.<br/>
+This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:234](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L234) |
+| Defined in | [cocos2d/core/components/CCComponent.js:222](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L222) |
 
 ###### Parameters
 - `dt` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> the delta time in seconds it took to complete the last frame
@@ -1068,11 +949,12 @@ Update is called every frame, if the Component is enabled.
 
 ##### lateUpdate
 
-LateUpdate is called every frame, if the Component is enabled.
+LateUpdate is called every frame, if the Component is enabled.<br/>
+This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:243](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L243) |
+| Defined in | [cocos2d/core/components/CCComponent.js:233](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L233) |
 
 
 
@@ -1085,59 +967,64 @@ This method should be removed if script priority is supported.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:251](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L251) |
+| Defined in | [cocos2d/core/components/CCComponent.js:243](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L243) |
 
 
 
 ##### onLoad
 
 When attaching to an active node or its node first activated.
-onLoad is always called before any start functions, this allows you to order initialization of scripts.
+onLoad is always called before any start functions, this allows you to order initialization of scripts.<br/>
+This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:262](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L262) |
+| Defined in | [cocos2d/core/components/CCComponent.js:254](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L254) |
 
 
 
 ##### start
 
 Called before all scripts' update if the Component is enabled the first time.
-Usually used to initialize some logic which need to be called after all components' `onload` methods called.
+Usually used to initialize some logic which need to be called after all components' `onload` methods called.<br/>
+This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:273](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L273) |
+| Defined in | [cocos2d/core/components/CCComponent.js:267](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L267) |
 
 
 
 ##### onEnable
 
-Called when this component becomes enabled and its node is active.
+Called when this component becomes enabled and its node is active.<br/>
+This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:284](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L284) |
+| Defined in | [cocos2d/core/components/CCComponent.js:280](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L280) |
 
 
 
 ##### onDisable
 
-Called when this component becomes disabled or its node becomes inactive.
+Called when this component becomes disabled or its node becomes inactive.<br/>
+This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:292](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L292) |
+| Defined in | [cocos2d/core/components/CCComponent.js:290](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L290) |
 
 
 
 ##### onDestroy
 
-Called when this component will be destroyed.
+Called when this component will be destroyed.<br/>
+This is a lifecycle method. It may not be implemented in the super class. You can only call its super class method inside it. It should not be called manually elsewhere.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:300](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L300) |
+| Defined in | [cocos2d/core/components/CCComponent.js:300](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L300) |
 
 
 
@@ -1147,7 +1034,7 @@ Called when this component will be destroyed.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:308](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L308) |
+| Defined in | [cocos2d/core/components/CCComponent.js:310](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L310) |
 
 
 
@@ -1157,7 +1044,7 @@ Called when this component will be destroyed.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:313](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L313) |
+| Defined in | [cocos2d/core/components/CCComponent.js:315](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L315) |
 
 
 
@@ -1167,7 +1054,7 @@ Called to initialize the component or node’s properties when adding the compon
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:318](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L318) |
+| Defined in | [cocos2d/core/components/CCComponent.js:320](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L320) |
 
 
 
@@ -1178,7 +1065,7 @@ Adds a component class to the node. You can also add component to node by passin
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/Component.html" class="crosslink">Component</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:328](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L328) |
+| Defined in | [cocos2d/core/components/CCComponent.js:330](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L330) |
 
 ###### Parameters
 - `typeOrClassName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> the constructor or the class name of the component to add
@@ -1198,7 +1085,7 @@ You can also get component in the node by passing in the name of the script.
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/Component.html" class="crosslink">Component</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:346](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L346) |
+| Defined in | [cocos2d/core/components/CCComponent.js:348](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L348) |
 
 ###### Parameters
 - `typeOrClassName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
@@ -1219,7 +1106,7 @@ Returns all components of supplied Type in the node.
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/Component.html" class="crosslink">Component[]</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:370](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L370) |
+| Defined in | [cocos2d/core/components/CCComponent.js:372](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L372) |
 
 ###### Parameters
 - `typeOrClassName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
@@ -1238,7 +1125,7 @@ Returns the component of supplied type in any of its children using depth first 
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/Component.html" class="crosslink">Component</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:388](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L388) |
+| Defined in | [cocos2d/core/components/CCComponent.js:390](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L390) |
 
 ###### Parameters
 - `typeOrClassName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
@@ -1257,7 +1144,7 @@ Returns the components of supplied type in self or any of its children using dep
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/Component.html" class="crosslink">Component[]</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:406](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L406) |
+| Defined in | [cocos2d/core/components/CCComponent.js:408](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L408) |
 
 ###### Parameters
 - `typeOrClassName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
@@ -1276,7 +1163,7 @@ a custom axis aligned bounding box (AABB), so the editor's scene view can perfor
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:426](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L426) |
+| Defined in | [cocos2d/core/components/CCComponent.js:428](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L428) |
 
 ###### Parameters
 - `out_rect` <a href="../classes/Rect.html" class="crosslink">Rect</a> the Rect to receive the bounding box
@@ -1307,7 +1194,7 @@ This function is only called in editor mode.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:439](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L439) |
+| Defined in | [cocos2d/core/components/CCComponent.js:441](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L441) |
 
 
 
@@ -1318,7 +1205,7 @@ If the selector is already scheduled, then the interval parameter will be update
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:541](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L541) |
+| Defined in | [cocos2d/core/components/CCComponent.js:535](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L535) |
 
 ###### Parameters
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">function</a> The callback function
@@ -1341,7 +1228,7 @@ Schedules a callback function that runs only once, with a delay of 0 or larger.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:578](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L578) |
+| Defined in | [cocos2d/core/components/CCComponent.js:572](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L572) |
 
 ###### Parameters
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">function</a> A function wrapped as a selector
@@ -1362,7 +1249,7 @@ Unschedules a custom callback function.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:595](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L595) |
+| Defined in | [cocos2d/core/components/CCComponent.js:589](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L589) |
 
 ###### Parameters
 - `callback_fn` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">function</a> A function wrapped as a selector
@@ -1380,7 +1267,7 @@ Actions are not affected by this method.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js:611](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCComponent.js#L611) |
+| Defined in | [cocos2d/core/components/CCComponent.js:605](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCComponent.js#L605) |
 
 
 ##### Examples
@@ -1393,14 +1280,13 @@ this.unscheduleAllCallbacks();
 
 Destroy this Object, and release all its own references to other objects.<br/>
 Actual object destruction will delayed until before rendering.
-<br/>
-After destroy, this CCObject is not usable any more.
+From the next frame, this object is not usable any more.
 You can use cc.isValid(obj) to check whether the object is destroyed before accessing it.
 
 | meta | description |
 |------|-------------|
 | Returns | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:246](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L246) |
+| Defined in | [cocos2d/core/platform/CCObject.js:296](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L296) |
 
 
 ##### Examples
@@ -1432,7 +1318,7 @@ NOTE: this method will not clear the getter or setter functions which defined in
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:379](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L379) |
+| Defined in | [cocos2d/core/platform/CCObject.js:430](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L430) |
 
 
 
@@ -1442,7 +1328,7 @@ Called before the object being destroyed.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:412](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L412) |
+| Defined in | [cocos2d/core/platform/CCObject.js:463](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L463) |
 
 
 
@@ -1453,7 +1339,7 @@ The customized serialization for this object. (Editor Only)
 | meta | description |
 |------|-------------|
 | Returns | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">object</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:437](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L437) |
+| Defined in | [cocos2d/core/platform/CCObject.js:488](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L488) |
 
 ###### Parameters
 - `exporting` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
@@ -1465,7 +1351,7 @@ Init this object from the custom serialized data.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js:447](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCObject.js#L447) |
+| Defined in | [cocos2d/core/platform/CCObject.js:498](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCObject.js#L498) |
 
 ###### Parameters
 - `data` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> the serialized json data

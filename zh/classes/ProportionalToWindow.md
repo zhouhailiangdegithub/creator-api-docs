@@ -16,9 +16,9 @@
 
 ##### 方法
 
-  - [`preApply`](#preapply) Manipulation before appling the strategy
-  - [`apply`](#apply) Function to apply this strategy
-  - [`postApply`](#postapply) Manipulation after applying the strategy
+  - [`preApply`](#preapply) 在应用策略之前的操作
+  - [`apply`](#apply) 策略应用方法
+  - [`postApply`](#postapply) 策略调用之后的操作
 
 
 
@@ -33,11 +33,11 @@
 
 ##### preApply
 
-Manipulation before appling the strategy
+在应用策略之前的操作
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1039](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1039) |
+| 定义于 | [cocos2d/core/platform/CCView.js:1031](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L1031) |
 
 ###### 参数列表
 - `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
@@ -45,11 +45,11 @@ Manipulation before appling the strategy
 
 ##### apply
 
-Function to apply this strategy
+策略应用方法
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1047](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1047) |
+| 定义于 | [cocos2d/core/platform/CCView.js:1041](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L1041) |
 
 ###### 参数列表
 - `view` <a href="../classes/View.html" class="crosslink">View</a> 
@@ -58,11 +58,11 @@ Function to apply this strategy
 
 ##### postApply
 
-Manipulation after applying the strategy
+策略调用之后的操作
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1056](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1056) |
+| 定义于 | [cocos2d/core/platform/CCView.js:1052](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L1052) |
 
 ###### 参数列表
 - `view` <a href="../classes/View.html" class="crosslink">View</a> The target view

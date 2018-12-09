@@ -32,7 +32,7 @@ Defines a Circle Collider .
 | meta | description |
 |------|-------------|
 | Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/collider/CCCircleCollider.js:39](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/collider/CCCircleCollider.js#L39) |
+| Defined in | [cocos2d/core/collider/CCCircleCollider.js:40](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCCircleCollider.js#L40) |
 
 
 
@@ -43,7 +43,7 @@ Defines a Circle Collider .
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/collider/CCCircleCollider.js:55](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/collider/CCCircleCollider.js#L55) |
+| Defined in | [cocos2d/core/collider/CCCircleCollider.js:56](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCCircleCollider.js#L56) |
 
 
 

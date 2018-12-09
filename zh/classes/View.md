@@ -24,90 +24,46 @@ the standard way to use it is by calling:<br/>
 
 ##### 方法
 
-  - [`setTargetDensityDPI`](#settargetdensitydpi) <p>
-Sets view's target-densitydpi for android mobile browser. it can be set to:           <br/>
-  1. cc.macro.DENSITYDPI_DEVICE, value is "device-dpi"                                      <br/>
-  2. cc.macro.DENSITYDPI_HIGH, value is "high-dpi"  (default value)                         <br/>
-  3. cc.macro.DENSITYDPI_MEDIUM, value is "medium-dpi" (browser's default value)            <br/>
-  4. cc.macro.DENSITYDPI_LOW, value is "low-dpi"                                            <br/>
-  5. Custom value, e.g: "480"                                                         <br/>
-</p>
-  - [`getTargetDensityDPI`](#gettargetdensitydpi) Returns the current target-densitydpi value of cc.view.
-  - [`resizeWithBrowserSize`](#resizewithbrowsersize) Sets whether resize canvas automatically when browser's size changed.<br/>
-Useful only on web.
-  - [`setResizeCallback`](#setresizecallback) Sets the callback function for cc.view's resize action,<br/>
-this callback will be invoked before applying resolution policy, <br/>
-so you can do any additional modifications within the callback.<br/>
-Useful only on web.
-  - [`setOrientation`](#setorientation) Sets the orientation of the game, it can be landscape, portrait or auto.
-When set it to landscape or portrait, and screen w/h ratio doesn't fit,
-cc.view will automatically rotate the game canvas using CSS.
-Note that this function doesn't have any effect in native,
-in native, you need to set the application orientation in native project settings
-  - [`adjustViewPort`](#adjustviewport) Sets whether the engine modify the "viewport" meta in your web page.<br/>
-It's enabled by default, we strongly suggest you not to disable it.<br/>
-And even when it's enabled, you can still set your own "viewport" meta, it won't be overridden<br/>
-Only useful on web
-  - [`enableRetina`](#enableretina) Retina support is enabled by default for Apple device but disabled for other devices,<br/>
-it takes effect only when you called setDesignResolutionPolicy<br/>
-Only useful on web
-  - [`isRetinaEnabled`](#isretinaenabled) Check whether retina display is enabled.<br/>
-Only useful on web
+  - [`setTargetDensityDPI`](#settargetdensitydpi) 设置目标内容的每英寸像素点密度。
+  - [`getTargetDensityDPI`](#gettargetdensitydpi) 获取目标内容的每英寸像素点密度。
+  - [`resizeWithBrowserSize`](#resizewithbrowsersize) 设置当发现浏览器的尺寸改变时，是否自动调整 canvas 尺寸大小。
+  - [`setResizeCallback`](#setresizecallback) 仅在 Web 平台下有效。
+  - [`setOrientation`](#setorientation) 设置游戏屏幕朝向，它能够是横版，竖版或自动。
+  - [`adjustViewportMeta`](#adjustviewportmeta) 设置引擎是否调整 viewport meta 来配合屏幕适配。
+  - [`enableRetina`](#enableretina) 它仅会在你调用 setDesignResolutionPolicy 方法时有影响。
+  - [`isRetinaEnabled`](#isretinaenabled) 检查是否对 Retina 显示设备进行优化。
   - [`enableAntiAlias`](#enableantialias) 控制抗锯齿是否开启
   - [`isAntiAliasEnabled`](#isantialiasenabled) 返回当前是否抗锯齿
-  - [`enableAutoFullScreen`](#enableautofullscreen) If enabled, the application will try automatically to enter full screen mode on mobile devices<br/>
-You can pass true as parameter to enable it and disable it by passing false.<br/>
-Only useful on web
-  - [`isAutoFullScreenEnabled`](#isautofullscreenenabled) Check whether auto full screen is enabled.<br/>
-Only useful on web
-  - [`isViewReady`](#isviewready) Get whether render system is ready(no matter opengl or canvas),<br/>
-this name is for the compatibility with cocos2d-x, subclass must implement this method.
-  - [`setContentTranslateLeftTop`](#setcontenttranslatelefttop) Sets the resolution translate on View.
-  - [`getContentTranslateLeftTop`](#getcontenttranslatelefttop) Returns the resolution translate on View
-  - [`getFrameSize`](#getframesize) Returns the frame size of the view.<br/>
-On native platforms, it returns the screen size since the view is a fullscreen view.<br/>
-On web, it returns the size of the canvas's outer DOM element.
-  - [`setFrameSize`](#setframesize) On native, it sets the frame size of view.<br/>
-On web, it sets the size of the canvas's outer DOM element.
-  - [`getVisibleSize`](#getvisiblesize) Returns the visible area size of the view port.
-  - [`getVisibleSizeInPixel`](#getvisiblesizeinpixel) Returns the visible area size of the view port.
-  - [`getVisibleOrigin`](#getvisibleorigin) Returns the visible origin of the view port.
-  - [`getVisibleOriginInPixel`](#getvisibleorigininpixel) Returns the visible origin of the view port.
-  - [`canSetContentScaleFactor`](#cansetcontentscalefactor) Returns whether developer can set content's scale factor.
-  - [`getResolutionPolicy`](#getresolutionpolicy) Returns the current resolution policy
-  - [`setResolutionPolicy`](#setresolutionpolicy) Sets the current resolution policy
-  - [`setDesignResolutionSize`](#setdesignresolutionsize) Sets the resolution policy with designed view size in points.<br/>
-The resolution policy include: <br/>
-[1] ResolutionExactFit       Fill screen by stretch-to-fit: if the design resolution ratio of width to height is different from the screen resolution ratio, your game view will be stretched.<br/>
-[2] ResolutionNoBorder       Full screen without black border: if the design resolution ratio of width to height is different from the screen resolution ratio, two areas of your game view will be cut.<br/>
-[3] ResolutionShowAll        Full screen with black border: if the design resolution ratio of width to height is different from the screen resolution ratio, two black borders will be shown.<br/>
-[4] ResolutionFixedHeight    Scale the content's height to screen's height and proportionally scale its width<br/>
-[5] ResolutionFixedWidth     Scale the content's width to screen's width and proportionally scale its height<br/>
-[cc.ResolutionPolicy]        [Web only feature] Custom resolution policy, constructed by cc.ResolutionPolicy<br/>
-  - [`getDesignResolutionSize`](#getdesignresolutionsize) Returns the designed size for the view.
-Default resolution size is the same as 'getFrameSize'.
-  - [`setRealPixelResolution`](#setrealpixelresolution) Sets the container to desired pixel resolution and fit the game content to it.
-This function is very useful for adaptation in mobile browsers.
-In some HD android devices, the resolution is very high, but its browser performance may not be very good.
-In this case, enabling retina display is very costy and not suggested, and if retina is disabled, the image may be blurry.
-But this API can be helpful to set a desired pixel resolution which is in between.
-This API will do the following:
-    1. Set viewport's width to the desired width in pixel
-    2. Set body width to the exact pixel resolution
-    3. The resolution policy will be reset with designed view size in points.
-  - [`setViewPortInPoints`](#setviewportinpoints) Sets view port rectangle with points.
-  - [`setScissorInPoints`](#setscissorinpoints) Sets Scissor rectangle with points.
-  - [`isScissorEnabled`](#isscissorenabled) Returns whether GL_SCISSOR_TEST is enable
-  - [`getScissorRect`](#getscissorrect) Returns the current scissor rectangle
-  - [`setViewName`](#setviewname) Sets the name of the view
-  - [`getViewName`](#getviewname) Returns the name of the view
-  - [`getViewPortRect`](#getviewportrect) Returns the view port rectangle.
-  - [`getScaleX`](#getscalex) Returns scale factor of the horizontal direction (X axis).
-  - [`getScaleY`](#getscaley) Returns scale factor of the vertical direction (Y axis).
-  - [`getDevicePixelRatio`](#getdevicepixelratio) Returns device pixel ratio for retina display.
-  - [`convertToLocationInView`](#converttolocationinview) Returns the real location in view for a translation based on a related position
-  - [`_getInstance`](#getinstance) 
+  - [`enableAutoFullScreen`](#enableautofullscreen) 启动时，移动端游戏会在移动端自动尝试进入全屏模式。
+  - [`isAutoFullScreenEnabled`](#isautofullscreenenabled) 检查自动进入全屏模式是否启动。
+  - [`getCanvasSize`](#getcanvassize) 返回视图中 canvas 的尺寸。
+  - [`getFrameSize`](#getframesize) 返回视图中边框尺寸。
+  - [`setFrameSize`](#setframesize) 在 native 平台下，设置视图框架尺寸。
+  - [`getVisibleSize`](#getvisiblesize) 返回视图窗口可见区域尺寸。
+  - [`getVisibleSizeInPixel`](#getvisiblesizeinpixel) 返回视图窗口可见区域像素尺寸。
+  - [`getVisibleOrigin`](#getvisibleorigin) 返回视图窗口可见区域原点。
+  - [`getVisibleOriginInPixel`](#getvisibleorigininpixel) 返回视图窗口可见区域像素原点。
+  - [`getResolutionPolicy`](#getresolutionpolicy) 返回当前分辨率方案
+  - [`setResolutionPolicy`](#setresolutionpolicy) 设置当前分辨率模式
+  - [`setDesignResolutionSize`](#setdesignresolutionsize) 通过设置设计分辨率和匹配模式来进行游戏画面的屏幕适配。
+  - [`getDesignResolutionSize`](#getdesignresolutionsize) 返回视图的设计分辨率。
+  - [`setRealPixelResolution`](#setrealpixelresolution) 设置容器（container）需要的像素分辨率并且适配相应分辨率的游戏内容。
+  - [`setViewportInPoints`](#setviewportinpoints) 用设计分辨率下的点尺寸来设置视窗。
+  - [`setScissorInPoints`](#setscissorinpoints) 用设计分辨率下的点的尺寸来设置 scissor 剪裁区域。
+  - [`isScissorEnabled`](#isscissorenabled) 检查 scissor 是否生效。
+  - [`getScissorRect`](#getscissorrect) 返回当前的 scissor 剪裁区域。
+  - [`getViewportRect`](#getviewportrect) 返回视窗剪裁区域。
+  - [`getScaleX`](#getscalex) 返回横轴的缩放比，这个缩放比是将画布像素分辨率放到设计分辨率的比例。
+  - [`getScaleY`](#getscaley) 返回纵轴的缩放比，这个缩放比是将画布像素分辨率缩放到设计分辨率的比例。
+  - [`getDevicePixelRatio`](#getdevicepixelratio) 返回设备或浏览器像素比例。
+  - [`convertToLocationInView`](#converttolocationinview) 将屏幕坐标转换为游戏视图下的坐标。
 
+
+
+##### 事件
+
+  - [`design-resolution-changed`](#design-resolution-changed) 当设计分辨率改变时发送。
+  - [`canvas-resize`](#canvas-resize) 当画布大小改变时发送。
 
 
 ### Details
@@ -121,18 +77,12 @@ This API will do the following:
 
 ##### setTargetDensityDPI
 
-<p>
-Sets view's target-densitydpi for android mobile browser. it can be set to:           <br/>
-  1. cc.macro.DENSITYDPI_DEVICE, value is "device-dpi"                                      <br/>
-  2. cc.macro.DENSITYDPI_HIGH, value is "high-dpi"  (default value)                         <br/>
-  3. cc.macro.DENSITYDPI_MEDIUM, value is "medium-dpi" (browser's default value)            <br/>
-  4. cc.macro.DENSITYDPI_LOW, value is "low-dpi"                                            <br/>
-  5. Custom value, e.g: "480"                                                         <br/>
-</p>
+设置目标内容的每英寸像素点密度。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:239](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L239) |
+| 定义于 | [cocos2d/core/platform/CCView.js:237](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L237) |
+| 废弃（Deprecated） | since v2.0 |
 
 ###### 参数列表
 - `densityDPI` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
@@ -140,23 +90,24 @@ Sets view's target-densitydpi for android mobile browser. it can be set to:     
 
 ##### getTargetDensityDPI
 
-Returns the current target-densitydpi value of cc.view.
+获取目标内容的每英寸像素点密度。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:257](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L257) |
+| 定义于 | [cocos2d/core/platform/CCView.js:252](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L252) |
+| 废弃（Deprecated） | since v2.0 |
 
 
 
 ##### resizeWithBrowserSize
 
-Sets whether resize canvas automatically when browser's size changed.<br/>
-Useful only on web.
+设置当发现浏览器的尺寸改变时，是否自动调整 canvas 尺寸大小。
+仅在 Web 模式下有效。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:266](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L266) |
+| 定义于 | [cocos2d/core/platform/CCView.js:261](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L261) |
 
 ###### 参数列表
 - `enabled` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Whether enable automatic resize with browser's resize event
@@ -164,14 +115,14 @@ Useful only on web.
 
 ##### setResizeCallback
 
-Sets the callback function for cc.view's resize action,<br/>
-this callback will be invoked before applying resolution policy, <br/>
-so you can do any additional modifications within the callback.<br/>
-Useful only on web.
+设置 cc.view 调整视窗尺寸行为的回调函数，
+这个回调函数会在应用适配模式之前被调用，
+因此你可以在这个回调函数内添加任意附加改变，
+仅在 Web 平台下有效。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:290](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L290) |
+| 定义于 | [cocos2d/core/platform/CCView.js:288](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L288) |
 
 ###### 参数列表
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> &#124; Null The callback function
@@ -179,30 +130,29 @@ Useful only on web.
 
 ##### setOrientation
 
-Sets the orientation of the game, it can be landscape, portrait or auto.
-When set it to landscape or portrait, and screen w/h ratio doesn't fit,
-cc.view will automatically rotate the game canvas using CSS.
-Note that this function doesn't have any effect in native,
-in native, you need to set the application orientation in native project settings
+设置游戏屏幕朝向，它能够是横版，竖版或自动。
+当设置为横版或竖版，并且屏幕的宽高比例不匹配时，
+cc.view 会自动用 CSS 旋转游戏场景的 canvas，
+这个方法不会对 native 部分产生任何影响，对于 native 而言，你需要在应用设置中的设置排版。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:304](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L304) |
+| 定义于 | [cocos2d/core/platform/CCView.js:307](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L307) |
 
 ###### 参数列表
 - `orientation` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> Possible values: cc.macro.ORIENTATION_LANDSCAPE | cc.macro.ORIENTATION_PORTRAIT | cc.macro.ORIENTATION_AUTO
 
 
-##### adjustViewPort
+##### adjustViewportMeta
 
-Sets whether the engine modify the "viewport" meta in your web page.<br/>
-It's enabled by default, we strongly suggest you not to disable it.<br/>
-And even when it's enabled, you can still set your own "viewport" meta, it won't be overridden<br/>
-Only useful on web
+设置引擎是否调整 viewport meta 来配合屏幕适配。
+默认设置为启动，我们强烈建议你不要将它设置为关闭。
+即使当它启动时，你仍然能够设置你的 viewport meta，它不会被覆盖。
+仅在 Web 模式下有效
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:419](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L419) |
+| 定义于 | [cocos2d/core/platform/CCView.js:413](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L413) |
 
 ###### 参数列表
 - `enabled` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Enable automatic modification to "viewport" meta
@@ -210,13 +160,13 @@ Only useful on web
 
 ##### enableRetina
 
-Retina support is enabled by default for Apple device but disabled for other devices,<br/>
-it takes effect only when you called setDesignResolutionPolicy<br/>
-Only useful on web
+对于 Apple 这种支持 Retina 显示的设备上默认进行优化而其他类型设备默认不进行优化，
+它仅会在你调用 setDesignResolutionPolicy 方法时有影响。
+仅在 Web 模式下有效。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:431](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L431) |
+| 定义于 | [cocos2d/core/platform/CCView.js:430](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L430) |
 
 ###### 参数列表
 - `enabled` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Enable or disable retina display
@@ -224,13 +174,13 @@ Only useful on web
 
 ##### isRetinaEnabled
 
-Check whether retina display is enabled.<br/>
-Only useful on web
+检查是否对 Retina 显示设备进行优化。
+仅在 Web 模式下有效。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:442](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L442) |
+| 定义于 | [cocos2d/core/platform/CCView.js:445](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L445) |
 
 
 
@@ -240,7 +190,7 @@ Only useful on web
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:452](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L452) |
+| 定义于 | [cocos2d/core/platform/CCView.js:458](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L458) |
 
 ###### 参数列表
 - `enabled` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Enable or not anti-alias
@@ -253,19 +203,18 @@ Only useful on web
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:492](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L492) |
+| 定义于 | [cocos2d/core/platform/CCView.js:492](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L492) |
 
 
 
 ##### enableAutoFullScreen
 
-If enabled, the application will try automatically to enter full screen mode on mobile devices<br/>
-You can pass true as parameter to enable it and disable it by passing false.<br/>
-Only useful on web
+启动时，移动端游戏会在移动端自动尝试进入全屏模式。
+你能够传入 true 为参数去启动它，用 false 参数来关闭它。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:501](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L501) |
+| 定义于 | [cocos2d/core/platform/CCView.js:501](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L501) |
 
 ###### 参数列表
 - `enabled` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Enable or disable auto full screen on mobile devices
@@ -273,73 +222,50 @@ Only useful on web
 
 ##### isAutoFullScreenEnabled
 
-Check whether auto full screen is enabled.<br/>
-Only useful on web
+检查自动进入全屏模式是否启动。
+仅在 Web 模式下有效。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:522](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L522) |
+| 定义于 | [cocos2d/core/platform/CCView.js:525](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L525) |
 
 
 
-##### isViewReady
+##### getCanvasSize
 
-Get whether render system is ready(no matter opengl or canvas),<br/>
-this name is for the compatibility with cocos2d-x, subclass must implement this method.
-
-| meta | description |
-|------|-------------|
-| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:532](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L532) |
-
-
-
-##### setContentTranslateLeftTop
-
-Sets the resolution translate on View.
+返回视图中 canvas 的尺寸。
+在 native 平台下，它返回全屏视图下屏幕的尺寸。
+在 Web 平台下，它返回 canvas 元素尺寸。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:552](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L552) |
-
-###### 参数列表
-- `offsetLeft` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-- `offsetTop` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-
-
-##### getContentTranslateLeftTop
-
-Returns the resolution translate on View
-
-| meta | description |
-|------|-------------|
-| 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:562](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L562) |
+| 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
+| 定义于 | [cocos2d/core/platform/CCView.js:562](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L562) |
 
 
 
 ##### getFrameSize
 
-Returns the frame size of the view.<br/>
-On native platforms, it returns the screen size since the view is a fullscreen view.<br/>
-On web, it returns the size of the canvas's outer DOM element.
+返回视图中边框尺寸。
+在 native 平台下，它返回全屏视图下屏幕的尺寸。
+在 web 平台下，它返回 canvas 元素的外层 DOM 元素尺寸。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:605](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L605) |
+| 定义于 | [cocos2d/core/platform/CCView.js:577](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L577) |
 
 
 
 ##### setFrameSize
 
-On native, it sets the frame size of view.<br/>
-On web, it sets the size of the canvas's outer DOM element.
+在 native 平台下，设置视图框架尺寸。
+在 web 平台下，设置 canvas 外层 DOM 元素尺寸。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:616](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L616) |
+| 定义于 | [cocos2d/core/platform/CCView.js:592](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L592) |
 
 ###### 参数列表
 - `width` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
@@ -348,77 +274,66 @@ On web, it sets the size of the canvas's outer DOM element.
 
 ##### getVisibleSize
 
-Returns the visible area size of the view port.
+返回视图窗口可见区域尺寸。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:632](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L632) |
+| 定义于 | [cocos2d/core/platform/CCView.js:610](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L610) |
 
 
 
 ##### getVisibleSizeInPixel
 
-Returns the visible area size of the view port.
+返回视图窗口可见区域像素尺寸。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:641](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L641) |
+| 定义于 | [cocos2d/core/platform/CCView.js:621](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L621) |
 
 
 
 ##### getVisibleOrigin
 
-Returns the visible origin of the view port.
+返回视图窗口可见区域原点。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:651](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L651) |
+| 定义于 | [cocos2d/core/platform/CCView.js:633](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L633) |
 
 
 
 ##### getVisibleOriginInPixel
 
-Returns the visible origin of the view port.
+返回视图窗口可见区域像素原点。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:660](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L660) |
-
-
-
-##### canSetContentScaleFactor
-
-Returns whether developer can set content's scale factor.
-
-| meta | description |
-|------|-------------|
-| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:670](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L670) |
+| 定义于 | [cocos2d/core/platform/CCView.js:644](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L644) |
 
 
 
 ##### getResolutionPolicy
 
-Returns the current resolution policy
+返回当前分辨率方案
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/ResolutionPolicy.html" class="crosslink">ResolutionPolicy</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:679](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L679) |
+| 定义于 | [cocos2d/core/platform/CCView.js:656](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L656) |
 
 
 
 ##### setResolutionPolicy
 
-Sets the current resolution policy
+设置当前分辨率模式
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:689](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L689) |
+| 定义于 | [cocos2d/core/platform/CCView.js:668](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L668) |
 
 ###### 参数列表
 - `resolutionPolicy` <a href="../classes/ResolutionPolicy.html" class="crosslink">ResolutionPolicy</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
@@ -426,18 +341,11 @@ Sets the current resolution policy
 
 ##### setDesignResolutionSize
 
-Sets the resolution policy with designed view size in points.<br/>
-The resolution policy include: <br/>
-[1] ResolutionExactFit       Fill screen by stretch-to-fit: if the design resolution ratio of width to height is different from the screen resolution ratio, your game view will be stretched.<br/>
-[2] ResolutionNoBorder       Full screen without black border: if the design resolution ratio of width to height is different from the screen resolution ratio, two areas of your game view will be cut.<br/>
-[3] ResolutionShowAll        Full screen with black border: if the design resolution ratio of width to height is different from the screen resolution ratio, two black borders will be shown.<br/>
-[4] ResolutionFixedHeight    Scale the content's height to screen's height and proportionally scale its width<br/>
-[5] ResolutionFixedWidth     Scale the content's width to screen's width and proportionally scale its height<br/>
-[cc.ResolutionPolicy]        [Web only feature] Custom resolution policy, constructed by cc.ResolutionPolicy<br/>
+通过设置设计分辨率和匹配模式来进行游戏画面的屏幕适配。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:716](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L716) |
+| 定义于 | [cocos2d/core/platform/CCView.js:697](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L697) |
 
 ###### 参数列表
 - `width` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> Design resolution width.
@@ -447,31 +355,23 @@ The resolution policy include: <br/>
 
 ##### getDesignResolutionSize
 
-Returns the designed size for the view.
-Default resolution size is the same as 'getFrameSize'.
+返回视图的设计分辨率。
+默认下分辨率尺寸同 `getFrameSize` 方法相同
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:806](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L806) |
+| 定义于 | [cocos2d/core/platform/CCView.js:777](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L777) |
 
 
 
 ##### setRealPixelResolution
 
-Sets the container to desired pixel resolution and fit the game content to it.
-This function is very useful for adaptation in mobile browsers.
-In some HD android devices, the resolution is very high, but its browser performance may not be very good.
-In this case, enabling retina display is very costy and not suggested, and if retina is disabled, the image may be blurry.
-But this API can be helpful to set a desired pixel resolution which is in between.
-This API will do the following:
-    1. Set viewport's width to the desired width in pixel
-    2. Set body width to the exact pixel resolution
-    3. The resolution policy will be reset with designed view size in points.
+设置容器（container）需要的像素分辨率并且适配相应分辨率的游戏内容。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:816](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L816) |
+| 定义于 | [cocos2d/core/platform/CCView.js:790](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L790) |
 
 ###### 参数列表
 - `width` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> Design resolution width.
@@ -479,13 +379,14 @@ This API will do the following:
 - `resolutionPolicy` <a href="../classes/ResolutionPolicy.html" class="crosslink">ResolutionPolicy</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> The resolution policy desired
 
 
-##### setViewPortInPoints
+##### setViewportInPoints
 
-Sets view port rectangle with points.
+用设计分辨率下的点尺寸来设置视窗。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:847](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L847) |
+| 定义于 | [cocos2d/core/platform/CCView.js:823](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L823) |
+| 废弃（Deprecated） | since v2.0 |
 
 ###### 参数列表
 - `x` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
@@ -496,11 +397,12 @@ Sets view port rectangle with points.
 
 ##### setScissorInPoints
 
-Sets Scissor rectangle with points.
+用设计分辨率下的点的尺寸来设置 scissor 剪裁区域。
 
 | meta | description |
 |------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:863](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L863) |
+| 定义于 | [cocos2d/core/platform/CCView.js:842](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L842) |
+| 废弃（Deprecated） | since v2.0 |
 
 ###### 参数列表
 - `x` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
@@ -511,101 +413,80 @@ Sets Scissor rectangle with points.
 
 ##### isScissorEnabled
 
-Returns whether GL_SCISSOR_TEST is enable
+检查 scissor 是否生效。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:892](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L892) |
+| 定义于 | [cocos2d/core/platform/CCView.js:875](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L875) |
+| 废弃（Deprecated） | since v2.0 |
 
 
 
 ##### getScissorRect
 
-Returns the current scissor rectangle
+返回当前的 scissor 剪裁区域。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Rect.html" class="crosslink">Rect</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:901](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L901) |
+| 定义于 | [cocos2d/core/platform/CCView.js:887](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L887) |
+| 废弃（Deprecated） | since v2.0 |
 
 
 
-##### setViewName
+##### getViewportRect
 
-Sets the name of the view
-
-| meta | description |
-|------|-------------|
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:921](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L921) |
-
-###### 参数列表
-- `viewName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-
-
-##### getViewName
-
-Returns the name of the view
-
-| meta | description |
-|------|-------------|
-| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:932](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L932) |
-
-
-
-##### getViewPortRect
-
-Returns the view port rectangle.
+返回视窗剪裁区域。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Rect.html" class="crosslink">Rect</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:941](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L941) |
+| 定义于 | [cocos2d/core/platform/CCView.js:910](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L910) |
 
 
 
 ##### getScaleX
 
-Returns scale factor of the horizontal direction (X axis).
+返回横轴的缩放比，这个缩放比是将画布像素分辨率放到设计分辨率的比例。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:950](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L950) |
+| 定义于 | [cocos2d/core/platform/CCView.js:921](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L921) |
 
 
 
 ##### getScaleY
 
-Returns scale factor of the vertical direction (Y axis).
+返回纵轴的缩放比，这个缩放比是将画布像素分辨率缩放到设计分辨率的比例。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:959](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L959) |
+| 定义于 | [cocos2d/core/platform/CCView.js:932](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L932) |
 
 
 
 ##### getDevicePixelRatio
 
-Returns device pixel ratio for retina display.
+返回设备或浏览器像素比例。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:968](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L968) |
+| 定义于 | [cocos2d/core/platform/CCView.js:943](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L943) |
 
 
 
 ##### convertToLocationInView
 
-Returns the real location in view for a translation based on a related position
+将屏幕坐标转换为游戏视图下的坐标。
 
 | meta | description |
 |------|-------------|
 | 返回 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:977](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L977) |
+| 定义于 | [cocos2d/core/platform/CCView.js:954](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L954) |
 
 ###### 参数列表
 - `tx` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> The X axis translation
@@ -613,14 +494,61 @@ Returns the real location in view for a translation based on a related position
 - `relatedPos` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The related position object including "left", "top", "width", "height" informations
 
 
-##### _getInstance
+
+
+#### 事件
+
+### `design-resolution-changed` Event
 
 
 
-| meta | description |
-|------|-------------|
-| 返回 | <a href="../classes/View.html" class="crosslink">View</a> 
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js:1019](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/platform/CCView.js#L1019) |
+模块: [_decorator](../modules/_decorator.md)
+父模块: [cc](../modules/cc.md)
+
+
+!en
+Emit when design resolution changed.
+!zh
+当设计分辨率改变时发送。
+
+
+### 索引
+
+
+
+
+
+
+
+### Details
+
+
+
+
+### `canvas-resize` Event
+
+
+
+模块: [_decorator](../modules/_decorator.md)
+父模块: [cc](../modules/cc.md)
+
+
+!en
+Emit when canvas resize.
+!zh
+当画布大小改变时发送。
+
+
+### 索引
+
+
+
+
+
+
+
+### Details
+
 
 
 

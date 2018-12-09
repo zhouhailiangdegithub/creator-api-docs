@@ -20,12 +20,8 @@ Note: You need first enable the collision listener in the rigidbody.
   - [`VELOCITY_ITERATIONS`](#velocityiterations) `Number` The velocity iterations for the velocity constraint solver.
   - [`POSITION_ITERATIONS`](#positioniterations) `Number` The position Iterations for the position constraint solver.
   - [`FIXED_TIME_STEP`](#fixedtimestep) `Number` Specify the fixed time step.
-Need enabledAccumulator to make it work.
   - [`MAX_ACCUMULATOR`](#maxaccumulator) `Number` Specify the max accumulator time.
-Need enabledAccumulator to make it work.
   - [`enabledAccumulator`](#enabledaccumulator) `Boolean` If enabled accumulator, then will call step function with the fixed time step FIXED_TIME_STEP.
-And if the update dt is bigger than the time step, then will call step function several times.
-If disabled accumulator, then will call step function with a time step calculated with the frame rate.
   - [`enabled`](#enabled) `Boolean` Enabled the physics manager?
   - [`debugDrawFlags`](#debugdrawflags) `Number` Debug draw flags.
   - [`gravity`](#gravity) `Vec2` The physics world gravity.
@@ -37,22 +33,13 @@ If disabled accumulator, then will call step function with a time step calculate
   - [`testPoint`](#testpoint) Test which collider contains the given world point
   - [`testAABB`](#testaabb) Test which colliders intersect the given world rect
   - [`rayCast`](#raycast) Raycast the world for all colliders in the path of the ray.
-The raycast ignores colliders that contain the starting point.
-  - [`attachDebugDrawToCamera`](#attachdebugdrawtocamera) Attach physics debug draw to camera
-  - [`detachDebugDrawFromCamera`](#detachdebugdrawfromcamera) Detach physics debug draw to camera
+  - [`hasEventListener`](#haseventlistener) Checks whether the EventTarget object has any callback registered for a specific type of event.
   - [`on`](#on) Register an callback of a specific event type on the EventTarget.
-  - [`off`](#off) Removes the listeners previously registered with the same type, callback, target and or useCapture,
-if only type is passed as parameter, all listeners registered with that type will be removed.
+  - [`off`](#off) Removes the listeners previously registered with the same type, callback, target and or useCapture,...
   - [`targetOff`](#targetoff) Removes all callbacks previously registered with the same target (passed as parameter).
-This is not for removing all listeners in the current event target,
-and this is not for removing all listeners the target parameter have registered.
-It's only for removing all listeners (callback and target couple) registered on the current event target by the target parameter.
-  - [`once`](#once) Register an callback of a specific event type on the EventTarget,
-the callback will remove itself after the first time it is triggered.
-  - [`dispatchEvent`](#dispatchevent) Dispatches an event into the event flow.
-The event target is the EventTarget object upon which the dispatchEvent() method is called.
-  - [`emit`](#emit) Send an event to this object directly, this method will not propagate the event to any other objects.
-The event will be created from the supplied message, you can get the "detail" argument from event.detail.
+  - [`once`](#once) Register an callback of a specific event type on the EventTarget,...
+  - [`emit`](#emit) Trigger an event directly with the event name and necessary arguments.
+  - [`dispatchEvent`](#dispatchevent) Send an event with the event object.
 
 
 
@@ -69,7 +56,7 @@ The event will be created from the supplied message, you can get the "detail" ar
 | meta | description |
 |------|-------------|
 | Type | <a href="../enums/DrawBits.html" class="crosslink">DrawBits</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:59](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L59) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:67](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L67) |
 
 ##### Examples
 
@@ -90,7 +77,7 @@ cc.PhysicsManager.DrawBits.e_shapeBit;
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:77](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L77) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:85](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L85) |
 
 
 
@@ -101,7 +88,7 @@ cc.PhysicsManager.DrawBits.e_shapeBit;
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:87](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L87) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:95](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L95) |
 
 
 
@@ -112,7 +99,7 @@ cc.PhysicsManager.DrawBits.e_shapeBit;
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:98](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L98) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:106](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L106) |
 
 
 
@@ -124,7 +111,7 @@ Need enabledAccumulator to make it work.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:109](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L109) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:117](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L117) |
 
 
 
@@ -136,7 +123,7 @@ Need enabledAccumulator to make it work.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:121](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L121) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:129](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L129) |
 
 
 
@@ -149,7 +136,7 @@ If disabled accumulator, then will call step function with a time step calculate
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:151](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L151) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:160](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L160) |
 
 
 
@@ -160,7 +147,7 @@ If disabled accumulator, then will call step function with a time step calculate
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:529](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L529) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:550](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L550) |
 
 
 
@@ -171,7 +158,7 @@ If disabled accumulator, then will call step function with a time step calculate
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:556](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L556) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:578](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L578) |
 
 ##### Examples
 
@@ -196,7 +183,7 @@ cc.director.getPhysicsManager().debugDrawFlags = 0;
 | meta | description |
 |------|-------------|
 | Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:604](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L604) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:625](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L625) |
 
 
 
@@ -214,7 +201,7 @@ Test which collider contains the given world point
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/PhysicsCollider.html" class="crosslink">PhysicsCollider</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:226](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L226) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:237](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L237) |
 
 ###### Parameters
 - `point` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> the world point
@@ -227,7 +214,7 @@ Test which colliders intersect the given world rect
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/PhysicsCollider.html" class="crosslink">[PhysicsCollider]</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:257](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L257) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:268](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L268) |
 
 ###### Parameters
 - `rect` <a href="../classes/Rect.html" class="crosslink">Rect</a> the world rect
@@ -241,7 +228,7 @@ The raycast ignores colliders that contain the starting point.
 | meta | description |
 |------|-------------|
 | Returns | <a href="../classes/PhysicsRayCastResult.html" class="crosslink">[PhysicsRayCastResult]</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:284](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L284) |
+| Defined in | [cocos2d/core/physics/CCPhysicsManager.js:295](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsManager.js#L295) |
 
 ###### Parameters
 - `p1` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> start point of the raycast
@@ -249,55 +236,45 @@ The raycast ignores colliders that contain the starting point.
 - `type` <a href="../enums/RayCastType.html" class="crosslink">RayCastType</a> optional, default is RayCastType.Closest
 
 
-##### attachDebugDrawToCamera
+##### hasEventListener
 
-Attach physics debug draw to camera
-
-| meta | description |
-|------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:369](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L369) |
-
-###### Parameters
-- `camera` <a href="../classes/Camera.html" class="crosslink">Camera</a> 
-
-
-##### detachDebugDrawFromCamera
-
-Detach physics debug draw to camera
+Checks whether the EventTarget object has any callback registered for a specific type of event.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js:381](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsManager.js#L381) |
+| Returns | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+| Defined in | [cocos2d/core/event/event-target.js:68](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L68) |
 
 ###### Parameters
-- `camera` <a href="../classes/Camera.html" class="crosslink">Camera</a> 
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The type of event.
 
 
 ##### on
 
 Register an callback of a specific event type on the EventTarget.
+This type of event should be triggered via `emit`.
 
 | meta | description |
 |------|-------------|
 | Returns | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:217](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L217) |
+| Defined in | [cocos2d/core/event/event-target.js:76](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L76) |
 
 ###### Parameters
 - `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
                              The callback is ignored if it is a duplicate (the callbacks are unique).
-	- `event` <a href="../classes/Event.html" class="crosslink">Event</a> event
+	- `arg1` Any arg1
+	- `arg2` Any arg2
+	- `arg3` Any arg3
+	- `arg4` Any arg4
+	- `arg5` Any arg5
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, can be null
-- `useCapture` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> When set to true, the capture argument prevents callback
-                             from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                             When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                             Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.
 
 ##### Examples
 
 ```js
-node.on(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
+eventTarget.on('fire', function (event) {
+    cc.log("fire in the hole");
 }, node);
 ```
 
@@ -308,28 +285,24 @@ if only type is passed as parameter, all listeners registered with that type wil
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:274](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L274) |
+| Defined in | [cocos2d/core/event/event-target.js:117](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L117) |
 
 ###### Parameters
 - `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type being removed.
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback to remove.
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, if it's not given, only callback without target will be removed
-- `useCapture` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Specifies whether the callback being removed was registered as a capturing callback or not.
-                             If not specified, useCapture defaults to false. If a callback was registered twice,
-                             one with capture and one without, each must be removed separately. Removal of a capturing callback
-                             does not affect a non-capturing version of the same listener, and vice versa.
 
 ##### Examples
 
 ```js
-// register touchEnd eventListener
-var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
-}, node);
-// remove touch end event listener
-node.off(cc.Node.EventType.TOUCH_END, touchEnd, node);
-// remove all touch end event listeners
-node.off(cc.Node.EventType.TOUCH_END);
+// register fire eventListener
+var callback = eventTarget.on('fire', function (event) {
+    cc.log("fire in the hole");
+}, target);
+// remove fire event listener
+eventTarget.off('fire', callback, target);
+// remove all fire event listeners
+eventTarget.off('fire');
 ```
 
 ##### targetOff
@@ -341,7 +314,7 @@ It's only for removing all listeners (callback and target couple) registered on 
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:329](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L329) |
+| Defined in | [cocos2d/core/event/event-target.js:151](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L151) |
 
 ###### Parameters
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target to be searched for all related listeners
@@ -354,52 +327,60 @@ the callback will remove itself after the first time it is triggered.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:351](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L351) |
+| Defined in | [cocos2d/core/event/event-target.js:164](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L164) |
 
 ###### Parameters
 - `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
 - `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
                              The callback is ignored if it is a duplicate (the callbacks are unique).
-	- `event` <a href="../classes/Event.html" class="crosslink">Event</a> event
+	- `arg1` Any arg1
+	- `arg2` Any arg2
+	- `arg3` Any arg3
+	- `arg4` Any arg4
+	- `arg5` Any arg5
 - `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, can be null
-- `useCapture` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> When set to true, the capture argument prevents callback
-                             from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                             When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                             Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.
 
 ##### Examples
 
 ```js
-node.once(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
+eventTarget.once('fire', function (event) {
+    cc.log("this is the callback and will be invoked only once");
 }, node);
+```
+
+##### emit
+
+Trigger an event directly with the event name and necessary arguments.
+
+| meta | description |
+|------|-------------|
+| Defined in | [cocos2d/core/event/event-target.js:201](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L201) |
+
+###### Parameters
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> event type
+- `arg1` Any First argument
+- `arg2` Any Second argument
+- `arg3` Any Third argument
+- `arg4` Any Fourth argument
+- `arg5` Any Fifth argument
+
+##### Examples
+
+```js
+eventTarget.emit('fire', event);
+eventTarget.emit('fire', message, emitter);
 ```
 
 ##### dispatchEvent
 
-Dispatches an event into the event flow.
-The event target is the EventTarget object upon which the dispatchEvent() method is called.
+Send an event with the event object.
 
 | meta | description |
 |------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:396](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L396) |
+| Defined in | [cocos2d/core/event/event-target.js:221](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L221) |
 
 ###### Parameters
-- `event` <a href="../classes/Event.html" class="crosslink">Event</a> The Event object that is dispatched into the event flow
-
-
-##### emit
-
-Send an event to this object directly, this method will not propagate the event to any other objects.
-The event will be created from the supplied message, you can get the "detail" argument from event.detail.
-
-| meta | description |
-|------|-------------|
-| Defined in | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js:410](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/event/event-target.js#L410) |
-
-###### Parameters
-- `message` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> the message to send
-- `detail` Any whatever argument the message needs
+- `event` <a href="../classes/Event.html" class="crosslink">Event</a>  
 
 
 

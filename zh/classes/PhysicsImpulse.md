@@ -33,7 +33,7 @@
 | meta | description |
 |------|-------------|
 | 类型 | Unknown |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsContact.js:160](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsContact.js#L160) |
+| 定义于 | [cocos2d/core/physics/CCPhysicsContact.js:179](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsContact.js#L179) |
 
 
 
@@ -44,7 +44,7 @@
 | meta | description |
 |------|-------------|
 | 类型 | Unknown |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsContact.js:168](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/physics/CCPhysicsContact.js#L168) |
+| 定义于 | [cocos2d/core/physics/CCPhysicsContact.js:187](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/physics/CCPhysicsContact.js#L187) |
 
 
 

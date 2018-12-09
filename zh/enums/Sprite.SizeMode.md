@@ -12,6 +12,8 @@
   - `CUSTOM`
   - `TRIMMED`
   - `RAW`
+  - `NORMAL`
+  - `GRAY`
 
 ### Details
 
@@ -23,7 +25,7 @@
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSprite.js:88](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSprite.js#L88) |
+| 定义于 | [cocos2d/core/components/CCSprite.js:108](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCSprite.js#L108) |
 
 
 
@@ -34,7 +36,7 @@
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSprite.js:94](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSprite.js#L94) |
+| 定义于 | [cocos2d/core/components/CCSprite.js:114](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCSprite.js#L114) |
 
 
 
@@ -45,6 +47,28 @@
 | meta | description |
 |------|-------------|
 | 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| 定义于 | [https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSprite.js:100](https:/github.com/cocos-creator/engine/blob/master/cocos2d/core/components/CCSprite.js#L100) |
+| 定义于 | [cocos2d/core/components/CCSprite.js:120](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCSprite.js#L120) |
+
+
+
+##### NORMAL
+
+> 正常状态
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/components/CCSprite.js:129](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCSprite.js#L129) |
+
+
+
+##### GRAY
+
+> 灰色状态，所有颜色会被转换成灰度值
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/components/CCSprite.js:135](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCSprite.js#L135) |
 
 
