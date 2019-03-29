@@ -5,21 +5,15 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Enum for horizontal layout direction.
  Used in Grid Layout together with AxisDirection is HORIZONTAL
 
+
 ### Index
-
-##### Properties
-
   - `LEFT_TO_RIGHT`
   - `RIGHT_TO_LEFT`
 
 ### Details
-
-#### Properties
 
 
 ##### LEFT_TO_RIGHT
@@ -29,7 +23,7 @@ Enum for horizontal layout direction.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js:138](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js#L138) |
+| Defined in | [cocos2d/core/components/CCLayout.js:140](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLayout.js#L140) |
 
 
 
@@ -40,6 +34,6 @@ Enum for horizontal layout direction.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js:144](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js#L144) |
+| Defined in | [cocos2d/core/components/CCLayout.js:146](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLayout.js#L146) |
 
 

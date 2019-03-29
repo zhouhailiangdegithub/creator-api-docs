@@ -5,22 +5,16 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Enum for Overflow.
 
+
 ### Index
-
-##### Properties
-
   - `NONE`
   - `CLAMP`
   - `SHRINK`
   - `RESIZE_HEIGHT`
 
 ### Details
-
-#### Properties
 
 
 ##### NONE
@@ -30,7 +24,7 @@ Enum for Overflow.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js:80](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js#L80) |
+| Defined in | [cocos2d/core/components/CCLabel.js:85](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLabel.js#L85) |
 
 
 
@@ -41,7 +35,7 @@ Enum for Overflow.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js:85](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js#L85) |
+| Defined in | [cocos2d/core/components/CCLabel.js:90](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLabel.js#L90) |
 
 
 
@@ -52,7 +46,7 @@ Enum for Overflow.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js:90](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js#L90) |
+| Defined in | [cocos2d/core/components/CCLabel.js:95](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLabel.js#L95) |
 
 
 
@@ -63,6 +57,6 @@ Enum for Overflow.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js:95](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js#L95) |
+| Defined in | [cocos2d/core/components/CCLabel.js:100](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLabel.js#L100) |
 
 

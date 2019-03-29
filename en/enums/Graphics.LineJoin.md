@@ -5,21 +5,15 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Enum for LineJoin.
 
+
 ### Index
-
-##### Properties
-
   - `BEVEL`
   - `ROUND`
   - `MITER`
 
 ### Details
-
-#### Properties
 
 
 ##### BEVEL
@@ -29,7 +23,7 @@ Enum for LineJoin.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/graphics/types.js:65](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/graphics/types.js#L65) |
+| Defined in | [cocos2d/core/graphics/types.js:66](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/graphics/types.js#L66) |
 
 
 
@@ -40,7 +34,7 @@ Enum for LineJoin.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/graphics/types.js:72](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/graphics/types.js#L72) |
+| Defined in | [cocos2d/core/graphics/types.js:73](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/graphics/types.js#L73) |
 
 
 
@@ -51,6 +45,6 @@ Enum for LineJoin.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/graphics/types.js:79](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/graphics/types.js#L79) |
+| Defined in | [cocos2d/core/graphics/types.js:80](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/graphics/types.js#L80) |
 
 

@@ -1,39 +1,37 @@
-## `AnimationState` Class
+## `AnimationState` 类型
 
-Extends [`AnimationNode`](AnimationNode.md)
-
-
-Module: [cc](../modules/cc.md)
+继承于 [`Playable`](Playable.md)
 
 
+模块: [cc](../modules/cc.md)
 
 
 AnimationState 完全控制动画播放过程。<br/>
 大多数情况下 动画组件 是足够和易于使用的。如果您需要更多的动画控制接口，请使用 AnimationState。
 
-### Index
 
-##### Properties
+### 索引
 
-  - [`clip`](#clip) `AnimationClip` 此动画状态正在播放的剪辑。
-  - [`name`](#name) `String` 动画的名字
+##### 属性（properties）
+
+  - [`animator`](#animator) `AnimationAnimator` 
   - [`curves`](#curves) `Object[]` 曲线列表。
   - [`delay`](#delay) `Number` 延迟多少秒播放。
-  - [`repeatCount`](#repeatcount) `Number` 迭代次数，指动画播放多少次后结束, normalize time。 如 2.5（2次半）
+  - [`repeatCount`](#repeatcount) `Number` 迭代次数，指动画播放多少次后结束, normalize time。
   - [`duration`](#duration) `Number` 单次动画的持续时间，秒。
   - [`speed`](#speed) `Number` 播放速率。
   - [`wrapMode`](#wrapmode) `WrapMode` 动画循环方式。
-需要注意的是，动态修改 wrapMode 时，会重置 time 以及 repeatCount
   - [`time`](#time) `Number` 动画当前的时间，秒。
+  - [`clip`](#clip) `AnimationClip` 此动画状态正在播放的剪辑。
+  - [`name`](#name) `String` 动画的名字
   - [`isPlaying`](#isplaying) `Boolean` 当前是否正在播放。
   - [`isPaused`](#ispaused) `Boolean` 当前是否正在暂停
 
 
 
-##### Methods
+##### 方法
 
   - [`constructor`](#constructor) 
-  - [`update`](#update) 
   - [`onPlay`](#onplay) 
   - [`onPause`](#onpause) 
   - [`onResume`](#onresume) 
@@ -50,28 +48,17 @@ AnimationState 完全控制动画播放过程。<br/>
 ### Details
 
 
-#### Properties
+#### 属性（properties）
 
 
-##### clip
+##### animator
 
-> 此动画状态正在播放的剪辑。
-
-| meta | description |
-|------|-------------|
-| Type | <a href="../classes/AnimationClip.html" class="crosslink">AnimationClip</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/animation-state.js:46](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/animation-state.js#L46) |
-
-
-
-##### name
-
-> 动画的名字
+> 
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/animation-state.js:57](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/animation-state.js#L57) |
+| 类型 | AnimationAnimator |
+| 定义于 | [cocos2d/animation/animation-state.js:73](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L73) |
 
 
 
@@ -81,8 +68,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:145](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L145) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:79](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L79) |
 
 
 
@@ -92,8 +79,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:155](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L155) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:89](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L89) |
 
 
 
@@ -103,8 +90,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:166](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L166) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:100](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L100) |
 
 
 
@@ -114,8 +101,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:183](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L183) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:117](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L117) |
 
 
 
@@ -125,8 +112,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:193](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L193) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:127](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L127) |
 
 
 
@@ -137,8 +124,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../enums/WrapMode.html" class="crosslink">WrapMode</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:202](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L202) |
+| 类型 | <a href="../enums/WrapMode.html" class="crosslink">WrapMode</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:136](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L136) |
 
 
 
@@ -148,8 +135,30 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:250](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L250) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:150](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L150) |
+
+
+
+##### clip
+
+> 此动画状态正在播放的剪辑。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="../classes/AnimationClip.html" class="crosslink">AnimationClip</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:441](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L441) |
+
+
+
+##### name
+
+> 动画的名字
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/animation/animation-state.js:452](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L452) |
 
 
 
@@ -159,8 +168,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:18](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L18) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
+| 定义于 | [cocos2d/animation/playable.js:44](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L44) |
 
 
 
@@ -170,8 +179,8 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:30](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L30) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> |
+| 定义于 | [cocos2d/animation/playable.js:56](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L56) |
 
 
 
@@ -179,7 +188,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 
 <!-- Method Block -->
-#### Methods
+#### 方法
 
 
 ##### constructor
@@ -188,23 +197,11 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/animation-state.js:20](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/animation-state.js#L20) |
+| 定义于 | [cocos2d/animation/animation-state.js:50](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/animation-state.js#L50) |
 
-###### Parameters
-- clip <a href="../classes/AnimationClip.html" class="crosslink">AnimationClip</a> 
-- name <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-
-
-##### update
-
-
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:114](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L114) |
-
-###### Parameters
-- deltaTime <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+###### 参数列表
+- `clip` <a href="../classes/AnimationClip.html" class="crosslink">AnimationClip</a> 
+- `name` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
 
 ##### onPlay
@@ -213,7 +210,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:45](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L45) |
+| 定义于 | [cocos2d/animation/playable.js:71](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L71) |
 
 
 
@@ -223,7 +220,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:50](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L50) |
+| 定义于 | [cocos2d/animation/playable.js:76](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L76) |
 
 
 
@@ -233,7 +230,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:55](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L55) |
+| 定义于 | [cocos2d/animation/playable.js:81](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L81) |
 
 
 
@@ -243,7 +240,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:60](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L60) |
+| 定义于 | [cocos2d/animation/playable.js:86](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L86) |
 
 
 
@@ -253,10 +250,10 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:65](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L65) |
+| 定义于 | [cocos2d/animation/playable.js:91](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L91) |
 
-###### Parameters
-- errorCode <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">string</a> 
+###### 参数列表
+- `errorCode` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">string</a> 
 
 
 ##### play
@@ -265,7 +262,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:74](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L74) |
+| 定义于 | [cocos2d/animation/playable.js:100](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L100) |
 
 
 
@@ -275,7 +272,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:95](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L95) |
+| 定义于 | [cocos2d/animation/playable.js:121](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L121) |
 
 
 
@@ -285,7 +282,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:110](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L110) |
+| 定义于 | [cocos2d/animation/playable.js:136](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L136) |
 
 
 
@@ -295,7 +292,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:122](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L122) |
+| 定义于 | [cocos2d/animation/playable.js:148](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L148) |
 
 
 
@@ -305,7 +302,7 @@ AnimationState 完全控制动画播放过程。<br/>
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js:134](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/playable.js#L134) |
+| 定义于 | [cocos2d/animation/playable.js:160](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/playable.js#L160) |
 
 
 

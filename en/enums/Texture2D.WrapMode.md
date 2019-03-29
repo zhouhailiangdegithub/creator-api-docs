@@ -3,24 +3,17 @@
 
 
 Module: [cc](../modules/cc.md)
-Parent Module: [cc](../modules/cc.md)
-
-
 
 
 The texture wrap mode
 
+
 ### Index
-
-##### Properties
-
   - `REPEAT`
   - `CLAMP_TO_EDGE`
   - `MIRRORED_REPEAT`
 
 ### Details
-
-#### Properties
 
 
 ##### REPEAT
@@ -30,7 +23,7 @@ The texture wrap mode
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/textures/CCTexture2D.js:42](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/textures/CCTexture2D.js#L42) |
+| Defined in | [cocos2d/core/assets/CCTexture2D.js:130](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCTexture2D.js#L130) |
 
 
 
@@ -41,7 +34,7 @@ The texture wrap mode
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/textures/CCTexture2D.js:49](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/textures/CCTexture2D.js#L49) |
+| Defined in | [cocos2d/core/assets/CCTexture2D.js:137](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCTexture2D.js#L137) |
 
 
 
@@ -52,6 +45,6 @@ The texture wrap mode
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/textures/CCTexture2D.js:56](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/textures/CCTexture2D.js#L56) |
+| Defined in | [cocos2d/core/assets/CCTexture2D.js:144](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/assets/CCTexture2D.js#L144) |
 
 

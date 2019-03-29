@@ -5,14 +5,10 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Specifies how time is treated when it is outside of the keyframe range of an Animation.
 
+
 ### Index
-
-##### Properties
-
   - `Default`
   - `Normal`
   - `Reverse`
@@ -23,8 +19,6 @@ Specifies how time is treated when it is outside of the keyframe range of an Ani
 
 ### Details
 
-#### Properties
-
 
 ##### Default
 
@@ -33,7 +27,7 @@ Specifies how time is treated when it is outside of the keyframe range of an Ani
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:23](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L23) |
+| Defined in | [cocos2d/animation/types.js:45](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/types.js#L45) |
 
 
 
@@ -44,7 +38,7 @@ Specifies how time is treated when it is outside of the keyframe range of an Ani
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:30](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L30) |
+| Defined in | [cocos2d/animation/types.js:52](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/types.js#L52) |
 
 
 
@@ -55,7 +49,7 @@ Specifies how time is treated when it is outside of the keyframe range of an Ani
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:37](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L37) |
+| Defined in | [cocos2d/animation/types.js:59](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/types.js#L59) |
 
 
 
@@ -66,7 +60,7 @@ Specifies how time is treated when it is outside of the keyframe range of an Ani
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:44](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L44) |
+| Defined in | [cocos2d/animation/types.js:66](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/types.js#L66) |
 
 
 
@@ -78,7 +72,7 @@ And when time reaches the start of the animation, time will continue at the endi
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:51](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L51) |
+| Defined in | [cocos2d/animation/types.js:73](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/types.js#L73) |
 
 
 
@@ -90,7 +84,7 @@ are specified.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:59](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L59) |
+| Defined in | [cocos2d/animation/types.js:81](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/types.js#L81) |
 
 
 
@@ -102,6 +96,6 @@ as specified.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js:67](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/animation/types.js#L67) |
+| Defined in | [cocos2d/animation/types.js:89](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/animation/types.js#L89) |
 
 

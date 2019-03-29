@@ -1,25 +1,19 @@
-### `ParticleSystem.PositionType` Enum
+### `ParticleSystem.PositionType` 枚举
 
 
 
-Module: [cc](../modules/cc.md)
-
-
+模块: [cc](../modules/cc.md)
 
 
 粒子位置类型
 
-### Index
 
-##### Properties
-
+### 索引
   - `FREE`
   - `RELATIVE`
   - `GROUPED`
 
 ### Details
-
-#### Properties
 
 
 ##### FREE
@@ -28,8 +22,8 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/particle/CCParticleSystem.js:64](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/particle/CCParticleSystem.js#L64) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/particle/CCParticleSystem.js:89](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L89) |
 
 
 
@@ -39,8 +33,8 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/particle/CCParticleSystem.js:73](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/particle/CCParticleSystem.js#L73) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/particle/CCParticleSystem.js:98](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L98) |
 
 
 
@@ -50,7 +44,7 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/particle/CCParticleSystem.js:83](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/particle/CCParticleSystem.js#L83) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/particle/CCParticleSystem.js:108](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/particle/CCParticleSystem.js#L108) |
 
 

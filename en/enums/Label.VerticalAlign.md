@@ -5,21 +5,15 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Enum for vertical text alignment.
 
+
 ### Index
-
-##### Properties
-
   - `TOP`
   - `CENTER`
   - `BOTTOM`
 
 ### Details
-
-#### Properties
 
 
 ##### TOP
@@ -29,7 +23,7 @@ Enum for vertical text alignment.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js:58](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js#L58) |
+| Defined in | [cocos2d/core/components/CCLabel.js:63](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLabel.js#L63) |
 
 
 
@@ -40,7 +34,7 @@ Enum for vertical text alignment.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js:63](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js#L63) |
+| Defined in | [cocos2d/core/components/CCLabel.js:68](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLabel.js#L68) |
 
 
 
@@ -51,6 +45,6 @@ Enum for vertical text alignment.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js:68](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLabel.js#L68) |
+| Defined in | [cocos2d/core/components/CCLabel.js:73](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLabel.js#L73) |
 
 

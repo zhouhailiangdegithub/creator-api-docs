@@ -5,21 +5,15 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 the type for mask.
 
+
 ### Index
-
-##### Properties
-
   - `RECT`
   - `ELLIPSE`
   - `IMAGE_STENCIL`
 
 ### Details
-
-#### Properties
 
 
 ##### RECT
@@ -29,7 +23,7 @@ the type for mask.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCMask.js:39](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCMask.js#L39) |
+| Defined in | [cocos2d/core/components/CCMask.js:47](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCMask.js#L47) |
 
 
 
@@ -40,7 +34,7 @@ the type for mask.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCMask.js:45](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCMask.js#L45) |
+| Defined in | [cocos2d/core/components/CCMask.js:53](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCMask.js#L53) |
 
 
 
@@ -51,6 +45,6 @@ the type for mask.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCMask.js:51](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCMask.js#L51) |
+| Defined in | [cocos2d/core/components/CCMask.js:59](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCMask.js#L59) |
 
 

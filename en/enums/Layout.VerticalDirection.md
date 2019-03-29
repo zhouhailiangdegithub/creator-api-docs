@@ -5,21 +5,15 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Enum for vertical layout direction.
  Used in Grid Layout together with AxisDirection is VERTICAL
 
+
 ### Index
-
-##### Properties
-
   - `BOTTOM_TO_TOP`
   - `TOP_TO_BOTTOM`
 
 ### Details
-
-#### Properties
 
 
 ##### BOTTOM_TO_TOP
@@ -29,7 +23,7 @@ Enum for vertical layout direction.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js:117](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js#L117) |
+| Defined in | [cocos2d/core/components/CCLayout.js:119](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLayout.js#L119) |
 
 
 
@@ -40,6 +34,6 @@ Enum for vertical layout direction.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js:123](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCLayout.js#L123) |
+| Defined in | [cocos2d/core/components/CCLayout.js:125](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/CCLayout.js#L125) |
 
 

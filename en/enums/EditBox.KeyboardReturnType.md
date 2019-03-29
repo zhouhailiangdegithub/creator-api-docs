@@ -3,25 +3,21 @@
 
 
 Module: [cc](../modules/cc.md)
-
-
+Parent Module: [cc](../modules/cc.md)
 
 
 Enum for keyboard return types
 
+
 ### Index
-
-##### Properties
-
   - `DEFAULT`
   - `DONE`
   - `SEND`
   - `SEARCH`
   - `GO`
+  - `NEXT`
 
 ### Details
-
-#### Properties
 
 
 ##### DEFAULT
@@ -31,7 +27,7 @@ Enum for keyboard return types
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:37](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L37) |
+| Defined in | [cocos2d/core/components/editbox/types.js:35](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L35) |
 
 
 
@@ -42,7 +38,7 @@ Enum for keyboard return types
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:42](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L42) |
+| Defined in | [cocos2d/core/components/editbox/types.js:41](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L41) |
 
 
 
@@ -53,7 +49,7 @@ Enum for keyboard return types
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:47](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L47) |
+| Defined in | [cocos2d/core/components/editbox/types.js:47](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L47) |
 
 
 
@@ -64,7 +60,7 @@ Enum for keyboard return types
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:52](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L52) |
+| Defined in | [cocos2d/core/components/editbox/types.js:53](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L53) |
 
 
 
@@ -75,6 +71,17 @@ Enum for keyboard return types
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:57](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L57) |
+| Defined in | [cocos2d/core/components/editbox/types.js:59](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L59) |
+
+
+
+##### NEXT
+
+> TODO
+
+| meta | description |
+|------|-------------|
+| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| Defined in | [cocos2d/core/components/editbox/types.js:65](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L65) |
 
 

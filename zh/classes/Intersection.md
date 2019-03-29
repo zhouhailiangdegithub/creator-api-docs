@@ -1,19 +1,18 @@
-## `Intersection` Class
+## `Intersection` 类型
 
 
 
-Module: [cc](../modules/cc.md)
-
-
+模块: [cc](../modules/cc.md)
 
 
 辅助类，用于测试形状与形状是否相交
 
-### Index
+
+### 索引
 
 
 
-##### Methods
+##### 方法
 
   - [`lineLine`](#lineline) 测试线段与线段是否相交
   - [`lineRect`](#linerect) 测试线段与矩形是否相交
@@ -24,7 +23,7 @@ Module: [cc](../modules/cc.md)
   - [`circleCircle`](#circlecircle) 测试圆形与圆形是否相交
   - [`polygonCircle`](#polygoncircle) 测试矩形与圆形是否相交
   - [`pointInPolygon`](#pointinpolygon) 测试一个点是否在一个多边形中
-  - [`pointLineDistance`](#pointlinedistance) 计算点到直线的距离。如果这是一条线段并且垂足不在线段内，则会计算点到线段端点的距离。
+  - [`pointLineDistance`](#pointlinedistance) 计算点到直线的距离。
 
 
 
@@ -34,7 +33,7 @@ Module: [cc](../modules/cc.md)
 
 
 <!-- Method Block -->
-#### Methods
+#### 方法
 
 
 ##### lineLine
@@ -43,14 +42,14 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:12](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L12) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:37](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L37) |
 
-###### Parameters
-- a1 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the first line
-- a2 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the first line
-- b1 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the second line
-- b2 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the second line
+###### 参数列表
+- `a1` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the first line
+- `a2` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the first line
+- `b1` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the second line
+- `b2` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the second line
 
 
 ##### lineRect
@@ -59,13 +58,13 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:43](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L43) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:68](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L68) |
 
-###### Parameters
-- a1 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the line
-- a2 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the line
-- b <a href="../classes/Rect.html" class="crosslink">Rect</a> The rect
+###### 参数列表
+- `a1` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the line
+- `a2` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the line
+- `b` <a href="../classes/Rect.html" class="crosslink">Rect</a> The rect
 
 
 ##### linePolygon
@@ -74,13 +73,13 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:75](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L75) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:100](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L100) |
 
-###### Parameters
-- a1 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the line
-- a2 <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the line
-- b <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The polygon, a set of points
+###### 参数列表
+- `a1` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of the line
+- `a2` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of the line
+- `b` <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The polygon, a set of points
 
 
 ##### rectRect
@@ -89,12 +88,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:100](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L100) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:125](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L125) |
 
-###### Parameters
-- a <a href="../classes/Rect.html" class="crosslink">Rect</a> The first rect
-- b <a href="../classes/Rect.html" class="crosslink">Rect</a> The second rect
+###### 参数列表
+- `a` <a href="../classes/Rect.html" class="crosslink">Rect</a> The first rect
+- `b` <a href="../classes/Rect.html" class="crosslink">Rect</a> The second rect
 
 
 ##### rectPolygon
@@ -103,12 +102,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:130](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L130) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:155](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L155) |
 
-###### Parameters
-- a <a href="../classes/Rect.html" class="crosslink">Rect</a> The rect
-- b <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The polygon, a set of points
+###### 参数列表
+- `a` <a href="../classes/Rect.html" class="crosslink">Rect</a> The rect
+- `b` <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The polygon, a set of points
 
 
 ##### polygonPolygon
@@ -117,12 +116,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:182](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L182) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:207](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L207) |
 
-###### Parameters
-- a <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The first polygon, a set of points
-- b <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The second polygon, a set of points
+###### 参数列表
+- `a` <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The first polygon, a set of points
+- `b` <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The second polygon, a set of points
 
 
 ##### circleCircle
@@ -131,12 +130,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:221](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L221) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:246](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L246) |
 
-###### Parameters
-- a <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Object contains position and radius
-- b <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Object contains position and radius
+###### 参数列表
+- `a` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Object contains position and radius
+- `b` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Object contains position and radius
 
 
 ##### polygonCircle
@@ -145,12 +144,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:238](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L238) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:263](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L263) |
 
-###### Parameters
-- polygon <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The Polygon, a set of points
-- circle <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Object contains position and radius
+###### 参数列表
+- `polygon` <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The Polygon, a set of points
+- `circle` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Object contains position and radius
 
 
 ##### pointInPolygon
@@ -159,12 +158,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:267](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L267) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:292](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L292) |
 
-###### Parameters
-- point <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The point
-- polygon <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The polygon, a set of points
+###### 参数列表
+- `point` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The point
+- `polygon` <a href="../classes/Vec2.html" class="crosslink">Vec2[]</a> The polygon, a set of points
 
 
 ##### pointLineDistance
@@ -173,14 +172,14 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js:297](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/collider/CCIntersection.js#L297) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> 
+| 定义于 | [cocos2d/core/collider/CCIntersection.js:322](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/collider/CCIntersection.js#L322) |
 
-###### Parameters
-- point <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The point
-- start <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of line
-- end <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of line
-- isSegment <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> whether this line is a segment
+###### 参数列表
+- `point` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The point
+- `start` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The start point of line
+- `end` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> The end point of line
+- `isSegment` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a> whether this line is a segment
 
 
 

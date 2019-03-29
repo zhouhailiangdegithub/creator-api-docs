@@ -5,8 +5,6 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 The loader pipe, it can load several types of files:
 1. Images
 2. JSON
@@ -16,6 +14,7 @@ The loader pipe, it can load several types of files:
 6. Cocos Creator scene
 It will not interfere with items of unknown type.
 You can pass custom supported types in the constructor.
+
 
 ### Index
 
@@ -43,12 +42,12 @@ Constructor of Loader, you can pass custom supported types.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/load-pipeline/loader.js:126](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/load-pipeline/loader.js#L126) |
+| Defined in | [cocos2d/core/load-pipeline/loader.js:165](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/load-pipeline/loader.js#L165) |
 
 ###### Parameters
-- extMap <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Custom supported types with corresponded handler
+- `extMap` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Custom supported types with corresponded handler
 
-##### Example
+##### Examples
 
 ```js
 var loader = new Loader({
@@ -63,10 +62,10 @@ Add custom supported types handler or modify existing type handler.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/load-pipeline/loader.js:146](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/load-pipeline/loader.js#L146) |
+| Defined in | [cocos2d/core/load-pipeline/loader.js:185](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/load-pipeline/loader.js#L185) |
 
 ###### Parameters
-- extMap <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Custom supported types with corresponded handler
+- `extMap` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> Custom supported types with corresponded handler
 
 
 

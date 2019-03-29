@@ -3,25 +3,21 @@
 
 
 Module: [cc](../modules/cc.md)
-
-
+Parent Module: [cc](../modules/cc.md)
 
 
 Enum for the EditBox's input flags
 
+
 ### Index
-
-##### Properties
-
   - `PASSWORD`
   - `SENSITIVE`
   - `INITIAL_CAPS_WORD`
   - `INITIAL_CAPS_SENTENCE`
   - `INITIAL_CAPS_ALL_CHARACTERS`
+  - `DEFAULT`
 
 ### Details
-
-#### Properties
 
 
 ##### PASSWORD
@@ -32,7 +28,7 @@ obscured whenever possible. This implies EDIT_BOX_INPUT_FLAG_SENSITIVE.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:116](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L116) |
+| Defined in | [cocos2d/core/components/editbox/types.js:134](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L134) |
 
 
 
@@ -46,7 +42,7 @@ A credit card number is an example of sensitive data.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:124](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L124) |
+| Defined in | [cocos2d/core/components/editbox/types.js:143](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L143) |
 
 
 
@@ -58,7 +54,7 @@ the initial letter of each word should be capitalized.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:135](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L135) |
+| Defined in | [cocos2d/core/components/editbox/types.js:155](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L155) |
 
 
 
@@ -70,7 +66,7 @@ the initial letter of each sentence should be capitalized.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:143](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L143) |
+| Defined in | [cocos2d/core/components/editbox/types.js:164](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L164) |
 
 
 
@@ -81,6 +77,17 @@ the initial letter of each sentence should be capitalized.
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js:151](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCEditBox.js#L151) |
+| Defined in | [cocos2d/core/components/editbox/types.js:173](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L173) |
+
+
+
+##### DEFAULT
+
+> Don't do anything with the input text.
+
+| meta | description |
+|------|-------------|
+| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| Defined in | [cocos2d/core/components/editbox/types.js:179](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/components/editbox/types.js#L179) |
 
 

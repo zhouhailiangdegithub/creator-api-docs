@@ -43,28 +43,22 @@ window.apimeta = {
       "description": "骨骼动画事件类型。"
     },
     {
-      "name": "BlendFactor",
-      "namespace": "cc.BlendFactor",
-      "module": "cc",
-      "description": "混合因子\n可参考: http://www.andersriggelsen.dk/glblendfunc.php"
-    },
-    {
       "name": "Button.Transition",
       "namespace": "cc.Button.Transition",
       "module": "cc",
       "description": "过渡类型"
     },
     {
+      "name": "Camera.ClearFlags",
+      "namespace": "cc.Camera.ClearFlags",
+      "module": "cc",
+      "description": "摄像机清除标记位，决定摄像机渲染时会清除哪些状态"
+    },
+    {
       "name": "CustomResultCode",
       "namespace": "anysdk.CustomResultCode",
       "module": "anysdk",
       "description": "自定义系统回调"
-    },
-    {
-      "name": "DebugMode",
-      "namespace": "cc.DebugMode",
-      "module": "cc",
-      "description": "调试模式"
     },
     {
       "name": "DrawBits",
@@ -101,18 +95,6 @@ window.apimeta = {
       "namespace": "cc.Graphics.LineJoin",
       "module": "cc",
       "description": "线段拐角属性"
-    },
-    {
-      "name": "ImageFormat",
-      "namespace": "cc.ImageFormat",
-      "module": "cc",
-      "description": "Image formats"
-    },
-    {
-      "name": "KEY",
-      "namespace": "cc.KEY",
-      "module": "cc",
-      "description": "键盘事件的按键值"
     },
     {
       "name": "Label.HorizontalAlign",
@@ -181,6 +163,12 @@ window.apimeta = {
       "description": "遮罩组件类型"
     },
     {
+      "name": "NetworkType",
+      "namespace": "cc.NetworkType",
+      "module": "cc",
+      "description": "网络类型枚举"
+    },
+    {
       "name": "PageView.Direction",
       "namespace": "cc.PageView.Direction",
       "module": "cc",
@@ -221,6 +209,12 @@ window.apimeta = {
       "namespace": "anysdk.PayResultCode",
       "module": "anysdk",
       "description": "支付系统支付请求回调"
+    },
+    {
+      "name": "Prefab.OptimizationPolicy",
+      "namespace": "cc.Prefab.OptimizationPolicy",
+      "module": "cc",
+      "description": "Prefab 创建实例所用的优化策略，配合 Prefab.optimizationPolicy 使用。"
     },
     {
       "name": "ProgressBar.Mode",
@@ -295,16 +289,10 @@ window.apimeta = {
       "description": "精灵尺寸调整模式"
     },
     {
-      "name": "Sprite.SpriteType",
-      "namespace": "cc.Sprite.SpriteType",
+      "name": "Sprite.Type",
+      "namespace": "cc.Sprite.Type",
       "module": "cc",
       "description": "Sprite 类型"
-    },
-    {
-      "name": "SystemEvent.EventType",
-      "namespace": "cc.SystemEvent.EventType",
-      "module": "cc",
-      "description": "SystemEvent 支持的事件类型"
     },
     {
       "name": "TaskType",
@@ -313,10 +301,16 @@ window.apimeta = {
       "description": "统计系统的任务类型"
     },
     {
-      "name": "TextAlignment",
-      "namespace": "cc.TextAlignment",
+      "name": "Texture2D.Filter",
+      "namespace": "cc.Texture2D.Filter",
       "module": "cc",
-      "description": ""
+      "description": "The texture filter mode"
+    },
+    {
+      "name": "Texture2D.PixelFormat",
+      "namespace": "cc.Texture2D.PixelFormat",
+      "module": "cc",
+      "description": "The texture pixel format, default value is RGBA8888,\nyou should note that textures loaded by normal image files (png, jpg) can only support RGBA8888 format,\nother formats are supported by compressed file types or raw data."
     },
     {
       "name": "Texture2D.WrapMode",
@@ -343,6 +337,12 @@ window.apimeta = {
       "description": "用户系统回调"
     },
     {
+      "name": "VerticalTextAlignment",
+      "namespace": "cc.VerticalTextAlignment",
+      "module": "cc",
+      "description": ""
+    },
+    {
       "name": "VideoPlayer.EventType",
       "namespace": "cc.VideoPlayer.EventType",
       "module": "cc",
@@ -361,6 +361,12 @@ window.apimeta = {
       "description": "网页视图事件类型"
     },
     {
+      "name": "Widget.AlignMode",
+      "namespace": "cc.Widget.AlignMode",
+      "module": "cc",
+      "description": "Widget 的对齐模式，表示 Widget 应该何时刷新。"
+    },
+    {
       "name": "WrapMode",
       "namespace": "cc.WrapMode",
       "module": "cc",
@@ -373,30 +379,42 @@ window.apimeta = {
       "description": "声音播放状态"
     },
     {
-      "name": "macro",
-      "namespace": "cc.macro",
+      "name": "debug.DebugMode",
+      "namespace": "cc.debug.DebugMode",
       "module": "cc",
-      "description": "Predefined constants"
+      "description": "调试模式"
+    },
+    {
+      "name": "macro.BlendFactor",
+      "namespace": "cc.macro.BlendFactor",
+      "module": "cc",
+      "description": "混合因子\n可参考: http://www.andersriggelsen.dk/glblendfunc.php"
+    },
+    {
+      "name": "macro.ImageFormat",
+      "namespace": "cc.macro.ImageFormat",
+      "module": "cc",
+      "description": "Image formats"
+    },
+    {
+      "name": "macro.KEY",
+      "namespace": "cc.macro.KEY",
+      "module": "cc",
+      "description": "键盘事件的按键值"
+    },
+    {
+      "name": "macro.TextAlignment",
+      "namespace": "cc.macro.TextAlignment",
+      "module": "cc",
+      "description": ""
     }
   ],
   "classes": [
-    {
-      "name": "Acceleration",
-      "namespace": "cc.Acceleration",
-      "module": "cc",
-      "description": "设备重力传感器传递的各个轴的数据。"
-    },
     {
       "name": "Action",
       "namespace": "cc.Action",
       "module": "cc",
       "description": "Action 类是所有动作类型的基类。"
-    },
-    {
-      "name": "ActionEase",
-      "namespace": "cc.ActionEase",
-      "module": "cc",
-      "description": "所有缓动动作基类，用于修饰 ActionInterval。"
     },
     {
       "name": "ActionInstant",
@@ -420,7 +438,7 @@ window.apimeta = {
       "name": "AffineTransform",
       "namespace": "cc.AffineTransform",
       "module": "cc",
-      "description": "cc.AffineTransform 类代表一个仿射变换矩阵。它基本上是由平移旋转，缩放转变所组成。<br/>\n请不要直接使用它的构造，请使用 cc.affineTransformMake 函数代替。"
+      "description": "AffineTransform 类代表一个仿射变换矩阵。它基本上是由平移旋转，缩放转变所组成。<br/>"
     },
     {
       "name": "AgentManager",
@@ -435,22 +453,16 @@ window.apimeta = {
       "description": "Animation 组件用于播放动画。\n\nAnimation 提供了一系列可注册的事件：\n - play : 开始播放时\n - stop : 停止播放时\n - pause : 暂停播放时\n - resume : 恢复播放时\n - lastframe : 假如动画循环次数大于 1，当动画播放到最后一帧时\n - finished : 动画播放完成时"
     },
     {
+      "name": "Animation.EventType",
+      "namespace": "cc.Animation.EventType",
+      "module": "cc",
+      "description": "Animation 支持的事件类型"
+    },
+    {
       "name": "AnimationClip",
       "namespace": "cc.AnimationClip",
       "module": "cc",
       "description": "动画剪辑，用于存储动画数据。"
-    },
-    {
-      "name": "AnimationNode",
-      "namespace": "cc.AnimationNode",
-      "module": "cc",
-      "description": "动画曲线的集合，根据当前时间计算出每条曲线的状态。"
-    },
-    {
-      "name": "AnimationNodeBase",
-      "namespace": "cc.AnimationNodeBase",
-      "module": "cc",
-      "description": "所有播放动画的抽象接口。"
     },
     {
       "name": "AnimationState",
@@ -468,7 +480,7 @@ window.apimeta = {
       "name": "Asset",
       "namespace": "cc.Asset",
       "module": "cc",
-      "description": "资源基类，该类可以被实例化。<br/>\n\n您可能需要重写：<br/>\n- createNode <br/>\n- cc.Object._serialize<br/>\n- cc.Object._deserialize<br/>"
+      "description": "Creator 中的资源基类。<br/>\n\n您可能需要重写：<br/>\n- createNode <br/>\n- _nativeAsset 的 getset 方法<br/>\n- cc.Object._serialize<br/>\n- cc.Object._deserialize<br/>"
     },
     {
       "name": "AudioClip",
@@ -489,12 +501,6 @@ window.apimeta = {
       "description": "位图字体资源类。"
     },
     {
-      "name": "BlendFunc",
-      "namespace": "cc.BlendFunc",
-      "module": "cc",
-      "description": "图像的混合方式。"
-    },
-    {
       "name": "BlockInputEvents",
       "namespace": "cc.BlockInputEvents",
       "module": "cc",
@@ -510,7 +516,7 @@ window.apimeta = {
       "name": "Button",
       "namespace": "cc.Button",
       "module": "cc",
-      "description": "按钮组件。可以被按下,或者点击。</br>\n\n按钮可以通过修改 Transition 来设置按钮状态过渡的方式：</br>\n  -Button.Transition.NONE   // 不做任何过渡</br>\n  -Button.Transition.COLOR  // 进行颜色之间过渡</br>\n  -Button.Transition.SPRITE // 进行精灵之间过渡</br>\n  -Button.Transition.SCALE // 进行缩放过渡</br>\n\n按钮可以绑定事件（但是必须要在按钮的 Node 上才能绑定事件）：</br>\n  // 以下事件可以在全平台上都触发</br>\n  -cc.Node.EventType.TOUCH_START  // 按下时事件</br>\n  -cc.Node.EventType.TOUCH_Move   // 按住移动后事件</br>\n  -cc.Node.EventType.TOUCH_END    // 按下后松开后事件</br>\n  -cc.Node.EventType.TOUCH_CANCEL // 按下取消事件</br>\n  // 以下事件只在 PC 平台上触发</br>\n  -cc.Node.EventType.MOUSE_DOWN  // 鼠标按下时事件</br>\n  -cc.Node.EventType.MOUSE_MOVE  // 鼠标按住移动后事件</br>\n  -cc.Node.EventType.MOUSE_ENTER // 鼠标进入目标事件</br>\n  -cc.Node.EventType.MOUSE_LEAVE // 鼠标离开目标事件</br>\n  -cc.Node.EventType.MOUSE_UP    // 鼠标松开事件</br>\n  -cc.Node.EventType.MOUSE_WHEEL // 鼠标滚轮事件</br>"
+      "description": "按钮组件。可以被按下,或者点击。<br/>\n\n按钮可以通过修改 Transition 来设置按钮状态过渡的方式：<br/>\n  -Button.Transition.NONE   // 不做任何过渡<br/>\n  -Button.Transition.COLOR  // 进行颜色之间过渡<br/>\n  -Button.Transition.SPRITE // 进行精灵之间过渡<br/>\n  -Button.Transition.SCALE // 进行缩放过渡<br/>\n\n按钮可以绑定事件（但是必须要在按钮的 Node 上才能绑定事件）：<br/>\n  // 以下事件可以在全平台上都触发<br/>\n  -cc.Node.EventType.TOUCH_START  // 按下时事件<br/>\n  -cc.Node.EventType.TOUCH_Move   // 按住移动后事件<br/>\n  -cc.Node.EventType.TOUCH_END    // 按下后松开后事件<br/>\n  -cc.Node.EventType.TOUCH_CANCEL // 按下取消事件<br/>\n  // 以下事件只在 PC 平台上触发<br/>\n  -cc.Node.EventType.MOUSE_DOWN  // 鼠标按下时事件<br/>\n  -cc.Node.EventType.MOUSE_MOVE  // 鼠标按住移动后事件<br/>\n  -cc.Node.EventType.MOUSE_ENTER // 鼠标进入目标事件<br/>\n  -cc.Node.EventType.MOUSE_LEAVE // 鼠标离开目标事件<br/>\n  -cc.Node.EventType.MOUSE_UP    // 鼠标松开事件<br/>\n  -cc.Node.EventType.MOUSE_WHEEL // 鼠标滚轮事件<br/>"
     },
     {
       "name": "CallbacksInvoker",
@@ -594,7 +600,7 @@ window.apimeta = {
       "name": "ContainerStrategy",
       "namespace": "cc.ContainerStrategy",
       "module": "cc",
-      "description": "<p>cc.ContainerStrategy class is the root strategy class of container's scale strategy,\nit controls the behavior of how to scale the cc.container and cc.game.canvas object</p>"
+      "description": "<p>cc.game.containerStrategy class is the root strategy class of container's scale strategy,\nit controls the behavior of how to scale the cc.game.container and cc.game.canvas object</p>"
     },
     {
       "name": "ContentStrategy",
@@ -631,24 +637,6 @@ window.apimeta = {
       "namespace": "dragonBones.DragonBonesAtlasAsset",
       "module": "dragonBones",
       "description": "dragonBones 的骨骼纹理数据。"
-    },
-    {
-      "name": "EaseBounce",
-      "namespace": "cc.EaseBounce",
-      "module": "cc",
-      "description": "反弹缓动动作基类。"
-    },
-    {
-      "name": "EaseElastic",
-      "namespace": "cc.EaseElastic",
-      "module": "cc",
-      "description": "弹性缓动动作基类。"
-    },
-    {
-      "name": "EaseRateAction",
-      "namespace": "cc.EaseRateAction",
-      "module": "cc",
-      "description": "拥有速率属性的缓动动作基类。"
     },
     {
       "name": "EditBox",
@@ -705,12 +693,6 @@ window.apimeta = {
       "description": "触摸事件"
     },
     {
-      "name": "EventListener",
-      "namespace": "cc.EventListener",
-      "module": "cc",
-      "description": "封装用户的事件处理逻辑。\n注意：这是一个抽象类，开发者不应该直接实例化这个类，请参考 <a href=\"../classes/EventListener.html#method_create\" class=\"crosslink\">cc.EventListener.create</a>。"
-    },
-    {
       "name": "EventTarget",
       "namespace": "cc.EventTarget",
       "module": "cc",
@@ -729,12 +711,6 @@ window.apimeta = {
       "description": "字体资源类。"
     },
     {
-      "name": "Game",
-      "namespace": "cc.Game",
-      "module": "cc",
-      "description": "cc.game 是 Game 的实例，用来驱动整个游戏。"
-    },
-    {
       "name": "Graphics",
       "namespace": "cc.Graphics",
       "module": "cc",
@@ -751,6 +727,12 @@ window.apimeta = {
       "namespace": "cc.Joint",
       "module": "cc",
       "description": "关节类的基类"
+    },
+    {
+      "name": "JsonAsset",
+      "namespace": "cc.JsonAsset",
+      "module": "cc",
+      "description": "JSON 资源类。JSON 文件加载后，将会返回该对象。可以通过其中的 `json` 属性访问解析后的 JSON 对象。<br>\n如果你想要获得 JSON 的原始文本，那么应该修改源文件的后缀为 `.txt`，这样就会加载为一个 `TextAsset` 而不是 `JsonAsset`。"
     },
     {
       "name": "Label",
@@ -774,13 +756,13 @@ window.apimeta = {
       "name": "Layout",
       "namespace": "cc.Layout",
       "module": "cc",
-      "description": "Layout 组件相当于一个容器，能自动对它的所有子节点进行统一排版。"
+      "description": "Layout 组件相当于一个容器，能自动对它的所有子节点进行统一排版。<br>\n注意：<br>\n1.不会考虑子节点的缩放和旋转。<br>\n2.对 Layout 设置后结果需要到下一帧才会更新，除非你设置完以后手动调用 <a href=\"../classes/Layout.html#method_updateLayout\" class=\"crosslink\">updateLayout</a>。"
     },
     {
       "name": "LoadingItems",
       "namespace": "cc.LoadingItems",
       "module": "cc",
-      "description": "LoadingItems 是一个加载对象队列，可以用来输送加载对象到加载管线中。</br>\n请不要直接使用 new 构造这个类的对象，你可以使用 LoadingItems.create 来创建一个新的加载队列，这样可以允许我们的内部对象池回收并重利用加载队列。\n它有一个 map 属性用来存放加载项，在 map 对象中已 url 为 key 值。</br>\n每个对象都会包含下列属性：</br>\n- id：该对象的标识，通常与 url 相同。</br>\n- url：路径 </br>\n- type: 类型，它这是默认的 URL 的扩展名，可以手动指定赋值。</br>\n- error：pipeline 中发生的错误将被保存在这个属性中。</br>\n- content: pipeline 中处理的临时结果，最终的结果也将被存储在这个属性中。</br>\n- complete：该标志表明该对象是否通过 pipeline 完成。</br>\n- states：该对象存储每个管道中对象经历的状态，状态可以是 Pipeline.ItemState.WORKING | Pipeline.ItemState.ERROR | Pipeline.ItemState.COMPLETE</br>\n</br>\n对象可容纳其他自定义属性。</br>\n每个 LoadingItems 对象都会在 onComplete 回调之后被销毁，所以请不要持有它的引用并在结束回调之后依赖它的内容执行任何逻辑，有这种需求的话你可以提前复制它的内容。"
+      "description": "LoadingItems 是一个加载对象队列，可以用来输送加载对象到加载管线中。<br/>\n请不要直接使用 new 构造这个类的对象，你可以使用 LoadingItems.create 来创建一个新的加载队列，这样可以允许我们的内部对象池回收并重利用加载队列。\n它有一个 map 属性用来存放加载项，在 map 对象中已 url 为 key 值。<br/>\n每个对象都会包含下列属性：<br/>\n- id：该对象的标识，通常与 url 相同。<br/>\n- url：路径 <br/>\n- type: 类型，它这是默认的 URL 的扩展名，可以手动指定赋值。<br/>\n- error：pipeline 中发生的错误将被保存在这个属性中。<br/>\n- content: pipeline 中处理的临时结果，最终的结果也将被存储在这个属性中。<br/>\n- complete：该标志表明该对象是否通过 pipeline 完成。<br/>\n- states：该对象存储每个管道中对象经历的状态，状态可以是 Pipeline.ItemState.WORKING | Pipeline.ItemState.ERROR | Pipeline.ItemState.COMPLETE<br/>\n<br/>\n对象可容纳其他自定义属性。<br/>\n每个 LoadingItems 对象都会在 onComplete 回调之后被销毁，所以请不要持有它的引用并在结束回调之后依赖它的内容执行任何逻辑，有这种需求的话你可以提前复制它的内容。"
     },
     {
       "name": "Manifold",
@@ -822,7 +804,7 @@ window.apimeta = {
       "name": "Node",
       "namespace": "cc.Node",
       "module": "cc",
-      "description": "Cocos Creator 场景中的所有节点类。节点也继承了 <a href=\"../classes/EventTarget.html\" class=\"crosslink\">EventTarget</a>，它允许节点发送事件。<br/>\n支持的节点事件，请参阅 <a href=\"../classes/Node.EventType.html\" class=\"crosslink\">Node.EventType</a>。"
+      "description": "Cocos Creator 场景中的所有节点类。<br/>\n支持的节点事件，请参阅 <a href=\"../classes/Node.EventType.html\" class=\"crosslink\">Node.EventType</a>。"
     },
     {
       "name": "Node.EventType",
@@ -853,6 +835,12 @@ window.apimeta = {
       "namespace": "cc.PageViewIndicator",
       "module": "cc",
       "description": "页面视图每页标记组件"
+    },
+    {
+      "name": "ParticleAsset",
+      "namespace": "cc.ParticleAsset",
+      "module": "cc",
+      "description": "Class for particle asset handling."
     },
     {
       "name": "ParticleSystem",
@@ -918,7 +906,7 @@ window.apimeta = {
       "name": "Pipeline",
       "namespace": "cc.Pipeline",
       "module": "cc",
-      "description": "pipeline 描述了一系列的操作，每个操作都被称为 pipe。</br>\n它被设计来做加载过程的流程管理。所以 item 应该是 url，并且该 url 将是在处理中的每个 item 的身份标识。</br>\n一个 item 列表可以在 pipeline 中流动，它将输出加载项经过所有 pipe 之后的结果。</br>\n它们穿过 pipeline 就像水在管子里流动，将会按顺序流过每个 pipe。</br>\n最后当所有加载项都流出 pipeline 时，整个加载流程就结束了。"
+      "description": "pipeline 描述了一系列的操作，每个操作都被称为 pipe。<br/>\n它被设计来做加载过程的流程管理。所以 item 应该是 url，并且该 url 将是在处理中的每个 item 的身份标识。<br/>\n一个 item 列表可以在 pipeline 中流动，它将输出加载项经过所有 pipe 之后的结果。<br/>\n它们穿过 pipeline 就像水在管子里流动，将会按顺序流过每个 pipe。<br/>\n最后当所有加载项都流出 pipeline 时，整个加载流程就结束了。"
     },
     {
       "name": "Pipeline.Downloader",
@@ -973,6 +961,12 @@ window.apimeta = {
       "namespace": "cc.PrismaticJoint",
       "module": "cc",
       "description": "移动关节指定了只能在一个方向上移动刚体。\n你可以开启关节限制来设置刚体运行移动的间距，也可以开启马达来使用关节马达驱动刚体的运行。"
+    },
+    {
+      "name": "PrivateNode",
+      "namespace": "cc.PrivateNode",
+      "module": "cc",
+      "description": "Cocos Creator 场景中的私有节点类。<br/>\n私有节点在编辑器中不可见，对用户透明。<br/>\n通常私有节点是被一些特殊的组件创建出来作为父节点的一部分而存在的，理论上来说，它们不是子节点，而是父节点的组成部分。<br/>\n私有节点有两个非常重要的特性：<br/>\n1. 它有着最小的渲染排序的 Z 轴深度，并且无法被更改，因为它们不能被显示在其他正常子节点之上。<br/>\n2. 它的定位也是特殊的，对于私有节点来说，父节点包围盒的左下角是它的局部坐标系原点，这个原点相当于父节点的位置减去它锚点的偏移。这样私有节点可以比较容易被控制在包围盒之中。<br/>\n目前在引擎中，RichText 和 TileMap 都有可能生成私有节点。"
     },
     {
       "name": "ProgressBar",
@@ -1059,28 +1053,34 @@ window.apimeta = {
       "description": "用户系统协议接口"
     },
     {
-      "name": "Quad2",
-      "namespace": "cc.Quad2",
+      "name": "Quat",
+      "namespace": "cc.Quat",
       "module": "cc",
-      "description": ""
-    },
-    {
-      "name": "Quad3",
-      "namespace": "cc.Quad3",
-      "module": "cc",
-      "description": "A 3D Quad. 4 * 3 floats"
+      "description": "表示 2D 向量和坐标"
     },
     {
       "name": "RawAsset",
       "namespace": "cc.RawAsset",
       "module": "cc",
-      "description": "注册用的资源基类。<br/>\n你可能要重写：<br/>\n- createNode (static)"
+      "description": "注册用的资源基类。"
     },
     {
       "name": "Rect",
       "namespace": "cc.Rect",
       "module": "cc",
       "description": "通过位置和宽高定义的 2D 矩形。"
+    },
+    {
+      "name": "RenderComponent",
+      "namespace": "cc.RenderComponent",
+      "module": "cc",
+      "description": "所有支持渲染的组件的基类"
+    },
+    {
+      "name": "RenderTexture",
+      "namespace": "cc.RenderTexture",
+      "module": "cc",
+      "description": "Render textures are textures that can be rendered to."
     },
     {
       "name": "ResolutionPolicy",
@@ -1179,16 +1179,10 @@ window.apimeta = {
       "description": "精灵图集资源类。"
     },
     {
-      "name": "SpriteDistortion",
-      "namespace": "cc.SpriteDistortion",
-      "module": "cc",
-      "description": "扭曲效果组件,用于改变SIMPLE类型sprite的渲染,只有当sprite组件已经添加后,才能起作用."
-    },
-    {
       "name": "SpriteFrame",
       "namespace": "cc.SpriteFrame",
       "module": "cc",
-      "description": "一个 SpriteFrame 包含：<br/>\n - 纹理：会被 Sprite 使用的 Texture2D 对象。<br/>\n - 矩形：在纹理中的矩形区域。"
+      "description": "一个 SpriteFrame 包含：<br/>\n - 纹理：会被渲染组件使用的 Texture2D 对象。<br/>\n - 矩形：在纹理中的矩形区域。"
     },
     {
       "name": "SystemEvent",
@@ -1197,22 +1191,16 @@ window.apimeta = {
       "description": "系统事件，它目前支持按键事件和重力感应事件"
     },
     {
-      "name": "TMXObject",
-      "namespace": "cc.TMXObject",
+      "name": "SystemEvent.EventType",
+      "namespace": "cc.SystemEvent.EventType",
       "module": "cc",
-      "description": "渲染 tmx object。"
+      "description": "SystemEvent 支持的事件类型"
     },
     {
       "name": "TTFFont",
       "namespace": "cc.TTFFont",
       "module": "cc",
       "description": "TTF 字体资源类。"
-    },
-    {
-      "name": "Tex2F",
-      "namespace": "cc.Tex2F",
-      "module": "cc",
-      "description": ""
     },
     {
       "name": "TextAsset",
@@ -1224,13 +1212,7 @@ window.apimeta = {
       "name": "Texture2D",
       "namespace": "cc.Texture2D",
       "module": "cc",
-      "description": "<p>\nThis class allows to easily create OpenGL or Canvas 2D textures from images, text or raw data.                                    <br/>\nThe created cc.Texture2D object will always have power-of-two dimensions.                                                <br/>\nDepending on how you create the cc.Texture2D object, the actual image area of the texture might be smaller than the texture dimensions <br/>\n i.e. \"contentSize\" != (pixelsWide, pixelsHigh) and (maxS, maxT) != (1.0, 1.0).                                           <br/>\nBe aware that the content of the generated textures will be upside-down! </p>"
-    },
-    {
-      "name": "TextureAtlas",
-      "namespace": "cc.TextureAtlas",
-      "module": "cc",
-      "description": "<p>A class that implements a Texture Atlas. <br />\nSupported features: <br />\nThe atlas file can be a PNG, JPG. <br />\nQuads can be updated in runtime <br />\nQuads can be added in runtime <br />\nQuads can be removed in runtime <br />\nQuads can be re-ordered in runtime <br />\nThe TextureAtlas capacity can be increased or decreased in runtime.</p>"
+      "description": "This class allows to easily create OpenGL or Canvas 2D textures from images or raw data."
     },
     {
       "name": "TiledLayer",
@@ -1257,10 +1239,22 @@ window.apimeta = {
       "description": "渲染 tmx object group。"
     },
     {
+      "name": "TiledTile",
+      "namespace": "cc.TiledTile",
+      "module": "cc",
+      "description": "TiledTile 可以单独对某一个地图块进行操作。\n他会将节点的旋转，缩放，平移操作应用在这个地图块上，并可以通过更换当前地图块的 gid 来更换地图块的显示样式。"
+    },
+    {
       "name": "Toggle",
       "namespace": "cc.Toggle",
       "module": "cc",
       "description": "Toggle 是一个 CheckBox，当它和 ToggleGroup 一起使用的时候，可以变成 RadioButton。"
+    },
+    {
+      "name": "ToggleContainer",
+      "namespace": "cc.ToggleContainer",
+      "module": "cc",
+      "description": "ToggleContainer 不是一个可见的 UI 组件，它可以用来修改一组 Toggle 组件的行为。<br/>\n当一组 Toggle 属于同一个 ToggleContainer 的时候，任何时候只能有一个 Toggle 处于选中状态。<br/>\n注意：所有包含 Toggle 组件的一级子节点都会自动被添加到该容器中"
     },
     {
       "name": "ToggleGroup",
@@ -1281,30 +1275,6 @@ window.apimeta = {
       "description": "TypeScript 资源类。"
     },
     {
-      "name": "V2F_C4B_T2F",
-      "namespace": "cc.V2F_C4B_T2F",
-      "module": "cc",
-      "description": ""
-    },
-    {
-      "name": "V2F_C4B_T2F_Triangle",
-      "namespace": "cc.V2F_C4B_T2F_Triangle",
-      "module": "cc",
-      "description": ""
-    },
-    {
-      "name": "V3F_C4B_T2F",
-      "namespace": "cc.V3F_C4B_T2F",
-      "module": "cc",
-      "description": ""
-    },
-    {
-      "name": "V3F_C4B_T2F_Quad",
-      "namespace": "cc.V3F_C4B_T2F_Quad",
-      "module": "cc",
-      "description": ""
-    },
-    {
       "name": "ValueType",
       "namespace": "cc.ValueType",
       "module": "cc",
@@ -1317,16 +1287,10 @@ window.apimeta = {
       "description": "表示 2D 向量和坐标"
     },
     {
-      "name": "Vertex2F",
-      "namespace": "cc.Vertex2F",
+      "name": "Vec3",
+      "namespace": "cc.Vec3",
       "module": "cc",
-      "description": ""
-    },
-    {
-      "name": "Vertex3F",
-      "namespace": "cc.Vertex3F",
-      "module": "cc",
-      "description": ""
+      "description": "表示 3D 向量和坐标"
     },
     {
       "name": "VideoPlayer",
@@ -1347,10 +1311,10 @@ window.apimeta = {
       "description": "ViewGroup的事件处理比较特殊，因为 ViewGroup 里面的子节点关心的事件跟 ViewGroup 本身可能不一样。\n为了让子节点能够正确地处理事件，ViewGroup 需要注册 capture 阶段的事件，并且合理地处理 ViewGroup 之间的事件传递。\n请参考 ScrollView 的实现来获取更多信息。"
     },
     {
-      "name": "WebGLColor",
-      "namespace": "cc.WebGLColor",
+      "name": "WXSubContextView",
+      "namespace": "cc.WXSubContextView",
       "module": "cc",
-      "description": ""
+      "description": "WXSubContextView 可以用来控制微信小游戏平台开放数据域在主域中的视窗的位置。<br/>\n这个组件的节点尺寸决定了开放数据域内容在主域中的尺寸，整个开放数据域会被缩放到节点的包围盒范围内。<br/>\n在这个组件的控制下，用户可以更自由得控制开放数据域：<br/>\n1. 子域中可以使用独立的设计分辨率和适配模式<br/>\n2. 子域区域尺寸可以缩小到只容纳内容即可<br/>\n3. 子域的分辨率也可以被放大，以便获得更清晰的显示效果<br/>\n4. 用户输入坐标会被自动转换到正确的子域视窗中<br/>\n5. 子域内容贴图的更新由组件负责，用户不需要处理<br/>\n唯一需要注意的是，当子域节点的包围盒发生改变时，开发者需要使用 `updateSubContextViewport` 来手动更新子域视窗。"
     },
     {
       "name": "WebView",
@@ -1395,16 +1359,22 @@ window.apimeta = {
       "description": "cc.audioengine是单例对象。<br/>\n主要用来播放音频，播放的时候会返回一个 audioID，之后都可以通过这个 audioID 来操作这个音频对象。<br/>\n不使用的时候，请使用 cc.audioEngine.uncache(filePath); 进行资源释放 <br/>\n注意：<br/>\n在 Android 系统浏览器上，不同浏览器，不同版本的效果不尽相同。<br/>\n比如说：大多数浏览器都需要用户物理交互才可以开始播放音效，有一些不支持 WebAudio，<br/>\n有一些不支持多音轨播放。总之如果对音乐依赖比较强，请做尽可能多的测试。"
     },
     {
-      "name": "eventManager",
-      "namespace": "cc.eventManager",
+      "name": "constructor",
+      "namespace": "cc.Acceleration",
       "module": "cc",
-      "description": "事件管理器，它主要管理事件监听器注册和派发系统事件。\n原始设计中，它支持鼠标，触摸，键盘，陀螺仪和自定义事件。\n在 Creator 的设计中，鼠标，触摸和自定义事件的监听和派发请参考 http://cocos.com/docs/creator/scripting/events.html。"
+      "description": "设备重力传感器传递的各个轴的数据。"
     },
     {
-      "name": "inputManager",
-      "namespace": "cc.inputManager",
+      "name": "debug",
+      "namespace": "cc.debug",
       "module": "cc",
-      "description": "<p>\n This class manages all events of input. include: touch, mouse, accelerometer, keyboard                                       <br/>\n</p>"
+      "description": "包含游戏主体信息并负责驱动游戏的游戏对象。"
+    },
+    {
+      "name": "game",
+      "namespace": "cc.game",
+      "module": "cc",
+      "description": "包含游戏主体信息并负责驱动游戏的游戏对象。"
     },
     {
       "name": "loader",
@@ -1413,10 +1383,28 @@ window.apimeta = {
       "description": "Loader for resource loading process. It's a singleton object."
     },
     {
-      "name": "pool",
-      "namespace": "cc.pool",
+      "name": "macro",
+      "namespace": "cc.macro",
       "module": "cc",
-      "description": "首先请注意，在 Creator 中我们强烈不建议使用 cc.pool 来管理 cc.Node 节点对象，请使用 <a href=\"../classes/NodePool.html\" class=\"crosslink\">cc.NodePool</a> 代替\n因为 cc.pool 是面向类来设计的，而 cc.Node 中使用 Component 来进行组合，它的类永远都一样，实际却千差万别。\n\ncc.pool 是一个单例对象，用作为对象缓存池。<br/>\n它可以帮助您提高游戏性能，适用于优化对象的反复创建和销毁<br/>"
+      "description": "Predefined constants"
+    },
+    {
+      "name": "misc",
+      "namespace": "cc.misc",
+      "module": "cc",
+      "description": "misc utilities"
+    },
+    {
+      "name": "path",
+      "namespace": "cc.path",
+      "module": "cc",
+      "description": "用于处理文件与目录的路径的模块"
+    },
+    {
+      "name": "renderer",
+      "namespace": "cc.renderer",
+      "module": "cc",
+      "description": "提供基础渲染接口的渲染器对象，渲染层的基础接口将逐步开放给用户"
     },
     {
       "name": "screen",
@@ -1429,12 +1417,6 @@ window.apimeta = {
       "namespace": "cc.sys",
       "module": "cc",
       "description": "System variables"
-    },
-    {
-      "name": "textureCache",
-      "namespace": "cc.textureCache",
-      "module": "cc",
-      "description": "cc.textureCache is a singleton object, it's the global cache for cc.Texture2D"
     },
     {
       "name": "url",
@@ -1453,7 +1435,7 @@ window.apimeta = {
     {
       "name": "GLOBAL-MACROS",
       "namespace": "GLOBAL-MACROS",
-      "description": "这里是一些用来判断执行环境的宏，这些宏都是全局变量，直接访问即可。<br>\n在项目构建时，这些宏将会被预处理并根据构建的平台剔除不需要的代码，例如\n\n    if (CC_DEBUG) {\n        cc.log('debug');\n    }\n    else {\n        cc.log('release');\n    }\n\n在构建后会只剩下\n\n    cc.log('release');\n\n（好棒棒）<br>\n<br>\n如需判断脚本是否运行于指定平台，可以用如下表达式：\n\n    {\n        \"编辑器\":  CC_EDITOR,\n        \"编辑器 或 预览\":  CC_DEV,\n        \"编辑器 或 预览 或 构建调试\":  CC_DEBUG,\n        \"网页预览\":  CC_PREVIEW && !CC_JSB,\n        \"模拟器预览\":  CC_PREVIEW && CC_JSB,\n        \"构建调试\":  CC_BUILD && CC_DEBUG,\n        \"构建发行\":  CC_BUILD && !CC_DEBUG,\n    }"
+      "description": "这里是一些用来判断执行环境的宏，这些宏都是全局变量，直接访问即可。<br>\n在项目构建时，这些宏将会被预处理并根据构建的平台剔除不需要的代码，例如\n\n    if (CC_DEBUG) {\n        cc.log('debug');\n    }\n    else {\n        cc.log('release');\n    }\n\n在构建后会只剩下\n\n    cc.log('release');\n\n<br>\n如需判断脚本是否运行于指定平台，可以用如下表达式：\n\n    {\n        \"编辑器\":  CC_EDITOR,\n        \"编辑器 或 预览\":  CC_DEV,\n        \"编辑器 或 预览 或 构建调试\":  CC_DEBUG,\n        \"网页预览\":  CC_PREVIEW && !CC_JSB,\n        \"模拟器预览\":  CC_PREVIEW && CC_JSB,\n        \"构建调试\":  CC_BUILD && CC_DEBUG,\n        \"构建发行\":  CC_BUILD && !CC_DEBUG,\n    }"
     },
     {
       "name": "_decorator",

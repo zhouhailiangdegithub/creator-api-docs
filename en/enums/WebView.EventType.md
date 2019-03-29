@@ -5,21 +5,15 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 WebView event type
 
+
 ### Index
-
-##### Properties
-
   - `LOADED`
   - `LOADING`
   - `ERROR`
 
 ### Details
-
-#### Properties
 
 
 ##### LOADED
@@ -29,7 +23,7 @@ WebView event type
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCWebView.js:35](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCWebView.js#L35) |
+| Defined in | [cocos2d/webview/CCWebView.js:40](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/webview/CCWebView.js#L40) |
 
 
 
@@ -40,7 +34,7 @@ WebView event type
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCWebView.js:41](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCWebView.js#L41) |
+| Defined in | [cocos2d/webview/CCWebView.js:46](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/webview/CCWebView.js#L46) |
 
 
 
@@ -51,6 +45,6 @@ WebView event type
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCWebView.js:47](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCWebView.js#L47) |
+| Defined in | [cocos2d/webview/CCWebView.js:52](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/webview/CCWebView.js#L52) |
 
 

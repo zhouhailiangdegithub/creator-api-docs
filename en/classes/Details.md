@@ -6,9 +6,8 @@ Module: [_decorator](../modules/_decorator.md)
 Parent Module: [cc](../modules/cc.md)
 
 
-
-
 Contains information collected during deserialization
+
 
 ### Index
 
@@ -17,14 +16,12 @@ Contains information collected during deserialization
   - [`uuidList`](#uuidlist) `String[]` list of the depends assets' uuid
   - [`uuidObjList`](#uuidobjlist) `Object[]` the obj list whose field needs to load asset by uuid
   - [`uuidPropList`](#uuidproplist) `String[]` the corresponding field name which referenced to the asset
-  - [`rawProp`](#rawprop) `String` the corresponding field name which referenced to the raw object
 
 
 
 ##### Methods
 
   - [`reset`](#reset) 
-  - [`getUuidOf`](#getuuidof) 
   - [`push`](#push) 
 
 
@@ -42,7 +39,7 @@ Contains information collected during deserialization
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js:49](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js#L49) |
+| Defined in | [cocos2d/core/platform/deserialize.js:44](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/deserialize.js#L44) |
 
 
 
@@ -53,7 +50,7 @@ Contains information collected during deserialization
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js:54](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js#L54) |
+| Defined in | [cocos2d/core/platform/deserialize.js:49](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/deserialize.js#L49) |
 
 
 
@@ -64,18 +61,7 @@ Contains information collected during deserialization
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js:59](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js#L59) |
-
-
-
-##### rawProp
-
-> the corresponding field name which referenced to the raw object
-
-| meta | description |
-|------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js:65](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js#L65) |
+| Defined in | [cocos2d/core/platform/deserialize.js:54](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/deserialize.js#L54) |
 
 
 
@@ -92,22 +78,8 @@ Contains information collected during deserialization
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js:71](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js#L71) |
+| Defined in | [cocos2d/core/platform/deserialize.js:63](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/deserialize.js#L63) |
 
-
-
-##### getUuidOf
-
-
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js:92](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js#L92) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-
-###### Parameters
-- obj <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
-- propName <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
 
 ##### push
@@ -116,12 +88,12 @@ Contains information collected during deserialization
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js:106](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/deserialize.js#L106) |
+| Defined in | [cocos2d/core/platform/deserialize.js:97](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/deserialize.js#L97) |
 
 ###### Parameters
-- obj <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
-- propName <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-- uuid <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+- `obj` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
+- `propName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+- `uuid` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
 
 

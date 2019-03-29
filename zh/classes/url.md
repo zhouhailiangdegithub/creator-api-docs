@@ -1,35 +1,32 @@
-## `url` Class
+## `url` 类型
 
 
 
-Module: [cc](../modules/cc.md)
-Parent Module: [cc](../modules/cc.md)
+模块: [cc](../modules/cc.md)
+父模块: [cc](../modules/cc.md)
 
 
 
 
 
+### 索引
 
-### Index
-
-##### Properties
+##### 属性（properties）
 
   - [`_rawAssets`](#rawassets) `Object` The base url of raw assets.
-  - [`_builtinRawAssets`](#builtinrawassets) `Object` The base url of builtin raw assets.
 
 
 
-##### Methods
+##### 方法
 
   - [`raw`](#raw) Returns the url of raw assets, you will only need this if the raw asset is inside the "resources" folder.
-  - [`builtinRaw`](#builtinraw) Returns the url of builtin raw assets. This method can only used in editor.
 
 
 
 ### Details
 
 
-#### Properties
+#### 属性（properties）
 
 
 ##### _rawAssets
@@ -38,19 +35,8 @@ Parent Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js:38](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js#L38) |
-
-
-
-##### _builtinRawAssets
-
-> The base url of builtin raw assets.
-
-| meta | description |
-|------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js:46](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js#L46) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> |
+| 定义于 | [cocos2d/core/platform/url.js:36](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/url.js#L36) |
 
 
 
@@ -58,7 +44,7 @@ Parent Module: [cc](../modules/cc.md)
 
 
 <!-- Method Block -->
-#### Methods
+#### 方法
 
 
 ##### raw
@@ -67,39 +53,18 @@ Returns the url of raw assets, you will only need this if the raw asset is insid
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js:66](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js#L66) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+| 定义于 | [cocos2d/core/platform/url.js:58](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/url.js#L58) |
 
-###### Parameters
-- url <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+###### 参数列表
+- `url` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
-##### Example
+##### 示例
 
 ```js
 ---
 var url = cc.url.raw("textures/myTexture.png");
 console.log(url);   // "resources/raw/textures/myTexture.png"
-
-```
-
-##### builtinRaw
-
-Returns the url of builtin raw assets. This method can only used in editor.
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js:94](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/url.js#L94) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-
-###### Parameters
-- url <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-
-##### Example
-
-```js
----
-var url = cc.url.builtinRaw("textures/myTexture.png");
-console.log(url);   // "resources/default-raw/textures/myTexture.png"
 
 ```
 

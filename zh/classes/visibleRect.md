@@ -1,19 +1,18 @@
-## `visibleRect` Class
+## `visibleRect` 类型
 
 
 
-Module: [_decorator](../modules/_decorator.md)
-Parent Module: [cc](../modules/cc.md)
-
-
+模块: [_decorator](../modules/_decorator.md)
+父模块: [cc](../modules/cc.md)
 
 
 cc.visibleRect is a singleton object which defines the actual visible rect of the current view,
 it should represent the same rect as cc.view.getViewportRect()
 
-### Index
 
-##### Properties
+### 索引
+
+##### 属性（properties）
 
   - [`topLeft`](#topleft) `Vec2` Top left coordinate of the screen related to the game scene.
   - [`topRight`](#topright) `Vec2` Top right coordinate of the screen related to the game scene.
@@ -29,7 +28,7 @@ it should represent the same rect as cc.view.getViewportRect()
 
 
 
-##### Methods
+##### 方法
 
   - [`init`](#init) initialize
 
@@ -38,7 +37,7 @@ it should represent the same rect as cc.view.getViewportRect()
 ### Details
 
 
-#### Properties
+#### 属性（properties）
 
 
 ##### topLeft
@@ -47,8 +46,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:93](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L93) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:94](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L94) |
 
 
 
@@ -58,8 +57,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:98](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L98) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:99](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L99) |
 
 
 
@@ -69,8 +68,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:103](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L103) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:104](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L104) |
 
 
 
@@ -80,8 +79,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:108](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L108) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:109](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L109) |
 
 
 
@@ -91,8 +90,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:113](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L113) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:114](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L114) |
 
 
 
@@ -102,8 +101,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:118](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L118) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:119](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L119) |
 
 
 
@@ -113,8 +112,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:123](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L123) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:124](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L124) |
 
 
 
@@ -124,8 +123,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:128](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L128) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:129](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L129) |
 
 
 
@@ -135,8 +134,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:133](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L133) |
+| 类型 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:134](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L134) |
 
 
 
@@ -146,8 +145,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:138](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L138) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:139](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L139) |
 
 
 
@@ -157,8 +156,8 @@ it should represent the same rect as cc.view.getViewportRect()
 
 | meta | description |
 |------|-------------|
-| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:143](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L143) |
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:144](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L144) |
 
 
 
@@ -166,7 +165,7 @@ it should represent the same rect as cc.view.getViewportRect()
 
 
 <!-- Method Block -->
-#### Methods
+#### 方法
 
 
 ##### init
@@ -175,10 +174,10 @@ initialize
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js:49](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCVisibleRect.js#L49) |
+| 定义于 | [cocos2d/core/platform/CCVisibleRect.js:50](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCVisibleRect.js#L50) |
 
-###### Parameters
-- visibleRect <a href="../classes/Rect.html" class="crosslink">Rect</a> 
+###### 参数列表
+- `visibleRect` <a href="../classes/Rect.html" class="crosslink">Rect</a> 
 
 
 

@@ -1,27 +1,24 @@
-## `ContentStrategy` Class
+## `ContentStrategy` 类型
 
 
 
-Module: [_decorator](../modules/_decorator.md)
-Parent Module: [cc](../modules/cc.md)
-
-
+模块: [_decorator](../modules/_decorator.md)
+父模块: [cc](../modules/cc.md)
 
 
 <p>cc.ContentStrategy class is the root strategy class of content's scale strategy,
 it controls the behavior of how to scale the scene and setup the viewport for the game</p>
 
-### Index
+
+### 索引
 
 
 
-##### Methods
+##### 方法
 
-  - [`preApply`](#preapply) Manipulation before applying the strategy
-  - [`apply`](#apply) Function to apply this strategy
-The return value is {scale: [scaleX, scaleY], viewport: {cc.Rect}},
-The target view can then apply these value to itself, it's preferred not to modify directly its private variables
-  - [`postApply`](#postapply) Manipulation after applying the strategy
+  - [`preApply`](#preapply) 策略应用前的操作
+  - [`apply`](#apply) 调用策略方法
+  - [`postApply`](#postapply) 策略调用之后的操作
 
 
 
@@ -31,47 +28,45 @@ The target view can then apply these value to itself, it's preferred not to modi
 
 
 <!-- Method Block -->
-#### Methods
+#### 方法
 
 
 ##### preApply
 
-Manipulation before applying the strategy
+策略应用前的操作
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCView.js:1117](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCView.js#L1117) |
+| 定义于 | [cocos2d/core/platform/CCView.js:1137](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L1137) |
 
-###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> The target view
+###### 参数列表
+- `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
 
 
 ##### apply
 
-Function to apply this strategy
-The return value is {scale: [scaleX, scaleY], viewport: {cc.Rect}},
-The target view can then apply these value to itself, it's preferred not to modify directly its private variables
+调用策略方法
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCView.js:1125](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCView.js#L1125) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> 
+| 定义于 | [cocos2d/core/platform/CCView.js:1147](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L1147) |
 
-###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> 
-- designedResolution <a href="../classes/Size.html" class="crosslink">Size</a> 
+###### 参数列表
+- `view` <a href="../classes/View.html" class="crosslink">View</a> 
+- `designedResolution` <a href="../classes/Size.html" class="crosslink">Size</a> 
 
 
 ##### postApply
 
-Manipulation after applying the strategy
+策略调用之后的操作
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCView.js:1138](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCView.js#L1138) |
+| 定义于 | [cocos2d/core/platform/CCView.js:1161](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCView.js#L1161) |
 
-###### Parameters
-- view <a href="../classes/View.html" class="crosslink">View</a> The target view
+###### 参数列表
+- `view` <a href="../classes/View.html" class="crosslink">View</a> The target view
 
 
 

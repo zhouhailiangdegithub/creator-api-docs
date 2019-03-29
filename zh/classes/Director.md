@@ -1,11 +1,9 @@
-## `Director` Class
+## `Director` 类型
 
-Extends [`EventTarget`](EventTarget.md)
-
-
-Module: [cc](../modules/cc.md)
+继承于 [`EventTarget`](EventTarget.md)
 
 
+模块: [cc](../modules/cc.md)
 
 
 <p>
@@ -39,81 +37,263 @@ Module: [cc](../modules/cc.md)
      - 只支持动画的间隔 1/60 1/30 & 1/15。<br/>
 </p>
 
-### Index
+
+### 索引
+
+##### 属性（properties）
+
+  - [`EVENT_PROJECTION_CHANGED`](#eventprojectionchanged) `String` cc.Director 投影变化的事件。
+  - [`EVENT_BEFORE_SCENE_LOADING`](#eventbeforesceneloading) `String` 加载新场景之前所触发的事件。
+  - [`EVENT_BEFORE_SCENE_LAUNCH`](#eventbeforescenelaunch) `String` 运行新场景之前所触发的事件。
+  - [`EVENT_AFTER_SCENE_LAUNCH`](#eventafterscenelaunch) `String` 运行新场景之后所触发的事件。
+  - [`EVENT_BEFORE_UPDATE`](#eventbeforeupdate) `String` 每个帧的开始时所触发的事件。
+  - [`EVENT_AFTER_UPDATE`](#eventafterupdate) `String` 将在引擎和组件 “update” 逻辑之后所触发的事件。
+  - [`EVENT_BEFORE_VISIT`](#eventbeforevisit) `String` 这个事件从 v2.0 开始被废弃，请直接使用 cc.Director.EVENT_BEFORE_DRAW
+  - [`EVENT_AFTER_VISIT`](#eventaftervisit) `String` 这个事件从 v2.0 开始被废弃，请直接使用 cc.Director.EVENT_BEFORE_DRAW
+  - [`EVENT_BEFORE_DRAW`](#eventbeforedraw) `String` 渲染过程之前所触发的事件。
+  - [`EVENT_AFTER_DRAW`](#eventafterdraw) `String` 渲染过程之后所触发的事件。
+  - [`PROJECTION_2D`](#projection2d) `Number` Constant for 2D projection (orthogonal projection)
+  - [`PROJECTION_3D`](#projection3d) `Number` Constant for 3D projection with a fovy=60, znear=0.5f and zfar=1500.
+  - [`PROJECTION_CUSTOM`](#projectioncustom) `Number` Constant for custom projection, if cc.Director's projection set to it, it calls "updateProjection" on the projection delegate.
+  - [`PROJECTION_DEFAULT`](#projectiondefault) `Number` Constant for default projection of cc.Director, default projection is 2D projection
 
 
 
-##### Methods
+##### 方法
 
+  - [`convertToGL`](#converttogl) 将触摸点的屏幕坐标转换为 WebGL View 下的坐标。
   - [`convertToUI`](#converttoui) 将触摸点的 WebGL View 坐标转换为屏幕坐标。
+  - [`end`](#end) End the life of director in the next frame
   - [`getWinSize`](#getwinsize) 获取视图的大小，以点为单位。
-  - [`getWinSizeInPixels`](#getwinsizeinpixels) 获取视图大小，以像素为单位。
-  - [`getVisibleSize`](#getvisiblesize) 获取运行场景的可见大小。
-  - [`getVisibleOrigin`](#getvisibleorigin) 获取视图在游戏内容中的坐标原点。
+  - [`getWinSizeInPixels`](#getwinsizeinpixels) 获取视图大小，以像素为单位（这里的像素指的是资源分辨率。
   - [`pause`](#pause) 暂停正在运行的场景，该暂停只会停止游戏逻辑执行，但是不会停止渲染和 UI 响应。
-如果想要更彻底得暂停游戏，包含渲染，音频和事件，请使用 Game.pause。
   - [`runSceneImmediate`](#runsceneimmediate) 立刻切换指定场景。
   - [`runScene`](#runscene) 运行指定场景。
   - [`loadScene`](#loadscene) 通过场景名称进行加载场景。
   - [`preloadScene`](#preloadscene) 预加载场景，你可以在任何时候调用这个方法。
-调用完后，你仍然需要通过 `cc.director.loadScene` 来启动场景，因为这个方法不会执行场景加载操作。
-就算预加载还没完成，你也可以直接调用 `cc.director.loadScene`，加载完成后场景就会启动。
   - [`_loadSceneByUuid`](#loadscenebyuuid) Loads the scene by its uuid.
   - [`resume`](#resume) 恢复暂停场景的游戏逻辑，如果当前场景没有暂停将没任何事情发生。
   - [`setDepthTest`](#setdepthtest) 启用/禁用深度测试（在 Canvas 渲染模式下不会生效）。
-  - [`setClearColor`](#setclearcolor) 设置场景的默认擦除颜色（支持白色全透明，但不支持透明度为中间值）。
-  - [`setProjection`](#setprojection) 设置 OpenGL 投影。
-  - [`setViewport`](#setviewport) 设置视窗（请不要主动调用这个接口，除非你知道你在做什么）。
-  - [`getProjection`](#getprojection) 获取 OpenGL 投影。
-  - [`setAlphaBlending`](#setalphablending) 启用/禁用 透明度融合。
-  - [`isSendCleanupToScene`](#issendcleanuptoscene) 更换场景时是否接收清理消息。<br>
-如果新场景是采用 push 方式进入的，那么旧的场景将不会接收到 “cleanup” 消息。<br/>
-如果新场景取代旧的场景，它将会接收到 “cleanup” 消息。</br>
-  - [`getRunningScene`](#getrunningscene) 获取当前运行的渲染场景，一般情况下，你不会需要用到这个接口，请使用 getScene。
+  - [`setClearColor`](#setclearcolor) 设置场景的默认擦除颜色。
+  - [`getRunningScene`](#getrunningscene) 获取当前逻辑场景。
   - [`getScene`](#getscene) 获取当前逻辑场景。
   - [`getAnimationInterval`](#getanimationinterval) 获取单位帧执行时间。
-  - [`isDisplayStats`](#isdisplaystats) 获取是否显示 FPS 信息。
-  - [`setDisplayStats`](#setdisplaystats) 设置是否在左下角显示 FPS。
-  - [`isNextDeltaTimeZero`](#isnextdeltatimezero) 返回下一个 “delta time” 是否等于零。
-  - [`isPaused`](#ispaused) 是否处于暂停状态。
+  - [`setAnimationInterval`](#setanimationinterval) Sets animation interval, this doesn't control the main loop....
+  - [`getDeltaTime`](#getdeltatime) 获取上一帧的增量时间。
   - [`getTotalFrames`](#gettotalframes) 获取 director 启动以来游戏运行的总帧数。
+  - [`isPaused`](#ispaused) 是否处于暂停状态。
   - [`getScheduler`](#getscheduler) 获取和 director 相关联的 cc.Scheduler。
   - [`setScheduler`](#setscheduler) 设置和 director 相关联的 cc.Scheduler。
   - [`getActionManager`](#getactionmanager) 获取和 director 相关联的 cc.ActionManager（动作管理器）。
   - [`setActionManager`](#setactionmanager) 设置和 director 相关联的 cc.ActionManager（动作管理器）。
-  - [`getCollisionManager`](#getcollisionmanager) Returns the cc.CollisionManager associated with this director.
-  - [`getPhysicsManager`](#getphysicsmanager) Returns the cc.PhysicsManager associated with this director.
-  - [`getDeltaTime`](#getdeltatime) 获取上一帧的 “delta time”。
+  - [`getCollisionManager`](#getcollisionmanager) 获取和 director 相关联的 cc.CollisionManager （碰撞管理器）。
+  - [`getPhysicsManager`](#getphysicsmanager) 返回与 director 相关联的 cc.PhysicsManager （物理管理器）。
+  - [`hasEventListener`](#haseventlistener) 检查事件目标对象是否有为特定类型的事件注册的回调。
   - [`on`](#on) 注册事件目标的特定事件类型回调。
   - [`off`](#off) 删除之前用同类型，回调，目标或 useCapture 注册的事件监听器，如果只传递 type，将会删除 type 类型的所有事件监听器。
   - [`targetOff`](#targetoff) 在当前 EventTarget 上删除指定目标（target 参数）注册的所有事件监听器。
-这个函数无法删除当前 EventTarget 的所有事件监听器，也无法删除 target 参数所注册的所有事件监听器。
-这个函数只能删除 target 参数在当前 EventTarget 上注册的所有事件监听器。
   - [`once`](#once) 注册事件目标的特定事件类型回调，回调会在第一时间被触发后删除自身。
-  - [`dispatchEvent`](#dispatchevent) 分发事件到事件流中。
-  - [`emit`](#emit) 该对象直接发送事件， 这种方法不会对事件传播到任何其他对象。
+  - [`emit`](#emit) 通过事件名发送自定义事件
+  - [`dispatchEvent`](#dispatchevent) 通过事件对象派发事件
 
 
 
-##### Events
+##### 事件
 
-  - [`cc.Director.EVENT_PROJECTION_CHANGED`](#cc.director.eventprojectionchanged) cc.Director 投影变化的事件。
   - [`cc.Director.EVENT_BEFORE_SCENE_LOADING`](#cc.director.eventbeforesceneloading) 加载新场景之前所触发的事件。
   - [`cc.Director.EVENT_AFTER_SCENE_LAUNCH`](#cc.director.eventafterscenelaunch) 运行新场景之后所触发的事件。
   - [`cc.Director.EVENT_BEFORE_UPDATE`](#cc.director.eventbeforeupdate) 每个帧的开始时所触发的事件。
   - [`cc.Director.EVENT_AFTER_UPDATE`](#cc.director.eventafterupdate) 将在引擎和组件 “update” 逻辑之后所触发的事件。
-  - [`cc.Director.EVENT_BEFORE_VISIT`](#cc.director.eventbeforevisit) 访问渲染场景树之前所触发的事件。
-  - [`cc.Director.EVENT_AFTER_VISIT`](#cc.director.eventaftervisit) 访问渲染场景图之后所触发的事件，渲染队列已准备就绪，但在这一时刻还没有呈现在画布上。
+  - [`cc.Director.EVENT_BEFORE_DRAW`](#cc.director.eventbeforedraw) 渲染过程之前所触发的事件。
   - [`cc.Director.EVENT_AFTER_DRAW`](#cc.director.eventafterdraw) 渲染过程之后所触发的事件。
 
 
 ### Details
 
 
+#### 属性（properties）
+
+
+##### EVENT_PROJECTION_CHANGED
+
+> cc.Director 投影变化的事件。从 v2.0 开始这个事件不会再被触发
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:980](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L980) |
+| 废弃（Deprecated） | since v2.0 |
+
+
+
+##### EVENT_BEFORE_SCENE_LOADING
+
+> 加载新场景之前所触发的事件。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:996](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L996) |
+
+
+
+##### EVENT_BEFORE_SCENE_LAUNCH
+
+> 运行新场景之前所触发的事件。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1011](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1011) |
+
+
+
+##### EVENT_AFTER_SCENE_LAUNCH
+
+> 运行新场景之后所触发的事件。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1026](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1026) |
+
+
+
+##### EVENT_BEFORE_UPDATE
+
+> 每个帧的开始时所触发的事件。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1040](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1040) |
+
+
+
+##### EVENT_AFTER_UPDATE
+
+> 将在引擎和组件 “update” 逻辑之后所触发的事件。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1054](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1054) |
+
+
+
+##### EVENT_BEFORE_VISIT
+
+> 这个事件从 v2.0 开始被废弃，请直接使用 cc.Director.EVENT_BEFORE_DRAW
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1063](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1063) |
+| 废弃（Deprecated） | since v2.0 |
+
+
+
+##### EVENT_AFTER_VISIT
+
+> 这个事件从 v2.0 开始被废弃，请直接使用 cc.Director.EVENT_BEFORE_DRAW
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1073](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1073) |
+| 废弃（Deprecated） | since v2.0 |
+
+
+
+##### EVENT_BEFORE_DRAW
+
+> 渲染过程之前所触发的事件。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1088](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1088) |
+
+
+
+##### EVENT_AFTER_DRAW
+
+> 渲染过程之后所触发的事件。
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1102](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1102) |
+
+
+
+##### PROJECTION_2D
+
+> Constant for 2D projection (orthogonal projection)
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1113](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1113) |
+| 废弃（Deprecated） | since v2.0 |
+
+
+
+##### PROJECTION_3D
+
+> Constant for 3D projection with a fovy=60, znear=0.5f and zfar=1500.
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1123](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1123) |
+| 废弃（Deprecated） | since v2.0 |
+
+
+
+##### PROJECTION_CUSTOM
+
+> Constant for custom projection, if cc.Director's projection set to it, it calls "updateProjection" on the projection delegate.
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1133](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1133) |
+| 废弃（Deprecated） | since v2.0 |
+
+
+
+##### PROJECTION_DEFAULT
+
+> Constant for default projection of cc.Director, default projection is 2D projection
+
+| meta | description |
+|------|-------------|
+| 类型 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| 定义于 | [cocos2d/core/CCDirector.js:1143](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L1143) |
+| 废弃（Deprecated） | since v2.0 |
+
+
+
+
 
 
 <!-- Method Block -->
-#### Methods
+#### 方法
+
+
+##### convertToGL
+
+将触摸点的屏幕坐标转换为 WebGL View 下的坐标。
+
+| meta | description |
+|------|-------------|
+| 返回 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:230](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L230) |
+| 废弃（Deprecated） | since v2.0 |
+
+###### 参数列表
+- `uiPoint` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
 
 
 ##### convertToUI
@@ -122,11 +302,22 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:268](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L268) |
-| Return 		 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
+| 返回 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:252](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L252) |
+| 废弃（Deprecated） | since v2.0 |
 
-###### Parameters
-- glPoint <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
+###### 参数列表
+- `glPoint` <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
+
+
+##### end
+
+End the life of director in the next frame
+
+| meta | description |
+|------|-------------|
+| 定义于 | [cocos2d/core/CCDirector.js:281](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L281) |
+
 
 
 ##### getWinSize
@@ -135,41 +326,22 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:333](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L333) |
-| Return 		 | <a href="../classes/Size.html" class="crosslink">Size</a> 
+| 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:289](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L289) |
+| 废弃（Deprecated） | since v2.0 |
 
 
 
 ##### getWinSizeInPixels
 
-获取视图大小，以像素为单位。
+获取视图大小，以像素为单位（这里的像素指的是资源分辨率。
+如果要获取屏幕物理分辨率，需要用 cc.view.getFrameSize()）
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:345](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L345) |
-| Return 		 | <a href="../classes/Size.html" class="crosslink">Size</a> 
-
-
-
-##### getVisibleSize
-
-获取运行场景的可见大小。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:363](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L363) |
-| Return 		 | <a href="../classes/Size.html" class="crosslink">Size</a> 
-
-
-
-##### getVisibleOrigin
-
-获取视图在游戏内容中的坐标原点。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:371](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L371) |
-| Return 		 | <a href="../classes/Vec2.html" class="crosslink">Vec2</a> 
+| 返回 | <a href="../classes/Size.html" class="crosslink">Size</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:302](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L302) |
+| 废弃（Deprecated） | since v2.0 |
 
 
 
@@ -180,7 +352,7 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:387](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L387) |
+| 定义于 | [cocos2d/core/CCDirector.js:319](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L319) |
 
 
 
@@ -190,12 +362,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:531](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L531) |
+| 定义于 | [cocos2d/core/CCDirector.js:403](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L403) |
 
-###### Parameters
-- scene <a href="../classes/Scene.html" class="crosslink">Scene</a> The need run scene.
-- onBeforeLoadScene <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene before loading.
-- onLaunched <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene after launch.
+###### 参数列表
+- `scene` <a href="../classes/Scene.html" class="crosslink">Scene</a> The need run scene.
+- `onBeforeLoadScene` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene before loading.
+- `onLaunched` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene after launch.
 
 
 ##### runScene
@@ -204,12 +376,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:638](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L638) |
+| 定义于 | [cocos2d/core/CCDirector.js:482](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L482) |
 
-###### Parameters
-- scene <a href="../classes/Scene.html" class="crosslink">Scene</a> The need run scene.
-- onBeforeLoadScene <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene before loading.
-- onLaunched <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene after launch.
+###### 参数列表
+- `scene` <a href="../classes/Scene.html" class="crosslink">Scene</a> The need run scene.
+- `onBeforeLoadScene` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene before loading.
+- `onLaunched` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The function invoked at the scene after launch.
 
 
 ##### loadScene
@@ -218,12 +390,12 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:695](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L695) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:539](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L539) |
 
-###### Parameters
-- sceneName <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The name of the scene to load.
-- onLaunched <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> callback, will be called after scene launched.
+###### 参数列表
+- `sceneName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The name of the scene to load.
+- `onLaunched` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> callback, will be called after scene launched.
 
 
 ##### preloadScene
@@ -234,12 +406,16 @@ Module: [cc](../modules/cc.md)
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:743](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L743) |
+| 定义于 | [cocos2d/core/CCDirector.js:567](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L567) |
 
-###### Parameters
-- sceneName <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The name of the scene to preload.
-- onLoaded <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> callback, will be called after scene loaded.
-	- error <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error" class="crosslink external" target="_blank">Error</a> null or the error object.
+###### 参数列表
+- `sceneName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The name of the scene to preload.
+- `onProgress` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> callback, will be called when the load progression change.
+	- `completedCount` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> The number of the items that are already completed
+	- `totalCount` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> The total number of the items
+	- `item` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The latest item which flow out the pipeline
+- `onLoaded` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> callback, will be called after scene loaded.
+	- `error` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error" class="crosslink external" target="_blank">Error</a> null or the error object.
 
 
 ##### _loadSceneByUuid
@@ -248,13 +424,13 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:778](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L778) |
+| 定义于 | [cocos2d/core/CCDirector.js:613](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L613) |
 
-###### Parameters
-- uuid <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> the uuid of the scene asset to load
-- onLaunched <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-- onUnloaded <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-- dontRunScene <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Just download and initialize the scene but will not launch it,
+###### 参数列表
+- `uuid` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> the uuid of the scene asset to load
+- `onLaunched` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
+- `onUnloaded` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
+- `dontRunScene` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Just download and initialize the scene but will not launch it,
                                   only take effect in the Editor.
 
 
@@ -264,7 +440,7 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:841](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L841) |
+| 定义于 | [cocos2d/core/CCDirector.js:676](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L676) |
 
 
 
@@ -274,90 +450,36 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:872](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L872) |
+| 定义于 | [cocos2d/core/CCDirector.js:695](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L695) |
+| 废弃（Deprecated） | since v2.0 |
 
-###### Parameters
-- on <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+###### 参数列表
+- `on` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
 
 
 ##### setClearColor
 
-设置场景的默认擦除颜色（支持白色全透明，但不支持透明度为中间值）。
+设置场景的默认擦除颜色。<br/>
+支持全透明，但不支持透明度为中间值。要支持全透明需手工开启 cc.macro.ENABLE_TRANSPARENT_CANVAS。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:882](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L882) |
+| 定义于 | [cocos2d/core/CCDirector.js:711](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L711) |
+| 废弃（Deprecated） | since v2.0 |
 
-###### Parameters
-- clearColor <a href="../classes/Color.html" class="crosslink">Color</a> 
-
-
-##### setProjection
-
-设置 OpenGL 投影。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:966](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L966) |
-
-###### Parameters
-- projection <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-
-
-##### setViewport
-
-设置视窗（请不要主动调用这个接口，除非你知道你在做什么）。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:976](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L976) |
-
-
-
-##### getProjection
-
-获取 OpenGL 投影。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:996](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L996) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-
-
-
-##### setAlphaBlending
-
-启用/禁用 透明度融合。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1006](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1006) |
-
-###### Parameters
-- on <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-
-
-##### isSendCleanupToScene
-
-更换场景时是否接收清理消息。<br>
-如果新场景是采用 push 方式进入的，那么旧的场景将不会接收到 “cleanup” 消息。<br/>
-如果新场景取代旧的场景，它将会接收到 “cleanup” 消息。</br>
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1016](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1016) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-
+###### 参数列表
+- `clearColor` <a href="../classes/Color.html" class="crosslink">Color</a> 
 
 
 ##### getRunningScene
 
-获取当前运行的渲染场景，一般情况下，你不会需要用到这个接口，请使用 getScene。
+获取当前逻辑场景。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1032](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1032) |
-| Return 		 | <a href="../classes/Scene.html" class="crosslink">Scene</a> 
+| 返回 | <a href="../classes/Scene.html" class="crosslink">Scene</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:729](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L729) |
+| 废弃（Deprecated） | since v2.0 |
 
 
 
@@ -367,11 +489,11 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1045](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1045) |
-| Return 		 | <a href="../classes/Scene.html" class="crosslink">Scene</a> 
+| 返回 | <a href="../classes/Scene.html" class="crosslink">Scene</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:741](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L741) |
 
 
-##### Example
+##### 示例
 
 ```js
 // This will help you to get the Canvas node in scene
@@ -380,57 +502,38 @@ Loads the scene by its uuid.
 
 ##### getAnimationInterval
 
-获取单位帧执行时间。
+获取单位帧执行时间。请使用 Game.setFrameRate 来控制游戏帧率。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1058](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1058) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:754](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L754) |
+| 废弃（Deprecated） | since v2.0 |
 
 
 
-##### isDisplayStats
+##### setAnimationInterval
 
-获取是否显示 FPS 信息。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1068](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1068) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-
-
-
-##### setDisplayStats
-
-设置是否在左下角显示 FPS。
+Sets animation interval, this doesn't control the main loop.
+To control the game's frame rate overall, please use Game.setFrameRate
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1078](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1078) |
+| 定义于 | [cocos2d/core/CCDirector.js:765](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L765) |
+| 废弃（Deprecated） | since v2.0 |
 
-###### Parameters
-- displayStats <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-
-
-##### isNextDeltaTimeZero
-
-返回下一个 “delta time” 是否等于零。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1091](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1091) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+###### 参数列表
+- `value` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> The animation interval desired.
 
 
+##### getDeltaTime
 
-##### isPaused
-
-是否处于暂停状态。
+获取上一帧的增量时间。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1101](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1101) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:776](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L776) |
 
 
 
@@ -440,8 +543,19 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1111](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1111) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:786](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L786) |
+
+
+
+##### isPaused
+
+是否处于暂停状态。
+
+| meta | description |
+|------|-------------|
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:796](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L796) |
 
 
 
@@ -451,8 +565,8 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1165](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1165) |
-| Return 		 | <a href="../classes/Scheduler.html" class="crosslink">Scheduler</a> 
+| 返回 | <a href="../classes/Scheduler.html" class="crosslink">Scheduler</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:806](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L806) |
 
 
 
@@ -462,10 +576,10 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1175](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1175) |
+| 定义于 | [cocos2d/core/CCDirector.js:816](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L816) |
 
-###### Parameters
-- scheduler <a href="../classes/Scheduler.html" class="crosslink">Scheduler</a> 
+###### 参数列表
+- `scheduler` <a href="../classes/Scheduler.html" class="crosslink">Scheduler</a> 
 
 
 ##### getActionManager
@@ -474,8 +588,8 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1187](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1187) |
-| Return 		 | <a href="../classes/ActionManager.html" class="crosslink">ActionManager</a> 
+| 返回 | <a href="../classes/ActionManager.html" class="crosslink">ActionManager</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:828](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L828) |
 
 
 
@@ -485,70 +599,72 @@ Loads the scene by its uuid.
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1196](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1196) |
+| 定义于 | [cocos2d/core/CCDirector.js:837](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L837) |
 
-###### Parameters
-- actionManager <a href="../classes/ActionManager.html" class="crosslink">ActionManager</a> 
+###### 参数列表
+- `actionManager` <a href="../classes/ActionManager.html" class="crosslink">ActionManager</a> 
 
 
 ##### getCollisionManager
 
-Returns the cc.CollisionManager associated with this director.
+获取和 director 相关联的 cc.CollisionManager （碰撞管理器）。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1222](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1222) |
-| Return 		 | <a href="../classes/CollisionManager.html" class="crosslink">CollisionManager</a> 
+| 返回 | <a href="../classes/CollisionManager.html" class="crosslink">CollisionManager</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:863](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L863) |
 
 
 
 ##### getPhysicsManager
 
-Returns the cc.PhysicsManager associated with this director.
+返回与 director 相关联的 cc.PhysicsManager （物理管理器）。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1231](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1231) |
-| Return 		 | <a href="../classes/PhysicsManager.html" class="crosslink">PhysicsManager</a> 
+| 返回 | <a href="../classes/PhysicsManager.html" class="crosslink">PhysicsManager</a> 
+| 定义于 | [cocos2d/core/CCDirector.js:873](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/CCDirector.js#L873) |
 
 
 
-##### getDeltaTime
+##### hasEventListener
 
-获取上一帧的 “delta time”。
+检查事件目标对象是否有为特定类型的事件注册的回调。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js:1240](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/CCDirector.js#L1240) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+| 定义于 | [cocos2d/core/event/event-target.js:68](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L68) |
 
+###### 参数列表
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The type of event.
 
 
 ##### on
 
-注册事件目标的特定事件类型回调。
+注册事件目标的特定事件类型回调。这种类型的事件应该被 `emit` 触发。
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js:157](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js#L157) |
-| Return 		 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
+| 返回 | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
+| 定义于 | [cocos2d/core/event/event-target.js:76](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L76) |
 
-###### Parameters
-- type <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
-- callback <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
+###### 参数列表
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
+- `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
                              The callback is ignored if it is a duplicate (the callbacks are unique).
-	- event <a href="../classes/Event.html" class="crosslink">Event</a> event
-- target <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target to invoke the callback, can be null
-- useCapture <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> When set to true, the capture argument prevents callback
-                             from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                             When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                             Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.
+	- `arg1` Any arg1
+	- `arg2` Any arg2
+	- `arg3` Any arg3
+	- `arg4` Any arg4
+	- `arg5` Any arg5
+- `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, can be null
 
-##### Example
+##### 示例
 
 ```js
-node.on(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
+eventTarget.on('fire', function (event) {
+    cc.log("fire in the hole");
 }, node);
 ```
 
@@ -558,28 +674,24 @@ node.on(cc.Node.EventType.TOUCH_END, function (event) {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js:209](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js#L209) |
+| 定义于 | [cocos2d/core/event/event-target.js:117](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L117) |
 
-###### Parameters
-- type <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type being removed.
-- callback <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback to remove.
-- target <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target to invoke the callback, if it's not given, only callback without target will be removed
-- useCapture <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> Specifies whether the callback being removed was registered as a capturing callback or not.
-                             If not specified, useCapture defaults to false. If a callback was registered twice,
-                             one with capture and one without, each must be removed separately. Removal of a capturing callback
-                             does not affect a non-capturing version of the same listener, and vice versa.
+###### 参数列表
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type being removed.
+- `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback to remove.
+- `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, if it's not given, only callback without target will be removed
 
-##### Example
+##### 示例
 
 ```js
-// register touchEnd eventListener
-var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
-}, node);
-// remove touch end event listener
-node.off(cc.Node.EventType.TOUCH_END, touchEnd, node);
-// remove all touch end event listeners
-node.off(cc.Node.EventType.TOUCH_END);
+// register fire eventListener
+var callback = eventTarget.on('fire', function (event) {
+    cc.log("fire in the hole");
+}, target);
+// remove fire event listener
+eventTarget.off('fire', callback, target);
+// remove all fire event listeners
+eventTarget.off('fire');
 ```
 
 ##### targetOff
@@ -590,10 +702,10 @@ node.off(cc.Node.EventType.TOUCH_END);
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js:257](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js#L257) |
+| 定义于 | [cocos2d/core/event/event-target.js:151](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L151) |
 
-###### Parameters
-- target <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target to be searched for all related listeners
+###### 参数列表
+- `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target to be searched for all related listeners
 
 
 ##### once
@@ -602,92 +714,77 @@ node.off(cc.Node.EventType.TOUCH_END);
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js:277](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js#L277) |
+| 定义于 | [cocos2d/core/event/event-target.js:164](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L164) |
 
-###### Parameters
-- type <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
-- callback <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
+###### 参数列表
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> A string representing the event type to listen for.
+- `callback` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> The callback that will be invoked when the event is dispatched.
                              The callback is ignored if it is a duplicate (the callbacks are unique).
-	- event <a href="../classes/Event.html" class="crosslink">Event</a> event
-- target <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target to invoke the callback, can be null
-- useCapture <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> When set to true, the capture argument prevents callback
-                             from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                             When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                             Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.
+	- `arg1` Any arg1
+	- `arg2` Any arg2
+	- `arg3` Any arg3
+	- `arg4` Any arg4
+	- `arg5` Any arg5
+- `target` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> The target (this object) to invoke the callback, can be null
 
-##### Example
+##### 示例
 
 ```js
-node.once(cc.Node.EventType.TOUCH_END, function (event) {
-    cc.log("this is callback");
+eventTarget.once('fire', function (event) {
+    cc.log("this is the callback and will be invoked only once");
 }, node);
+```
+
+##### emit
+
+通过事件名发送自定义事件
+
+| meta | description |
+|------|-------------|
+| 定义于 | [cocos2d/core/event/event-target.js:201](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L201) |
+
+###### 参数列表
+- `type` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> event type
+- `arg1` Any First argument
+- `arg2` Any Second argument
+- `arg3` Any Third argument
+- `arg4` Any Fourth argument
+- `arg5` Any Fifth argument
+
+##### 示例
+
+```js
+eventTarget.emit('fire', event);
+eventTarget.emit('fire', message, emitter);
 ```
 
 ##### dispatchEvent
 
-分发事件到事件流中。
+通过事件对象派发事件
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js:311](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js#L311) |
+| 定义于 | [cocos2d/core/event/event-target.js:221](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/event/event-target.js#L221) |
 
-###### Parameters
-- event <a href="../classes/Event.html" class="crosslink">Event</a> The Event object that is dispatched into the event flow
-
-
-##### emit
-
-该对象直接发送事件， 这种方法不会对事件传播到任何其他对象。
-
-| meta | description |
-|------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js:325](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/event/event-target.js#L325) |
-
-###### Parameters
-- message <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> the message to send
-- detail Any whatever argument the message needs
+###### 参数列表
+- `event` <a href="../classes/Event.html" class="crosslink">Event</a>  
 
 
 
 
-#### Events
-
-### `cc.Director.EVENT_PROJECTION_CHANGED` Event
-
-
-
-Module: [cc](../modules/cc.md)
-
-
-
-
-cc.Director 投影变化的事件。
-
-### Index
-
-
-
-
-
-
-
-### Details
-
-
-
+#### 事件
 
 ### `cc.Director.EVENT_BEFORE_SCENE_LOADING` Event
 
 
 
-Module: [cc](../modules/cc.md)
-
-
+模块: [cc](../modules/cc.md)
 
 
 加载新场景之前所触发的事件。
 
-### Index
+
+### 索引
 
 
 
@@ -704,14 +801,13 @@ Module: [cc](../modules/cc.md)
 
 
 
-Module: [cc](../modules/cc.md)
-
-
+模块: [cc](../modules/cc.md)
 
 
 运行新场景之后所触发的事件。
 
-### Index
+
+### 索引
 
 
 
@@ -728,14 +824,13 @@ Module: [cc](../modules/cc.md)
 
 
 
-Module: [cc](../modules/cc.md)
-
-
+模块: [cc](../modules/cc.md)
 
 
 每个帧的开始时所触发的事件。
 
-### Index
+
+### 索引
 
 
 
@@ -752,14 +847,13 @@ Module: [cc](../modules/cc.md)
 
 
 
-Module: [cc](../modules/cc.md)
-
-
+模块: [cc](../modules/cc.md)
 
 
 将在引擎和组件 “update” 逻辑之后所触发的事件。
 
-### Index
+
+### 索引
 
 
 
@@ -772,42 +866,17 @@ Module: [cc](../modules/cc.md)
 
 
 
-### `cc.Director.EVENT_BEFORE_VISIT` Event
+### `cc.Director.EVENT_BEFORE_DRAW` Event
 
 
 
-Module: [cc](../modules/cc.md)
+模块: [cc](../modules/cc.md)
 
 
+渲染过程之前所触发的事件。
 
 
-访问渲染场景树之前所触发的事件。
-
-### Index
-
-
-
-
-
-
-
-### Details
-
-
-
-
-### `cc.Director.EVENT_AFTER_VISIT` Event
-
-
-
-Module: [cc](../modules/cc.md)
-
-
-
-
-访问渲染场景图之后所触发的事件，渲染队列已准备就绪，但在这一时刻还没有呈现在画布上。
-
-### Index
+### 索引
 
 
 
@@ -824,14 +893,13 @@ Module: [cc](../modules/cc.md)
 
 
 
-Module: [cc](../modules/cc.md)
-
-
+模块: [cc](../modules/cc.md)
 
 
 渲染过程之后所触发的事件。
 
-### Index
+
+### 索引
 
 
 

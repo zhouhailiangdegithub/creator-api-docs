@@ -1,46 +1,36 @@
 
-## `_decorator` Module
+## `_decorator` 模块
 
 
 
 
 
 
+一些 JavaScript 装饰器，目前可以通过 "cc._decorator" 来访问。
+（这些 API 仍不完全稳定，有可能随着 JavaScript 装饰器的标准实现而调整）
 
 
 
 
 
-
-### Index
-
+### 索引
 
 
-##### Methods
+
+##### 方法
 
   - [`ccclass`](#ccclass) 将标准写法的 [ES6 Class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 声明为 CCClass，具体用法请参阅[类型定义](/docs/creator/scripting/class/)。
   - [`property`](#property) 定义 [CCClass](/docs/creator/scripting/class/) 所用的属性。
-  - [`executeInEditMode`](#executeineditmode) 允许继承自 Component 的 CCClass 在编辑器里执行。<br>
-默认情况下，所有 Component 都只会在运行时才会执行，也就是说它们的生命周期回调不会在编辑器里触发。
-  - [`requireComponent`](#requirecomponent) 为声明为 CCClass 的组件添加依赖的其它组件。当组件添加到节点上时，如果依赖的组件不存在，引擎将会自动将依赖组件添加到同一个节点，防止脚本出错。该设置在运行时同样有效。
-  - [`menu`](#menu) 将当前组件添加到组件菜单中，方便用户查找。例如 "Rendering/CameraCtrl"。
-  - [`executionOrder`](#executionorder) 设置脚本生命周期方法调用的优先级。优先级小于 0 的组件将会优先执行，优先级大于 0 的组件将会延后执行。优先级仅会影响 onLoad, onEnable, start, update 和 lateUpdate，而 onDisable 和 onDestroy 不受影响。
+  - [`executeInEditMode`](#executeineditmode) 允许继承自 Component 的 CCClass 在编辑器里执行。
+  - [`requireComponent`](#requirecomponent) 为声明为 CCClass 的组件添加依赖的其它组件。
+  - [`menu`](#menu) 将当前组件添加到组件菜单中，方便用户查找。
+  - [`executionOrder`](#executionorder) 设置脚本生命周期方法调用的优先级。
   - [`disallowMultiple`](#disallowmultiple) 防止多个相同类型（或子类型）的组件被添加到同一个节点。
   - [`playOnFocus`](#playonfocus) 当指定了 "executeInEditMode" 以后，playOnFocus 可以在选中当前组件所在的节点时，提高编辑器的场景刷新频率到 60 FPS，否则场景就只会在必要的时候进行重绘。
   - [`inspector`](#inspector) 自定义当前组件在 **属性检查器** 中渲染时所用的网页 url。
   - [`icon`](#icon) 自定义当前组件在编辑器中显示的图标 url。
   - [`help`](#help) 指定当前组件的帮助文档的 url，设置过后，在 **属性检查器** 中就会出现一个帮助图标，用户点击将打开指定的网页。
-  - [`mixins`](#mixins) NOTE:<br>
-The old mixins implemented in cc.Class(ES5) behaves exact the same as multiple inheritance.
-But since ES6, class constructor can't be function-called and class methods become non-enumerable,
-so we can not mix in ES6 Classes.<br>
-See:<br>
-[https://esdiscuss.org/topic/traits-are-now-impossible-in-es6-until-es7-since-rev32](https://esdiscuss.org/topic/traits-are-now-impossible-in-es6-until-es7-since-rev32)<br>
-One possible solution (but IDE unfriendly):<br>
-[http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)<br>
-<br>
-NOTE:<br>
-You must manually call mixins constructor, this is different from cc.Class(ES5).
+  - [`mixins`](#mixins) NOTE:<br>...
 
 
 
@@ -50,7 +40,7 @@ You must manually call mixins constructor, this is different from cc.Class(ES5).
 
 
 <!-- Method Block -->
-#### Methods
+#### 方法
 
 
 ##### ccclass
@@ -59,12 +49,12 @@ You must manually call mixins constructor, this is different from cc.Class(ES5).
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:137](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L137) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:243](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L243) |
 
-###### Parameters
-- name <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The class name used for serialization.
+###### 参数列表
+- `name` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The class name used for serialization.
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass} = cc._decorator;
@@ -88,29 +78,28 @@ class LoginData {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:191](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L191) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:315](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L315) |
 
-###### Parameters
-- options <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> an object with some property attributes
-	- type Any 
-	- url <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-	- visible <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
-	- displayName <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-	- tooltip <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
-	- multiline <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-	- readonly <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-	- min <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-	- max <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-	- step <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
-	- range <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number[]</a> 
-	- slide <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-	- serializable <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-	- editorOnly <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-	- override <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-	- animatable <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
-	- default Any for TypeScript only.
+###### 参数列表
+- `options` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> an object with some property attributes
+	- `type` Any 
+	- `visible` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> &#124; <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> 
+	- `displayName` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+	- `tooltip` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+	- `multiline` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+	- `readonly` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+	- `min` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+	- `max` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+	- `step` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> 
+	- `range` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number[]</a> 
+	- `slide` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+	- `serializable` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+	- `editorOnly` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+	- `override` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+	- `animatable` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> 
+	- `formerlySerializedAs` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, property} = cc._decorator;
@@ -138,7 +127,7 @@ class NewScript extends cc.Component {
 
     @property
     set width (value) {
-        return this._width = value;
+        this._width = value;
     }
 
     @property
@@ -147,8 +136,8 @@ class NewScript extends cc.Component {
     @property(cc.Vec2)
     offsets = [];
 
-    @property(cc.Texture2D)
-    texture = "";
+    @property(cc.SpriteFrame)
+    frame = null;
 }
 
 // above is equivalent to (上面的代码相当于):
@@ -181,9 +170,16 @@ var NewScript = cc.Class({
             }
         },
 
-        texture: {
-            default: "",
-            url: cc.Texture2D
+        offset: new cc.Vec2(100, 100)
+
+        offsets: {
+            default: [],
+            type: cc.Vec2
+        }
+
+        frame: {
+            default: null,
+            type: cc.SpriteFrame
         },
     }
 });
@@ -196,10 +192,10 @@ var NewScript = cc.Class({
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:383](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L383) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:461](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L461) |
 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, executeInEditMode} = cc._decorator;
@@ -217,12 +213,12 @@ class NewScript extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:407](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L407) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:485](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L485) |
 
-###### Parameters
-- requiredComponent <a href="../classes/Component.html" class="crosslink">Component</a> 
+###### 参数列表
+- `requiredComponent` <a href="../classes/Component.html" class="crosslink">Component</a> 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, requireComponent} = cc._decorator;
@@ -240,13 +236,13 @@ class SpriteCtrl extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:428](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L428) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:506](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L506) |
 
-###### Parameters
-- path <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The path is the menu represented like a pathname.
+###### 参数列表
+- `path` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> The path is the menu represented like a pathname.
                        For example the menu could be "Rendering/CameraCtrl".
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, menu} = cc._decorator;
@@ -264,12 +260,12 @@ class NewScript extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:450](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L450) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:528](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L528) |
 
-###### Parameters
-- order <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> The execution order of lifecycle methods for Component. Those less than 0 will execute before while those greater than 0 will execute after.
+###### 参数列表
+- `order` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> The execution order of lifecycle methods for Component. Those less than 0 will execute before while those greater than 0 will execute after.
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, executionOrder} = cc._decorator;
@@ -287,10 +283,10 @@ class CameraCtrl extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:473](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L473) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:551](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L551) |
 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, disallowMultiple} = cc._decorator;
@@ -308,10 +304,10 @@ class CameraCtrl extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:494](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L494) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:572](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L572) |
 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, playOnFocus, executeInEditMode} = cc._decorator;
@@ -330,12 +326,12 @@ class CameraCtrl extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:517](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L517) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:595](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L595) |
 
-###### Parameters
-- url <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+###### 参数列表
+- `url` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, inspector} = cc._decorator;
@@ -353,12 +349,12 @@ class NewScript extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:538](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L538) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:616](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L616) |
 
-###### Parameters
-- url <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+###### 参数列表
+- `url` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, icon} = cc._decorator;
@@ -376,12 +372,12 @@ class NewScript extends cc.Component {
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:560](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L560) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:638](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L638) |
 
-###### Parameters
-- url <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
+###### 参数列表
+- `url` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> 
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, help} = cc._decorator;
@@ -409,13 +405,13 @@ You must manually call mixins constructor, this is different from cc.Class(ES5).
 
 | meta | description |
 |------|-------------|
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js:583](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/platform/CCClassDecorator.js#L583) |
+| 定义于 | [cocos2d/core/platform/CCClassDecorator.js:661](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/core/platform/CCClassDecorator.js#L661) |
 
-###### Parameters
-- ctor <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> constructors to mix, only support ES5 constructors or classes defined by using `cc.Class`,
+###### 参数列表
+- `ctor` <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> constructors to mix, only support ES5 constructors or classes defined by using `cc.Class`,
                             not support ES6 Classes.
 
-##### Example
+##### 示例
 
 ```js
 const {ccclass, mixins} = cc._decorator;

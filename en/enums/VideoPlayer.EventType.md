@@ -5,22 +5,19 @@
 Module: [cc](../modules/cc.md)
 
 
-
-
 Video event type
 
+
 ### Index
-
-##### Properties
-
   - `PLAYING`
   - `PAUSED`
   - `STOPPED`
   - `COMPLETED`
+  - `META_LOADED`
+  - `CLICKED`
+  - `READY_TO_PLAY`
 
 ### Details
-
-#### Properties
 
 
 ##### PLAYING
@@ -30,7 +27,7 @@ Video event type
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js:32](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js#L32) |
+| Defined in | [cocos2d/videoplayer/CCVideoPlayer.js:37](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/videoplayer/CCVideoPlayer.js#L37) |
 
 
 
@@ -41,7 +38,7 @@ Video event type
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js:37](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js#L37) |
+| Defined in | [cocos2d/videoplayer/CCVideoPlayer.js:42](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/videoplayer/CCVideoPlayer.js#L42) |
 
 
 
@@ -52,7 +49,7 @@ Video event type
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js:42](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js#L42) |
+| Defined in | [cocos2d/videoplayer/CCVideoPlayer.js:47](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/videoplayer/CCVideoPlayer.js#L47) |
 
 
 
@@ -63,6 +60,39 @@ Video event type
 | meta | description |
 |------|-------------|
 | Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
-| Defined | [https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js:47](https:/github.com/cocos-creator/engine/blob/master/utils/api/engine/cocos2d/core/components/CCVideoPlayer.js#L47) |
+| Defined in | [cocos2d/videoplayer/CCVideoPlayer.js:52](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/videoplayer/CCVideoPlayer.js#L52) |
+
+
+
+##### META_LOADED
+
+> meta data is loaded
+
+| meta | description |
+|------|-------------|
+| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| Defined in | [cocos2d/videoplayer/CCVideoPlayer.js:57](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/videoplayer/CCVideoPlayer.js#L57) |
+
+
+
+##### CLICKED
+
+> clicked by the user
+
+| meta | description |
+|------|-------------|
+| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| Defined in | [cocos2d/videoplayer/CCVideoPlayer.js:62](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/videoplayer/CCVideoPlayer.js#L62) |
+
+
+
+##### READY_TO_PLAY
+
+> ready to play, this event is not guaranteed to be triggered on all platform or browser, please don't rely on it to play your video.<br/>
+
+| meta | description |
+|------|-------------|
+| Type | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> |
+| Defined in | [cocos2d/videoplayer/CCVideoPlayer.js:67](https://github.com/cocos-creator/engine/blob/4f734a806d1fd7c4073fb064fddc961384fe67af/cocos2d/videoplayer/CCVideoPlayer.js#L67) |
 
 

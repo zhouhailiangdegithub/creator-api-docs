@@ -4,19 +4,56 @@
         "readme": "index.md"
     },
     "variables": {
-        "navlinks": [
+        "products": [
             {
-                "name": "Creator Manual",
-                "link": "#"
+                "name": "Cocos Creator",
+                "links": [
+                    {
+                        "name": "Manual",
+                        "link": "http://docs.cocos.com/creator/manual/en"
+                    },
+                    {
+                        "name": "API Ref",
+                        "link": "http://docs.cocos.com/creator/api/en"
+                    }
+                ]
             },
             {
-                "name": "Creator Engine API",
-                "link": "#"
-            },            
+                "name": "Cocos2d-x",
+                "links": [
+                    {
+                        "name": "Manual",
+                        "link": "http://docs.cocos.com/cocos2d-x/manual/en/"
+                    },
+                    {
+                        "name": "API Ref",
+                        "link": "http://www.cocos2d-x.org/docs/api-ref/index.html"
+                    }
+                ]
+            },
             {
-                "name": "Cocos2d-x Docs",
-                "link": "http://cocos2d-x.org/docs/index.html"
+                "name": "AnySDK",
+                "link": "http://docs.anysdk.com/"
+            }
+        ],
+        "version": [
+            {
+                "name": "2.0",
+                "links": [
+                    {
+                        "name": "1.9",
+                        "link": "http://docs.cocos.com/creator/1.9/api/en"
+                    },
+                    {
+                        "name": "1.10",
+                        "link": "http://docs.cocos.com/creator/1.10/api/en"
+                    },
+                    {
+                        "name": "2.0",
+                        "link": "http://docs.cocos.com/creator/api/en"
+                    }
+                ]
             }
         ]
-    }   
+    }
 }
